@@ -1,0 +1,45 @@
+{
+	"folders": [
+		{
+			"name": "spec",
+			"path": "packages\\spec"
+		},
+		{
+			"name": "contract",
+			"path": "packages\\contract"
+		},
+		{
+			"name": "datacenter",
+			"path": "packages\\datacenter"
+		},
+		{
+			"name": "web3",
+			"path": "packages\\web3"
+		},
+		{
+			"name": "chain",
+			"path": "packages\\chain"
+		},
+		{
+			"name": "modules",
+			"path": "packages\\modules"
+		},
+		{
+			"name": "server",
+			"path": "packages\\server"
+		},
+		{
+			"name": "client",
+			"path": "packages\\client"
+		},
+		{
+			"name": "wireframe",
+			"path": "packages\\wireframe"
+		},
+		{
+			"name": "admin",
+			"path": "packages\\admin"
+		}
+	],
+	"settings": {}
+}
