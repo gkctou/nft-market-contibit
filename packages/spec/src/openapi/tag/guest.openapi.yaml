@@ -7,7 +7,7 @@ servers:
   - url: "http://localhost/api/master/v0"
 tags: 
   - name: guest
-    description: 未登入使用者的會員操作界面
+    description: 未登入使用者操作界面
 paths:
   /guest/register/phone:
     post:
@@ -135,8 +135,175 @@ paths:
       responses:
         200:
           description: OK
+          content:
+            application/json:
+              schema:
+                description: 成功送出並取回下次可執行時間
+                type: integer
+                example: 1653502991840
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  email:
+                    type: string
+                    example: api.guest.verify.email.error.exist
+                  time:
+                    description: 下次可執行時間
+                    type: integer
         default:
           $ref: "#/components/responses/BaseError"
+  /guest/verify/phone:
+    post:
+      operationId: guestVerifyPhone
+      tags:
+        - guest
+      description: 寄發手機檢查碼簡訊
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - phone
+              properties:
+                phone:
+                  type: string
+                  example: +886987654321
+                lang:
+                  type: string
+                  example: en-US
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: 成功送出並取回下次可執行時間
+                type: integer
+                example: 1653502991840
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  phone:
+                    type: string
+                    example: api.guest.verify.phone.error.format
+                  time:
+                    description: 下次可執行時間
+                    type: integer
+        default:
+          $ref: "#/components/responses/BaseError"
+  /guest/reset/password:
+    post:
+      operationId: guestResetPassword
+      tags:
+        - guest
+      description: Reset member password.
+      parameters: []
+      requestBody:
+        description: Reset informations
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                emailVerify:
+                  type: string
+                phoneVerify:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - emailVerify
+                - phoneVerify
+                - password
+      responses:
+        200:
+          $ref: "#/components/responses/AuthToken"
+        403:
+          description: 注冊資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  email:
+                    type: string
+                    example: api.guest.register.error.email.format
+                  emailVerify:
+                    type: string
+                    example: api.guest.register.error.emailVerify.notMatch
+                  phoneVerify:
+                    type: string
+                    example: api.guest.register.error.phoneVerify.overTime
+                  password:
+                    type: string
+                    example: api.guest.register.error.password.minLength8
+        default:
+          $ref: "#/components/responses/BaseError"
+  /guest/verify/account/phone:
+    post:
+      operationId: guestVerifyAccountPhone
+      tags:
+        - guest
+      description: 依帳號關聯手機號碼寄發檢查碼簡訊
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                lang:
+                  type: string
+                  example: en-US
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: 成功送出並取回下次可執行時間
+                type: integer
+                example: 1653502991840
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  email:
+                    type: string
+                    example: api.guest.verify.account.phone.error.email.notExist
+                  time:
+                    description: 下次可執行時間
+                    type: integer
+        default:
+          $ref: "#/components/responses/BaseError"
+
 components:
   schemas:
     BaseAny:
