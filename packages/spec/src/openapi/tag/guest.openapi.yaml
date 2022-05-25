@@ -1,0 +1,183 @@
+openapi: 3.0.0
+info:
+  title: NFT Market
+  description: NFT Market API
+  version: 0.0.1
+servers:
+  - url: "http://localhost/api/master/v0"
+tags: 
+  - name: guest
+    description: 未登入使用者的會員操作界面
+paths:
+  /guest/register/phone:
+    post:
+      operationId: guestRegisterPhone
+      tags:
+        - guest
+      description: Register a new user by phone.
+      parameters: []
+      requestBody:
+        description: Register informations
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                emailVerify:
+                  type: string
+                phone:
+                  type: string
+                phoneVerify:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - emailVerify
+                - phone
+                - phoneVerify
+                - password
+      responses:
+        200:
+          $ref: "#/components/responses/AuthToken"
+        403:
+          description: 注冊資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  email:
+                    type: string
+                    example: api.guest.register.error.email.format
+                  emailVerify:
+                    type: string
+                    example: api.guest.register.error.emailVerify.notMatch
+                  phone:
+                    type: string
+                    example: api.guest.register.error.phone.exist
+                  phoneVerify:
+                    type: string
+                    example: api.guest.register.error.phoneVerify.overTime
+                  password:
+                    type: string
+                    example: api.guest.register.error.password.minLength8
+        default:
+          $ref: "#/components/responses/BaseError"
+  /guest/login/password:
+    post:
+      operationId: guestLoginPassword
+      tags:
+        - guest
+      description: Login by email and password.
+      parameters: []
+      requestBody:
+        description: Login fields
+        required: true
+        content:
+          "application/json":
+            schema:
+              description: Auth info
+              type: object
+              required:
+                - account
+                - password
+              properties:
+                account:
+                  type: string
+                  description: email
+                password:
+                  type: string
+      responses:
+        200:
+          $ref: "#/components/responses/AuthToken"
+        401:
+          description: 登入資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  account:
+                    type: string
+                    example: api.guest.login.password.error.email.notExist
+                  password:
+                    type: string
+                    example: api.guest.login.password.error.password.notMatch
+        default:
+          $ref: "#/components/responses/BaseError"
+  /guest/verify/email:
+    post:
+      operationId: guestVerifyEmail
+      tags:
+        - guest
+      description: 寄發電子郵件檢查碼信件
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                lang:
+                  type: string
+                  example: en-US
+      responses:
+        200:
+          description: OK
+        default:
+          $ref: "#/components/responses/BaseError"
+components:
+  schemas:
+    BaseAny:
+      type: object
+      properties: {}
+    BaseArrayAny:
+      type: array
+      items:
+        $ref: "#/components/schemas/BaseAny"
+    BaseError:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          description: Error code
+          type: integer
+        message:
+          description: Error Message
+          type: string
+        data:
+          $ref: "#/components/schemas/BaseAny"      
+  responses:
+    BaseError:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseError"
+    AuthToken:
+      description: Auth token.
+      content:
+        application/json:
+          schema:
+            description: Login token
+            type: object
+            required:
+              - userId
+              - token
+            properties:
+              userId:
+                type: string
+              token:
+                type: string

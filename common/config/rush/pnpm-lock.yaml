@@ -119,7 +119,10 @@ importers:
   ../../packages/spec:
     specifiers:
       '@types/node': ^17.0.35
+      js-yaml: ~4.1.0
       typescript: ^4.6.4
+    dependencies:
+      js-yaml: 4.1.0
     devDependencies:
       '@types/node': 17.0.35
       typescript: 4.6.4
@@ -1418,7 +1421,6 @@ packages:
 
   /argparse/2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
-    dev: true
 
   /arr-diff/4.0.0:
     resolution: {integrity: sha512-YVIQ82gZPGBebQV/a8dar4AitzCQs0jjXwMPZllpXMaGjXPYVUawSxQrRsjhjupyVxEvbHgUmIhKVlND+j02kA==}
@@ -5230,7 +5232,6 @@ packages:
     hasBin: true
     dependencies:
       argparse: 2.0.1
-    dev: true
 
   /jsbn/0.1.1:
     resolution: {integrity: sha1-peZUwuWi3rXyAdls77yoDA7y9RM=}

@@ -1,0 +1,79 @@
+openapi: 3.0.0
+info:
+  title: NFT Market
+  description: NFT Market API
+  version: 0.0.1
+servers:
+  - url: "http://localhost/api/master/v0"
+tags: 
+  - name: base
+    description: base api define
+paths:
+  /base/ping:
+    get:
+      tags:
+        - base
+      summary: 伺服器作動檢查
+      description: 檢查伺服器是否有回應，并取得伺服器時間戳。
+      parameters:
+        - name: now
+          in: query
+          description: 本地時間戳
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+                description: 伺服器時間戳
+        default:
+          $ref: "#/components/responses/BaseError"
+components:
+  securitySchemes:
+    BaseApiKey:
+      type: apiKey
+      name: apikey
+      in: header
+  schemas:
+    BaseAny:
+      type: object
+      properties: {}
+    BaseArrayAny:
+      type: array
+      items:
+        $ref: "#/components/schemas/BaseAny"
+    BaseError:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          description: Error code
+          type: integer
+        message:
+          description: Error Message
+          type: string
+        data:
+          $ref: "#/components/schemas/BaseAny"
+  responses:
+    BaseAny:
+      description: Response any object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseAny"
+    BaseArrayAny:
+      description: Response array of any
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseArrayAny"
+    BaseError:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseError"
