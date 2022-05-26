@@ -303,7 +303,6 @@ paths:
                     type: integer
         default:
           $ref: "#/components/responses/BaseError"
-
 components:
   schemas:
     BaseAny:

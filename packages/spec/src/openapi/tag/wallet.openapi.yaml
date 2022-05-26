@@ -1,0 +1,168 @@
+openapi: 3.0.0
+info:
+  title: NFT Market
+  description: NFT Market API
+  version: 0.0.1
+servers:
+  - url: "http://localhost/api/master/v0"
+tags: 
+  - name: wallet
+    description: 系統錢包操作
+security:
+  - BaseApiKey: []
+paths:
+  /wallet/balance:
+    post:
+      operationId: walletBalance
+      tags:
+        - wallet
+      description: wallet balance
+      parameters: []
+      requestBody:
+        description: user id
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+              required:
+                - userId
+      responses:
+        200:
+          description: 錢包餘額
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    symbol:
+                      type: string
+                      description: 虛擬貨幣名稱
+                      example: ETH
+                    unit:
+                      type: string
+                      description: 錢包使用單位
+                      example: ether
+                    decimal:
+                      type: integer
+                      description: 小數位數
+                      example: 4
+                    balance:
+                      description: 可動用餘額
+                      type: number
+                    lock:
+                      description: 鎖倉金額
+                      type: number
+        401:
+          description: 登入資訊錯誤
+        default:
+          $ref: "#/components/responses/BaseError"
+  /wallet/history:
+    post:
+      operationId: walletHistory
+      tags:
+        - wallet
+      description: wallet history
+      parameters: []
+      requestBody:
+        description: user id
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                offset:
+                  type: integer
+                  description: 起始資料位置索引(0 base)
+                  default: 0
+                size:
+                  type: integer
+                  description: 每頁個數
+                  default: 20
+      responses:
+        200:
+          description: 錢包存提紀錄
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  offset:
+                    type: integer
+                  list:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        time:
+                          type: number
+                        name:
+                          type: string
+                        symbol:
+                          type: string
+                        direction:
+                          type: string
+                          enum:
+                            - diposit
+                            - withdraw
+                        amount:
+                          type: number
+                        status:
+                          type: string
+                          enum:
+                            - success
+                            - cancel
+                            - processing
+                            - waiting
+        401:
+          description: 登入資訊錯誤
+        default:
+          $ref: "#/components/responses/BaseError"
+components:
+  securitySchemes:
+    BaseApiKey:
+      type: apiKey
+      name: apikey
+      in: header
+  schemas:
+    BaseAny:
+      type: object
+      properties: {}
+    BaseArrayAny:
+      type: array
+      items:
+        $ref: "#/components/schemas/BaseAny"
+    BaseError:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          description: Error code
+          type: integer
+        message:
+          description: Error Message
+          type: string
+        data:
+          $ref: "#/components/schemas/BaseAny"
+  responses:
+    BaseError:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseError"

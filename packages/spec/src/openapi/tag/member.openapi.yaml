@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: NFT Market
+  description: NFT Market API
+  version: 0.0.1
+servers:
+  - url: "http://localhost/api/master/v0"
+tags: 
+  - name: member
+    description: 已登入使用者操作界面
+security:
+  - BaseApiKey: []
+paths:
+  /member/info:
+    get:
+      operationId: memberInfo
+      tags:
+        - member
+      description: check and renew auth token
+      parameters: []
+      responses:
+        200:
+          description: 會員基本資料
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                  email:
+                    type: string
+                  level:
+                    type: integer
+        401:
+          description: 登入資訊錯誤
+        default:
+          $ref: "#/components/responses/BaseError"
+components:
+  securitySchemes:
+    BaseApiKey:
+      type: apiKey
+      name: apikey
+      in: header
+  schemas:
+    BaseAny:
+      type: object
+      properties: {}
+    BaseArrayAny:
+      type: array
+      items:
+        $ref: "#/components/schemas/BaseAny"
+    BaseError:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          description: Error code
+          type: integer
+        message:
+          description: Error Message
+          type: string
+        data:
+          $ref: "#/components/schemas/BaseAny"
+  responses:
+    BaseError:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseError"
