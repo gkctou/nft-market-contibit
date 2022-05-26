@@ -4,15 +4,17 @@
   "description": "",
   "main": "build/index.js",
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "openapi": "ts-node src/script/openapiMerge.ts",
+    "postopenapi": "widdershins openapi/openapi.yaml -o openapi/openapi.md --language_tabs javascript:JavaScript -u src/widdershins/openapi3"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^17.0.35",
-    "typescript": "^4.6.4"
-  },
-  "dependencies": {
-    "js-yaml": "~4.1.0"
+    "typescript": "^4.6.4",
+    "js-yaml": "~4.1.0",
+    "ts-node": "~10.8.0",
+    "widdershins": "~4.0.1"
   }
 }

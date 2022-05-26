@@ -1,0 +1,99 @@
+openapi: 3.0.0
+info:
+  title: NFT Market
+  description: NFT Market API
+  version: 0.0.1
+servers:
+  - url: "http://localhost/api/master/v0"
+tags: 
+  - name: blank
+    description: base api define
+paths:
+  /blank/ping:
+    get:
+      tags:
+        - blank
+      summary: 伺服器作動檢查
+      description: |- 
+        檢查伺服器是否有回應，并取得伺服器時間戳。
+
+        [![](https://mermaid.ink/svg/pako:eNp1kctOwkAUhl-FzFpeoCYmJvAE6q6bhg5CQgup7cIQEjRBgQLtQsqtsQSRi0gQQ7yA8jScmfYtnAYwMcLu5Pzff65pFEmKGHHoXBFSscBp6JCXwdbpXYdaI1evBYNHq3mJ2I7bf6CtV5I3oejAyzR8dryD_CgwkoxNuqyQQYPMLVIogzFZw_vqMCNpXJNqnsyWPra_iE8OGm7PWJO_Lpb37Czknj1L97IGqVf-q97NiFZLkJu64_oOtW3SVtfrDLzm01-VbbXw28NVcz2ZO-x5w5oPbUdhDCzeYFmCchE-Z9QZ0685tNrktuDvs8vuW4yJ--6wC0LXgm4f7nW39giLNpj51be96YIOkIQVSYiL7EVpXg4EeKTGsIR5xLFQxFFBS6g84uUMQ7WUKKg4LMbVpIK4qJC4wAdI0NTkyaUcQZyqaHgLheIC-7i0oTI_eBgjqw?bgColor=!white)](https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNp1kctOwkAUhl-FzFpeoCYmJvAE6q6bhg5CQgup7cIQEjRBgQLtQsqtsQSRi0gQQ7yA8jScmfYtnAYwMcLu5Pzff65pFEmKGHHoXBFSscBp6JCXwdbpXYdaI1evBYNHq3mJ2I7bf6CtV5I3oejAyzR8dryD_CgwkoxNuqyQQYPMLVIogzFZw_vqMCNpXJNqnsyWPra_iE8OGm7PWJO_Lpb37Czknj1L97IGqVf-q97NiFZLkJu64_oOtW3SVtfrDLzm01-VbbXw28NVcz2ZO-x5w5oPbUdhDCzeYFmCchE-Z9QZ0685tNrktuDvs8vuW4yJ--6wC0LXgm4f7nW39giLNpj51be96YIOkIQVSYiL7EVpXg4EeKTGsIR5xLFQxFFBS6g84uUMQ7WUKKg4LMbVpIK4qJC4wAdI0NTkyaUcQZyqaHgLheIC-7i0oTI_eBgjqw)
+
+        ```mermaid
+        graph TD;
+        國產疫苗-->二期解盲成功就EUA;
+        國產疫苗-->三期歐美標準才可EUA;
+        二期解盲成功就EUA-->時效派;
+        三期歐美標準才可EUA-->標規派;
+        時效派-->需公開透明;
+        時效派-->需醫界共識;
+        時效派-->需預盤風險;
+        時效派--->仍可做三期試驗;
+        標規派-->延後半年短缺因應;
+        仍可做三期試驗-->可跟國外大型藥廠合作試驗;
+        ```
+
+      parameters:
+        - name: now
+          in: query
+          description: 本地時間戳
+          schema:
+            type: integer
+            example: 1653532830797
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+                description: 伺服器時間戳
+                example: 1653532830797
+        default:
+          $ref: "#/components/responses/BaseError"
+components:
+  securitySchemes:
+    BaseApiKey:
+      type: apiKey
+      name: apikey
+      in: header
+  schemas:
+    BaseAny:
+      type: object
+      properties: {}
+    BaseArrayAny:
+      type: array
+      items:
+        $ref: "#/components/schemas/BaseAny"
+    BaseError:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          description: Error code
+          type: integer
+        message:
+          description: Error Message
+          type: string
+        data:
+          $ref: "#/components/schemas/BaseAny"
+  responses:
+    BaseAny:
+      description: Response any object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseAny"
+    BaseArrayAny:
+      description: Response array of any
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseArrayAny"
+    BaseError:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseError"

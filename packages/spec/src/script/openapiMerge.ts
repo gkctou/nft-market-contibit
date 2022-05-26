@@ -5,20 +5,22 @@ import * as yaml from 'js-yaml';
 import * as path from "path";
 
 let srcPath = path.resolve(__dirname, '../../src/openapi/');
-let baseOpenapi = yaml.safeLoad(fs.readFileSync(path.join(srcPath, 'base.openapi.yaml'), "utf8"));
+let baseOpenapi: any = yaml.load(fs.readFileSync(path.join(srcPath, 'base.openapi.yaml'), 'utf8'));
 
-let schemaPath = path.resolve(__dirname, '../../src/schema/');
-let schemaFiles = (fs.readdirSync(schemaPath) || []).filter(f => f.endsWith('.schema.yaml'));
-for (const s of schemaFiles) {
-    let name = s.split('.')[0];
-    let { description, type, properties } = yaml.safeLoad(fs.readFileSync(path.join(schemaPath, s), "utf8"));
-    baseOpenapi.components.schemas[name] = { description, type, properties, additionalProperties: false };
-}
+// let schemaPath = path.resolve(__dirname, '../../src/schema/');
+// let schemaFiles = (fs.readdirSync(schemaPath) || []).filter(f => f.endsWith('.schema.yaml'));
+// for (const s of schemaFiles) {
+//     let name = s.split('.')[0];
+//     let { description, type, properties } = yaml.load(path.join(schemaPath, s)) as any;
+//     baseOpenapi.components.schemas[name] = { description, type, properties, additionalProperties: false };
+// }
 
-let tagPath = path.resolve(__dirname, '../../src/openapi/tag/');
+let tagPath = path.resolve(__dirname, '../openapi/tag/');
 let tagFiles = (fs.readdirSync(tagPath) || []).filter(f => f.endsWith('openapi.yaml'));
 for (const tagFile of tagFiles) {
-    let tagApi = yaml.safeLoad(fs.readFileSync(path.join(tagPath, tagFile), "utf8"));
+    let tagApi: any = yaml.load(fs.readFileSync(path.join(tagPath, tagFile), 'utf8'));
+    if (!tagApi || !tagApi.paths)
+        continue;
     for (const pat of Object.keys(tagApi.paths)) {
         let pa = tagApi.paths[pat];
         baseOpenapi.paths[pat] = baseOpenapi.paths[pat] || {};
@@ -46,5 +48,5 @@ for (const tagFile of tagFiles) {
 
 }
 let saveFile = path.resolve(__dirname, '../../openapi/openapi.yaml');
-fs.writeFileSync(saveFile, yaml.safeDump(baseOpenapi, {}), 'utf8')
+fs.writeFileSync(saveFile, yaml.dump(baseOpenapi), 'utf8')
 console.log('done.');

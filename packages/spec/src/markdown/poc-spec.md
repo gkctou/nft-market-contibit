@@ -152,10 +152,94 @@ Contibit NFT Market(POC Spec.)
 
 ---
 
+## 伺服器功能模組（...）
+
+第一層為專案切分，第二層為專案職責或模組切割
+- spec
+  - 系統設計文件
+  - API 規格文件
+- contract
+  - 系統支援智能合約
+- datacenter
+  - Redis(Bee Queue / LRU Cach)
+  - Mongodb(Normal Database)
+  - Postgresql(Transaction / Double verify)
+- web3
+  - Moralis
+  - Alchemy
+  - Opensea
+  - Infura
+  - Pinata
+  - Cybavo（金庫模組）
+- chain
+  - 鏈上資訊收集
+  - 執行鏈上交易
+- modules
+  - 會員管理/認證模組
+    - JWT
+  - NFT 會員賬目對應模組
+    - 匯入/提領
+  - 虛擬幣 會員賬目對應模組
+    - 匯入/提領
+  - 站内賣場模組
+    - 上下架
+    - 交易
+  - 站外賣場/widget模組
+    - 上下架
+    - 交易
+  - 虛擬幣交易模組
+    - 扣賬
+    - 查價
+    - 換匯（水位管理）
+  - 法幣支付模組
+    - 信用卡（NTD/USD）
+    - 第三方金流
+- server
+  - 前臺流程控制模組
+  - 前臺網頁伺服器
+  - API 伺服器
+    - Openapi-Backend
+- backend
+  - 後臺操作及資料查詢
+  - 後臺網頁伺服器
+- frontend
+  - 前臺網頁
+- backend
+  - 後臺網頁
+
+<details>
+  <summary>組織圖展開</summary>
+
+```mermaid
+graph LR
+system --- spec & contract & datacenter & web3 & chain & modules & server & backend & frontend &  admin
+spec --- 系統設計文件 & N01["API 規格文件"]
+contract --- 系統支援智能合約
+datacenter --- N02["Redis(Bee Queue / LRU Cach)"] & N03["Mongodb(Normal Database)"] & N04["Postgresql(Transaction / Double verify)"]
+web3 --- Moralis & Alchemy & Opensea & Infura & Pinata & N05["Cybavo（金庫模組）"]
+chain --- 鏈上資訊收集 & 執行鏈上交易
+server --- 前臺流程控制模組 & 前臺網頁伺服器 & API伺服器
+backend --- 後臺操作及資料查詢 & 後臺網頁伺服器
+frontend --- 前臺網頁
+admin --- 後臺網頁
+modules --- N06["會員管理/認證模組"] & N07["NFT 會員賬目對應模組"] & N09["虛擬幣 會員賬目對應模組"] & N11["站内賣場模組"] & N12["站外賣場/widget模組"] & N13["虛擬幣交易模組"] & 法幣支付模組
+N06 --- JWT
+N07 --- N08["匯入/提領"]
+N09 --- N10["匯入/提領"]
+N11 --- 站内上下架 & 站内交易
+N12 --- 站外上下架 & 站外交易
+N13 --- 扣賬 & 查價 & N14["換匯（水位管理）"]
+法幣支付模組 --- N15["信用卡（NTD/USD）"] & 第三方金流
+```
+
+</details>
+
+---
+
 ## 後臺 UI 功能需求（...）
 
 <details>
-  <summary>展開</summary>
+  <summary>清單展開</summary>
     
 - ~~首頁内容CMS(非必要)~~
 - 會員清單
@@ -173,49 +257,4 @@ Contibit NFT Market(POC Spec.)
 
 </details>
 
----
-
-## 伺服器功能模組（...）
-
-<details>
-  <summary>展開</summary>
-    
-- 會員管理/認證模組
-    - JWT
-- 金庫管理及操作模組
-    - ~~Cybavo~~
-- 資料庫存取模組
-    - Mongodb(Normal Database)
-    - Postgresql(Transaction、Double verify)
-- 快取/Msg-Queue 模組
-    - Redis
-    - Bee queue
-- NFT 會員賬目對應模組
-    - 匯入/提領
-- 虛擬幣 會員賬目對應模組
-    - 匯入/提領
-- 站内賣場模組
-    - 上下架
-    - 交易
-- 站外賣場/widget模組
-    - 上下架
-    - 交易
-- 虛擬幣交易模組
-    - 扣賬
-    - 查價
-    - 換匯（水位管理）
-- 法幣支付模組
-    - 信用卡（NTD/USD）
-    - 第三方金流
-- 前臺流程控制模組
-- 鏈上資訊查詢及監聽模組
-- 後臺操作及資料查詢模組
-- API 伺服器
-    - Openapi-Backend
-- 前臺網頁伺服器
-    - [訪客行爲分析](https://amplitude.com/)
-- 後臺常駐應用模組/伺服器
-- 後臺網頁伺服器
-    
-</details>
 ---

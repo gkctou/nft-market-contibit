@@ -292,7 +292,7 @@ Contibit NFT Market UI Components
     - NFT版稅（%）
     - 移除按鈕
 - 上架市場開關（多選）
-    - 站内
+    - 站内（Contibit）
     - Opensea
 - 設定上架期間（下拉日數）
 - 右側 上架明細
