@@ -208,7 +208,8 @@ Contibit NFT Market(POC Spec.)
   - 後臺網頁
 
 <!-- <details> -->
-  <summary>組織圖展開</summary>
+  <!-- <summary>組織圖展開</summary>-->
+#### 組織圖展開
 
 ```mermaid
 graph LR
