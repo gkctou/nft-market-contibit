@@ -41,6 +41,8 @@ Contibit NFT Market(POC Spec.)
     - ~~NFT 集合/單品 嵌入式賣場(未定)~~
     - ~~產生 NFT（單品/批次）提領（發送、贈送、空投）連結(非必要)~~
 - NFT 集合清單 ~~及 市場趨勢、熱度儀表板(非必要)~~
+- ~~promo code(推薦連結機制)~~
+- ~~withdraw password(第二層 提幣/NFT 密碼)~~
 
 ---
 
@@ -171,6 +173,7 @@ Contibit NFT Market(POC Spec.)
   - Infura
   - Pinata
   - Cybavo（金庫模組）
+  - Cloud(AWS/GCP)
 - chain
   - 鏈上資訊收集
   - 執行鏈上交易
@@ -217,7 +220,7 @@ system --- spec & contract & datacenter & web3 & chain & modules & server & back
 spec --- 系統設計文件 & N01["API 規格文件"]
 contract --- 系統支援智能合約
 datacenter --- N02["Redis(Bee Queue / LRU Cach)"] & N03["Mongodb(Normal Database)"] & N04["Postgresql(Transaction / Double verify)"]
-web3 --- Moralis & Alchemy & Opensea & Infura & Pinata & N05["Cybavo（金庫模組）"]
+web3 --- Moralis & Alchemy & Opensea & Infura & Pinata & N05["Cybavo（金庫模組）"] & N16["Cloud(AWS/GCP)"]
 chain --- 鏈上資訊收集 & 執行鏈上交易
 server --- 前臺流程控制模組 & 前臺網頁伺服器 & API伺服器
 backend --- 後臺操作及資料查詢 & 後臺網頁伺服器

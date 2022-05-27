@@ -4,7 +4,7 @@ info:
   description: NFT Market API
   version: 0.0.1
 servers:
-  - url: "http://localhost/api/master/v0"
+  - url: http://localhost/api/master/v0
 tags: 
   - name: member
     description: 已登入使用者操作界面
@@ -12,12 +12,24 @@ security:
   - BaseApiKey: []
 paths:
   /member/info:
-    get:
+    post:
       operationId: memberInfo
       tags:
         - member
       description: check and renew auth token
       parameters: []
+      requestBody:
+        description: user id
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
       responses:
         200:
           description: 會員基本資料
@@ -34,6 +46,212 @@ paths:
                     type: integer
         401:
           description: 登入資訊錯誤
+        default:
+          $ref: "#/components/responses/BaseError"
+  /member/verify/phone:
+    post:
+      operationId: memberVerifyPhone
+      tags:
+        - member
+      description: send SMS to member phone for verify code
+      parameters: []
+      requestBody:
+        description: user id
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                lang:
+                  type: string
+                  example: en-US
+                  default: en-US
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: 成功送出並取回下次可執行時間
+                type: integer
+                example: 1653502991840
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  time:
+                    description: 此錯誤代表尚未到達可再次送出時間
+                    type: integer
+                    # example: api.member.phone.verify.error.notYet
+        401:
+          description: 登入資訊錯誤
+        default:
+          $ref: "#/components/responses/BaseError"
+  /member/verify/email:
+    post:
+      operationId: memberVerifyEmail
+      tags:
+        - member
+      description: 寄發電子郵件檢查碼信件
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                lang:
+                  type: string
+                  example: en-US
+                  default: en-US
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: 成功送出並取回下次可執行時間
+                type: integer
+                example: 1653502991840
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  time:
+                    description: 下次可執行時間
+                    type: integer
+        default:
+          $ref: "#/components/responses/BaseError"
+  /member/reset/phone:
+    post:
+      operationId: memberResetPhone
+      tags:
+        - member
+      description: 重設連結手機號碼
+      parameters: []
+      requestBody:
+        description: user id
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+                - password
+                - emailVerify
+                - phone
+                - phoneVerify
+              properties:
+                userId:
+                  type: string
+                password:
+                  type: string
+                emailVerify:
+                  type: string
+                  description: email 驗證碼
+                phone:
+                  type: string
+                  description: 新手機號碼
+                phoneVerify:
+                  type: string
+                  description: 使用 guestVerifyPhone 送出之手機驗證碼
+      responses:
+        200:
+          description: OK --> renew token salt(logout all devices)
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  emailVerify:
+                    type: string
+                    example: api.member.reset.phone.error.emailVerify.notMatch
+                  phone:
+                    type: string
+                    example: api.member.reset.phone.error.phone.exist
+                  phoneVerify:
+                    type: string
+                    example: api.member.reset.phone.error.phoneVerify.notMatch
+                  password:
+                    type: string
+                    example: api.member.reset.phone.error.password.notMatch
+        401:
+          description: 登入資訊錯誤
+        default:
+          $ref: "#/components/responses/BaseError"
+  /member/reset/password:
+    post:
+      operationId: memberResetPassword
+      tags:
+        - member
+      description: Reset member password
+      parameters: []
+      requestBody:
+        description: Reset informations
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+                - emailVerify
+                - phoneVerify
+                - password
+              properties:
+                userId:
+                  type: string
+                emailVerify:
+                  type: string
+                phoneVerify:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: OK --> renew token salt(logout all devices)
+        403:
+          description: 注冊資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  email:
+                    type: string
+                    example: api.member.reset.password.error.email.format
+                  emailVerify:
+                    type: string
+                    example: api.member.reset.password.error.emailVerify.notMatch
+                  phoneVerify:
+                    type: string
+                    example: api.member.reset.password.error.phoneVerify.overTime
+                  password:
+                    type: string
+                    example: api.member.reset.password.error.password.minLength8
         default:
           $ref: "#/components/responses/BaseError"
 components:

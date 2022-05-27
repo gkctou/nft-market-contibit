@@ -88,88 +88,13 @@ fetch('http://localhost/api/master/v0/base/ping',
 This operation does not require authentication
 </aside>
 
-<h1 id="nft-market-blank">blank</h1>
-
-base api define
-
-## get__blank_ping
-
-> Code samples
-
-```javascript
-
-const headers = {
-  'Accept':'application/json'
-};
-
-fetch('http://localhost/api/master/v0/blank/ping',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-`GET /blank/ping`
-
-*伺服器作動檢查*
-
-檢查伺服器是否有回應，并取得伺服器時間戳。
-
-[![](https://mermaid.ink/svg/pako:eNp1kctOwkAUhl-FzFpeoCYmJvAE6q6bhg5CQgup7cIQEjRBgQLtQsqtsQSRi0gQQ7yA8jScmfYtnAYwMcLu5Pzff65pFEmKGHHoXBFSscBp6JCXwdbpXYdaI1evBYNHq3mJ2I7bf6CtV5I3oejAyzR8dryD_CgwkoxNuqyQQYPMLVIogzFZw_vqMCNpXJNqnsyWPra_iE8OGm7PWJO_Lpb37Czknj1L97IGqVf-q97NiFZLkJu64_oOtW3SVtfrDLzm01-VbbXw28NVcz2ZO-x5w5oPbUdhDCzeYFmCchE-Z9QZ0685tNrktuDvs8vuW4yJ--6wC0LXgm4f7nW39giLNpj51be96YIOkIQVSYiL7EVpXg4EeKTGsIR5xLFQxFFBS6g84uUMQ7WUKKg4LMbVpIK4qJC4wAdI0NTkyaUcQZyqaHgLheIC-7i0oTI_eBgjqw?bgColor=!white)](https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNp1kctOwkAUhl-FzFpeoCYmJvAE6q6bhg5CQgup7cIQEjRBgQLtQsqtsQSRi0gQQ7yA8jScmfYtnAYwMcLu5Pzff65pFEmKGHHoXBFSscBp6JCXwdbpXYdaI1evBYNHq3mJ2I7bf6CtV5I3oejAyzR8dryD_CgwkoxNuqyQQYPMLVIogzFZw_vqMCNpXJNqnsyWPra_iE8OGm7PWJO_Lpb37Czknj1L97IGqVf-q97NiFZLkJu64_oOtW3SVtfrDLzm01-VbbXw28NVcz2ZO-x5w5oPbUdhDCzeYFmCchE-Z9QZ0685tNrktuDvs8vuW4yJ--6wC0LXgm4f7nW39giLNpj51be96YIOkIQVSYiL7EVpXg4EeKTGsIR5xLFQxFFBS6g84uUMQ7WUKKg4LMbVpIK4qJC4wAdI0NTkyaUcQZyqaHgLheIC-7i0oTI_eBgjqw)
-
-```mermaid
-graph TD;
-國產疫苗-->二期解盲成功就EUA;
-國產疫苗-->三期歐美標準才可EUA;
-二期解盲成功就EUA-->時效派;
-三期歐美標準才可EUA-->標規派;
-時效派-->需公開透明;
-時效派-->需醫界共識;
-時效派-->需預盤風險;
-時效派--->仍可做三期試驗;
-標規派-->延後半年短缺因應;
-仍可做三期試驗-->可跟國外大型藥廠合作試驗;
-```
-
-<h3 id="get__blank_ping-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|now|query|integer|false|本地時間戳|
-
-> Example responses
-
-> 200 Response
-
-```json
-1653532830797
-```
-
-<h3 id="get__blank_ping-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|integer|
-|default|Default|Error response|[BaseError](#schemabaseerror)|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
 <h1 id="nft-market-guest">guest</h1>
 
 未登入使用者操作界面
 
-## guestRegisterPhone
+## guestRegisterByPhone
 
-<a id="opIdguestRegisterPhone"></a>
+<a id="opIdguestRegisterByPhone"></a>
 
 > Code samples
 
@@ -216,7 +141,7 @@ Register a new user by phone.
 }
 ```
 
-<h3 id="guestregisterphone-parameters">Parameters</h3>
+<h3 id="guestregisterbyphone-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -238,7 +163,7 @@ Register a new user by phone.
 }
 ```
 
-<h3 id="guestregisterphone-responses">Responses</h3>
+<h3 id="guestregisterbyphone-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -246,7 +171,7 @@ Register a new user by phone.
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|注冊資訊錯誤|Inline|
 |default|Default|Error response|[BaseError](#schemabaseerror)|
 
-<h3 id="guestregisterphone-responseschema">Response Schema</h3>
+<h3 id="guestregisterbyphone-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -273,9 +198,9 @@ Status Code **403**
 This operation does not require authentication
 </aside>
 
-## guestLoginPassword
+## guestLoginByPassword
 
-<a id="opIdguestLoginPassword"></a>
+<a id="opIdguestLoginByPassword"></a>
 
 > Code samples
 
@@ -316,7 +241,7 @@ Login by email and password.
 }
 ```
 
-<h3 id="guestloginpassword-parameters">Parameters</h3>
+<h3 id="guestloginbypassword-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -335,7 +260,7 @@ Login by email and password.
 }
 ```
 
-<h3 id="guestloginpassword-responses">Responses</h3>
+<h3 id="guestloginbypassword-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -343,7 +268,7 @@ Login by email and password.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登入資訊錯誤|Inline|
 |default|Default|Error response|[BaseError](#schemabaseerror)|
 
-<h3 id="guestloginpassword-responseschema">Response Schema</h3>
+<h3 id="guestloginbypassword-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -565,7 +490,7 @@ fetch('http://localhost/api/master/v0/guest/reset/password',
 
 `POST /guest/reset/password`
 
-Reset member password.
+Reset member password
 
 > Body parameter
 
@@ -590,12 +515,14 @@ Reset member password.
 
 > Example responses
 
-> 200 Response
+> 403 Response
 
 ```json
 {
-  "userId": "string",
-  "token": "string"
+  "email": "api.guest.register.error.email.format",
+  "emailVerify": "api.guest.register.error.emailVerify.notMatch",
+  "phoneVerify": "api.guest.register.error.phoneVerify.overTime",
+  "password": "api.guest.register.error.password.minLength8"
 }
 ```
 
@@ -603,20 +530,11 @@ Reset member password.
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Auth token.|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK --> renew token salt(logout all devices) --> 導向登入頁|None|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|注冊資訊錯誤|Inline|
 |default|Default|Error response|[BaseError](#schemabaseerror)|
 
 <h3 id="guestresetpassword-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-*Login token*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» userId|string|true|none|none|
-|» token|string|true|none|none|
 
 Status Code **403**
 
@@ -726,16 +644,19 @@ This operation does not require authentication
 > Code samples
 
 ```javascript
-
+const inputBody = '{
+  "userId": "string"
+}';
 const headers = {
+  'Content-Type':'application/json',
   'Accept':'application/json',
   'apikey':'API_KEY'
 };
 
 fetch('http://localhost/api/master/v0/member/info',
 {
-  method: 'GET',
-
+  method: 'POST',
+  body: inputBody,
   headers: headers
 })
 .then(function(res) {
@@ -746,9 +667,24 @@ fetch('http://localhost/api/master/v0/member/info',
 
 ```
 
-`GET /member/info`
+`POST /member/info`
 
 check and renew auth token
+
+> Body parameter
+
+```json
+{
+  "userId": "string"
+}
+```
+
+<h3 id="memberinfo-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user id|
+|» userId|body|string|true|none|
 
 > Example responses
 
@@ -785,9 +721,374 @@ To perform this operation, you must be authenticated by means of one of the foll
 BaseApiKey
 </aside>
 
+## memberVerifyPhone
+
+<a id="opIdmemberVerifyPhone"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "lang": "en-US"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/member/verify/phone',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /member/verify/phone`
+
+send SMS to member phone for verify code
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "lang": "en-US"
+}
+```
+
+<h3 id="memberverifyphone-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user id|
+|» userId|body|string|true|none|
+|» lang|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+1653502991840
+```
+
+<h3 id="memberverifyphone-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|integer|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登入資訊錯誤|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="memberverifyphone-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» time|integer|false|none|此錯誤代表尚未到達可再次送出時間|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## memberVerifyEmail
+
+<a id="opIdmemberVerifyEmail"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "lang": "en-US"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/member/verify/email',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /member/verify/email`
+
+寄發電子郵件檢查碼信件
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "lang": "en-US"
+}
+```
+
+<h3 id="memberverifyemail-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|none|
+|» userId|body|string|true|none|
+|» lang|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+1653502991840
+```
+
+<h3 id="memberverifyemail-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|integer|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="memberverifyemail-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» time|integer|false|none|下次可執行時間|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## memberResetPhone
+
+<a id="opIdmemberResetPhone"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "password": "string",
+  "emailVerify": "string",
+  "phone": "string",
+  "phoneVerify": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/member/reset/phone',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /member/reset/phone`
+
+重設連結手機號碼
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "password": "string",
+  "emailVerify": "string",
+  "phone": "string",
+  "phoneVerify": "string"
+}
+```
+
+<h3 id="memberresetphone-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user id|
+|» userId|body|string|true|none|
+|» password|body|string|true|none|
+|» emailVerify|body|string|true|email 驗證碼|
+|» phone|body|string|true|新手機號碼|
+|» phoneVerify|body|string|true|使用 guestVerifyPhone 送出之手機驗證碼|
+
+> Example responses
+
+> 403 Response
+
+```json
+{
+  "emailVerify": "api.member.reset.phone.error.emailVerify.notMatch",
+  "phone": "api.member.reset.phone.error.phone.exist",
+  "phoneVerify": "api.member.reset.phone.error.phoneVerify.notMatch",
+  "password": "api.member.reset.phone.error.password.notMatch"
+}
+```
+
+<h3 id="memberresetphone-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK --> renew token salt(logout all devices)|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登入資訊錯誤|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="memberresetphone-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» emailVerify|string|false|none|none|
+|» phone|string|false|none|none|
+|» phoneVerify|string|false|none|none|
+|» password|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## memberResetPassword
+
+<a id="opIdmemberResetPassword"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "emailVerify": "string",
+  "phoneVerify": "string",
+  "password": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/member/reset/password',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /member/reset/password`
+
+Reset member password
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "emailVerify": "string",
+  "phoneVerify": "string",
+  "password": "string"
+}
+```
+
+<h3 id="memberresetpassword-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|Reset informations|
+|» userId|body|string|true|none|
+|» emailVerify|body|string|true|none|
+|» phoneVerify|body|string|true|none|
+|» password|body|string|true|none|
+
+> Example responses
+
+> 403 Response
+
+```json
+{
+  "email": "api.member.reset.password.error.email.format",
+  "emailVerify": "api.member.reset.password.error.emailVerify.notMatch",
+  "phoneVerify": "api.member.reset.password.error.phoneVerify.overTime",
+  "password": "api.member.reset.password.error.password.minLength8"
+}
+```
+
+<h3 id="memberresetpassword-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK --> renew token salt(logout all devices)|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|注冊資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="memberresetpassword-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» email|string|false|none|none|
+|» emailVerify|string|false|none|none|
+|» phoneVerify|string|false|none|none|
+|» password|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
 <h1 id="nft-market-wallet">wallet</h1>
 
-錢包操作及幣價資訊
+使用者錢包操作
 
 ## walletBalance
 
@@ -845,8 +1146,8 @@ wallet balance
 ```json
 [
   {
-    "symbol": "ETH",
-    "unit": "ether",
+    "currency": "ETH",
+    "symbol": "Ξ",
     "decimal": 4,
     "balance": 0,
     "lock": 0
@@ -868,8 +1169,8 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» symbol|string|false|none|虛擬貨幣名稱|
-|» unit|string|false|none|錢包使用單位|
+|» currency|string|false|none|虛擬貨幣名稱|
+|» symbol|string|false|none|貨幣標識符|
 |» decimal|integer|false|none|小數位數|
 |» balance|number|false|none|可動用餘額|
 |» lock|number|false|none|鎖倉金額|
@@ -888,7 +1189,8 @@ BaseApiKey
 ```javascript
 const inputBody = '{
   "userId": "string",
-  "offset": 0
+  "offset": 0,
+  "limit": 20
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -912,14 +1214,15 @@ fetch('http://localhost/api/master/v0/wallet/history',
 
 `POST /wallet/history`
 
-wallet history
+分頁拉取用戶存提幣記錄
 
 > Body parameter
 
 ```json
 {
   "userId": "string",
-  "offset": 0
+  "offset": 0,
+  "limit": 20
 }
 ```
 
@@ -927,9 +1230,10 @@ wallet history
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|true|user id|
+|body|body|object|true|none|
 |» userId|body|string|true|none|
-|» offset|body|integer|false|none|
+|» offset|body|integer|false|起始資料位置索引(0 base)|
+|» limit|body|integer|false|每頁個數|
 
 > Example responses
 
@@ -943,8 +1247,13 @@ wallet history
     {
       "id": "string",
       "time": 0,
-      "name": "string",
-      "symbol": "string",
+      "currency": "ETH",
+      "symbol": "Ξ",
+      "decimal": 4,
+      "from": "string",
+      "into": "string",
+      "chainId": 1,
+      "txn": "string",
       "direction": "diposit",
       "amount": 0,
       "status": "success"
@@ -971,11 +1280,16 @@ Status Code **200**
 |» offset|integer|false|none|none|
 |» list|[object]|false|none|none|
 |»» id|string|false|none|none|
-|»» time|number|false|none|none|
-|»» name|string|false|none|none|
-|»» symbol|string|false|none|none|
+|»» time|number|false|none|建立時間|
+|»» currency|string|false|none|虛擬貨幣名稱|
+|»» symbol|string|false|none|貨幣標識符|
+|»» decimal|integer|false|none|顯示小數位數|
+|»» from|string|false|none|出金賬號|
+|»» into|string|false|none|入金賬號|
+|»» chainId|string|false|none|[交易公鏈 ID](https://chainlist.org/)<br>1 for Ethereum Mainnet|
+|»» txn|string|false|none|鏈上交易序號|
 |»» direction|string|false|none|none|
-|»» amount|number|false|none|none|
+|»» amount|number|false|none|交易數量|
 |»» status|string|false|none|none|
 
 #### Enumerated Values
@@ -988,6 +1302,309 @@ Status Code **200**
 |status|cancel|
 |status|processing|
 |status|waiting|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## walletDipositInfo
+
+<a id="opIdwalletDipositInfo"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "currency": "ETH"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/wallet/diposit/info',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /wallet/diposit/info`
+
+取得虛擬貨幣入金賬號
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "currency": "ETH"
+}
+```
+
+<h3 id="walletdipositinfo-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user id|
+|» userId|body|string|true|none|
+|» currency|body|string|true|虛擬貨幣名稱|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "currency": "ETH",
+    "token": "0xdAC17F958D2ee523a2206206994597C13D831xxx",
+    "chainId": 1,
+    "address": "string",
+    "memo": "string",
+    "effect": 1653631833378
+  }
+]
+```
+
+<h3 id="walletdipositinfo-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|入金賬號|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登入資訊錯誤|None|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="walletdipositinfo-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» currency|string|false|none|虛擬貨幣名稱|
+|» token|string|false|none|虛擬貨幣合約地址(ex4:USDT on ether)|
+|» chainId|string|true|none|[匯款公鏈 ID](https://chainlist.org/)<br>1 for Ethereum Mainnet|
+|» address|string|true|none|匯入賬號/空為目前無可用賬號|
+|» memo|string|false|none|匯款注記(BNB Mainnet)|
+|» effect|number|false|none|有效期限(timestamp)/0為無限期有效(=固定賬號)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## walletWithdrawInfo
+
+<a id="opIdwalletWithdrawInfo"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "currency": "ETH"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/wallet/withdraw/info',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /wallet/withdraw/info`
+
+取得虛擬貨幣出金管道
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "currency": "ETH"
+}
+```
+
+<h3 id="walletwithdrawinfo-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user id|
+|» userId|body|string|true|none|
+|» currency|body|string|true|虛擬貨幣名稱|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "currency": "ETH",
+    "symbol": "Ξ",
+    "token": "0xdAC17F958D2ee523a2206206994597C13D831xxx",
+    "chainId": 1,
+    "min": 0,
+    "max": 0,
+    "fee": 0
+  }
+]
+```
+
+<h3 id="walletwithdrawinfo-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|出金管道|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登入資訊錯誤|None|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="walletwithdrawinfo-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» currency|string|true|none|虛擬貨幣名稱|
+|» symbol|string|false|none|貨幣標識符|
+|» token|string|false|none|虛擬貨幣合約地址(ex4:USDT on ether)|
+|» chainId|string|true|none|[匯款公鏈 ID](https://chainlist.org/)<br>1 for Ethereum Mainnet|
+|» min|number|false|none|最小轉出數量|
+|» max|number|false|none|目前可用最大轉出數量(包含會員等級限制)|
+|» fee|number|false|none|轉出手續費(同幣別内扣)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## walletWithdrawSubmit
+
+<a id="opIdwalletWithdrawSubmit"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "currency": "ETH",
+  "chainId": 1,
+  "amount": 0,
+  "address": "string",
+  "phoneVerify": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/wallet/withdraw/submit',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /wallet/withdraw/submit`
+
+取得虛擬貨幣出金管道
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "currency": "ETH",
+  "chainId": 1,
+  "amount": 0,
+  "address": "string",
+  "phoneVerify": "string"
+}
+```
+
+<h3 id="walletwithdrawsubmit-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user id|
+|» userId|body|string|true|none|
+|» currency|body|string|true|虛擬貨幣名稱|
+|» chainId|body|string|true|[匯款公鏈 ID](https://chainlist.org/)|
+|» amount|body|number|true|none|
+|» address|body|string|true|none|
+|» phoneVerify|body|string|true|手機驗證碼|
+
+#### Detailed descriptions
+
+**» chainId**: [匯款公鏈 ID](https://chainlist.org/)
+1 for Ethereum Mainnet
+
+> Example responses
+
+> 403 Response
+
+```json
+{
+  "currency": "api.wallet.withdraw.submit.error.currency.notExist",
+  "chainId": "api.wallet.withdraw.submit.error.chainId.notExist",
+  "amount": "api.wallet.withdraw.submit.error.amount.overMax",
+  "address": "api.wallet.withdraw.submit.error.address.format",
+  "phoneVerify": "api.wallet.withdraw.submit.error.phoneVerify.notMatch"
+}
+```
+
+<h3 id="walletwithdrawsubmit-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登入資訊錯誤|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|提領資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="walletwithdrawsubmit-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» currency|string|false|none|none|
+|» chainId|string|false|none|none|
+|» amount|string|false|none|none|
+|» address|string|false|none|none|
+|» phoneVerify|string|false|none|none|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
