@@ -6,7 +6,8 @@
   "scripts": {
     "tsc": "tsc",
     "openapi": "ts-node src/script/openapiMerge.ts",
-    "postopenapi": "widdershins openapi/openapi.yaml -o openapi/openapi.md --language_tabs javascript:JavaScript -u src/widdershins/openapi3"
+    "postopenapi": "widdershins openapi/openapi.yaml -o openapi/openapi.md --language_tabs javascript:JavaScript -u src/widdershins/openapi3",
+    "mdx": "mdx-to-md ./src/markdown/gantt.mdx ./src/markdown/gantt.md"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,8 @@
     "typescript": "^4.6.4",
     "js-yaml": "~4.1.0",
     "ts-node": "~10.8.0",
-    "widdershins": "~4.0.1"
+    "widdershins": "~4.0.1",
+    "mdx-to-md": "~0.3.1",
+    "google-spreadsheet": "~3.3.0"
   }
 }
