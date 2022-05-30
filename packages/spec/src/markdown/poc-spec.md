@@ -210,8 +210,6 @@ Contibit NFT Market(POC Spec.)
 - backend
   - 後臺網頁
 
-<!-- <details> -->
-  <!-- <summary>組織圖展開</summary>-->
 #### 組織圖展開
 
 ```mermaid
@@ -235,8 +233,6 @@ N12 --- 站外上下架 & 站外交易
 N13 --- 扣賬 & 查價 & N14["換匯（水位管理）"]
 法幣支付模組 --- N15["信用卡（NTD/USD）"] & 第三方金流
 ```
-
-<!-- </details> -->
 
 ---
 
