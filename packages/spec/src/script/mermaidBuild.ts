@@ -29,7 +29,8 @@ function mdToSVG(data) {
     )
     .map((item) => {
       const jsonString = Base64.encodeURI(item);
-      return `[![](https://mermaid.ink/img/${jsonString})](https://mermaid-js.github.io/mermaid-live-editor/#/edit/${jsonString})`;
+      // return `[![](https://mermaid.ink/img/${jsonString})](https://mermaid-js.github.io/mermaid-live-editor/#/edit/${jsonString})`;
+      return `[![](https://mermaid.ink/svg/${jsonString})](https://mermaid-js.github.io/mermaid-live-editor/#/edit/${jsonString})`;
     });
 
   let changeMd = data;

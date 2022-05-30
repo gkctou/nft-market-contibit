@@ -88,11 +88,174 @@ fetch('http://localhost/api/master/v0/base/ping',
 This operation does not require authentication
 </aside>
 
+<h1 id="nft-market-cart">cart</h1>
+
+NFT 購物/上架/提領/匯入車 相關操作
+
+## car
+
+<a id="opIdcar"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/car/shopping/load',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /car/shopping/load`
+
+*取得購物車資訊*
+
+取得購物車資訊
+
+> Body parameter
+
+```json
+{
+  "userId": "string"
+}
+```
+
+<h3 id="car-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user id|
+|» userId|body|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "hash": "string",
+  "userId": "string",
+  "list": [
+    {
+      "chainId": 0,
+      "contract": "string",
+      "collection": "string",
+      "id": 0,
+      "nftName": "string",
+      "shop": "string",
+      "currency": "string",
+      "price": 0
+    }
+  ],
+  "amount": [
+    {
+      "currency": "string",
+      "amount": 0
+    }
+  ],
+  "gas": [
+    {
+      "currency": "string",
+      "amount": 0
+    }
+  ],
+  "wallet": [
+    {
+      "currency": "string",
+      "balance": 0,
+      "enable": true,
+      "willPay": 0
+    }
+  ],
+  "payment": [
+    {
+      "currency": "string",
+      "amount": 0,
+      "payBy": [
+        {
+          "currency": "string",
+          "used": 0,
+          "rate": 0,
+          "amount": 0
+        }
+      ]
+    }
+  ]
+}
+```
+
+<h3 id="car-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="car-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» hash|string|false|none|目前資料 hash(防呆,更新時比對)|
+|» userId|string|false|none|none|
+|» list|[object]|false|none|none|
+|»» chainId|integer|false|none|none|
+|»» contract|string|false|none|none|
+|»» collection|string|false|none|集合名稱|
+|»» id|integer|false|none|none|
+|»» nftName|string|false|none|none|
+|»» shop|string|false|none|none|
+|»» currency|string|false|none|none|
+|»» price|number|false|none|none|
+|» amount|[object]|false|none|none|
+|»» currency|string|false|none|none|
+|»» amount|number|false|none|none|
+|» gas|[object]|false|none|none|
+|»» currency|string|false|none|none|
+|»» amount|number|false|none|none|
+|» wallet|[object]|false|none|none|
+|»» currency|string|false|none|none|
+|»» balance|number|false|none|none|
+|»» enable|boolean|false|none|none|
+|»» willPay|number|false|none|none|
+|» payment|[object]|false|none|none|
+|»» currency|string|false|none|none|
+|»» amount|number|false|none|none|
+|»» payBy|[object]|false|none|none|
+|»»» currency|string|false|none|none|
+|»»» used|number|false|none|none|
+|»»» rate|number|false|none|none|
+|»»» amount|number|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
 <h1 id="nft-market-catagory">catagory</h1>
 
 NFT 集合查詢
 
-## post__catagory_query
+## catagoryQuery
+
+<a id="opIdcatagoryQuery"></a>
 
 > Code samples
 
@@ -142,7 +305,7 @@ fetch('http://localhost/api/master/v0/catagory/query',
 }
 ```
 
-<h3 id="post__catagory_query-parameters">Parameters</h3>
+<h3 id="catagoryquery-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -173,7 +336,7 @@ fetch('http://localhost/api/master/v0/catagory/query',
 }
 ```
 
-<h3 id="post__catagory_query-responses">Responses</h3>
+<h3 id="catagoryquery-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -181,7 +344,7 @@ fetch('http://localhost/api/master/v0/catagory/query',
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
 |default|Default|Error response|[BaseError](#schemabaseerror)|
 
-<h3 id="post__catagory_query-responseschema">Response Schema</h3>
+<h3 id="catagoryquery-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -217,7 +380,9 @@ This operation does not require authentication
 
 NFT 系列查詢
 
-## post__collection_query
+## collectionQuery
+
+<a id="opIdcollectionQuery"></a>
 
 > Code samples
 
@@ -306,7 +471,7 @@ fetch('http://localhost/api/master/v0/collection/query',
 }
 ```
 
-<h3 id="post__collection_query-parameters">Parameters</h3>
+<h3 id="collectionquery-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -346,10 +511,10 @@ fetch('http://localhost/api/master/v0/collection/query',
       ]
     }
   ],
-  "idFrom": 0,
-  "idTo": 0,
-  "rarity:From": 0,
-  "rarityTo": 0,
+  "idMin": 0,
+  "idMax": 0,
+  "rarityMin": 0,
+  "rarityMax": 0,
   "totalSupply": 0,
   "floorPrice": 0,
   "chainId": 0,
@@ -386,7 +551,7 @@ fetch('http://localhost/api/master/v0/collection/query',
 }
 ```
 
-<h3 id="post__collection_query-responses">Responses</h3>
+<h3 id="collectionquery-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -394,7 +559,7 @@ fetch('http://localhost/api/master/v0/collection/query',
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
 |default|Default|Error response|[BaseError](#schemabaseerror)|
 
-<h3 id="post__collection_query-responseschema">Response Schema</h3>
+<h3 id="collectionquery-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -407,10 +572,10 @@ Status Code **200**
 |» rarity|[object]|false|none|稀有度資料|
 |»» key|string|false|none|none|
 |»» values|[string]|false|none|none|
-|» idFrom|integer|false|none|none|
-|» idTo|integer|false|none|none|
-|» rarity:From|integer|false|none|none|
-|» rarityTo|integer|false|none|none|
+|» idMin|integer|false|none|none|
+|» idMax|integer|false|none|none|
+|» rarityMin|integer|false|none|none|
+|» rarityMax|integer|false|none|none|
 |» totalSupply|integer|false|none|none|
 |» floorPrice|number|false|none|none|
 |» chainId|integer|false|none|none|
@@ -446,6 +611,169 @@ Status Code **403**
 |» limit|string|false|none|none|
 |» filter|string|false|none|none|
 |» sort|string|false|none|none|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## collectionMember
+
+<a id="opIdcollectionMember"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "offset": 0,
+  "limit": 0,
+  "filter": {
+    "chainId": 0,
+    "contract": "string"
+  }
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('http://localhost/api/master/v0/collection/member',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /collection/member`
+
+*查詢我的NFT清單.*
+
+查詢我的NFT集合
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "offset": 0,
+  "limit": 0,
+  "filter": {
+    "chainId": 0,
+    "contract": "string"
+  }
+}
+```
+
+<h3 id="collectionmember-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|none|
+|» userId|body|string|true|member ID|
+|» offset|body|integer|false|起始位置|
+|» limit|body|integer|false|單頁數量|
+|» filter|body|object|false|none|
+|»» chainId|body|integer|false|none|
+|»» contract|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "userId": "string",
+  "chains": [
+    {
+      "chainId": 0,
+      "contract": "string",
+      "name": "string"
+    }
+  ],
+  "total": 0,
+  "offset": 0,
+  "list": [
+    {
+      "id": 0,
+      "rarity": 0,
+      "attrubutes": [
+        {
+          "key": "string",
+          "value": "string"
+        }
+      ],
+      "imgUrl": "string",
+      "name": "string",
+      "shops": [
+        {
+          "currency": "string",
+          "price": 0
+        }
+      ],
+      "chainId": 0,
+      "contract": "string",
+      "collection": "string",
+      "symbol": "string"
+    }
+  ]
+}
+```
+
+<h3 id="collectionmember-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="collectionmember-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*NFT 系列回傳物件*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|false|none|none|
+|» chains|[object]|false|none|公鏈及NFT合約地址|
+|»» chainId|integer|false|none|none|
+|»» contract|string|false|none|none|
+|»» name|string|false|none|none|
+|» total|integer|false|none|查詢結果總數|
+|» offset|integer|false|none|回傳起始位置|
+|» list|[object]|false|none|none|
+|»» id|integer|false|none|none|
+|»» rarity|integer|false|none|none|
+|»» attrubutes|[object]|false|none|none|
+|»»» key|string|false|none|none|
+|»»» value|string|false|none|none|
+|»» imgUrl|string|false|none|none|
+|»» name|string|false|none|none|
+|»» shops|[object]|false|none|none|
+|»»» currency|string|false|none|none|
+|»»» price|number|false|none|none|
+|»» chainId|integer|false|none|none|
+|»» contract|string|false|none|none|
+|»» collection|string|false|none|none|
+|»» symbol|string|false|none|none|
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|false|none|none|
+|» offset|string|false|none|none|
+|» filter|string|false|none|none|
 
 <aside class="success">
 This operation does not require authentication
