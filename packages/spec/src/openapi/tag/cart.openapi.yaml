@@ -1,0 +1,145 @@
+openapi: 3.0.0
+info:
+  title: NFT Market
+  description: NFT Market API
+  version: 0.0.1
+servers:
+  - url: "http://localhost/api/master/v0"
+tags:
+  - name: cart
+    description: NFT 購物/上架/提領/匯入車 相關操作
+security:
+  - BaseApiKey: []
+paths:
+  /car/shopping/load:
+    post:
+      operationId: car
+      tags:
+        - cart
+      summary: 取得購物車資訊
+      description: 取得購物車資訊
+      parameters: []
+      requestBody:
+        description: user id
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hash:
+                    type: string
+                    description: 目前資料 hash(防呆,更新時比對)
+                  userId:
+                    type: string
+                  list:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chainId:
+                          type: integer
+                        contract:
+                          type: string
+                        collection:
+                          type: string
+                          description: 集合名稱
+                        id:
+                          type: integer
+                        nftName:
+                          type: string
+                        shop:
+                          type: string
+                        currency:
+                          type: string
+                        price:
+                          type: number
+                  amount:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        currency:
+                          type: string
+                        amount:
+                          type: number
+                  gas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        currency:
+                          type: string
+                        amount:
+                          type: number
+                  wallet:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        currency:
+                          type: string
+                        balance:
+                          type: number
+                        
+                        
+        default:
+          $ref: "#/components/responses/BaseError"
+components:
+  securitySchemes:
+    BaseApiKey:
+      type: apiKey
+      name: apikey
+      in: header
+  schemas:
+    BaseAny:
+      type: object
+      properties: {}
+    BaseArrayAny:
+      type: array
+      items:
+        $ref: "#/components/schemas/BaseAny"
+    BaseError:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          description: Error code
+          type: integer
+        message:
+          description: Error Message
+          type: string
+        data:
+          $ref: "#/components/schemas/BaseAny"
+  responses:
+    BaseAny:
+      description: Response any object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseAny"
+    BaseArrayAny:
+      description: Response array of any
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseArrayAny"
+    BaseError:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseError"

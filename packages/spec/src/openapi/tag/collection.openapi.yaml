@@ -1,0 +1,362 @@
+openapi: 3.0.0
+info:
+  title: NFT Market
+  description: NFT Market API
+  version: 0.0.1
+servers:
+  - url: "http://localhost/api/master/v0"
+tags: 
+  - name: collection
+    description: NFT 系列查詢
+paths:
+  /collection/query:
+    post:
+      operationId: collectionQuery
+      tags:
+        - collection
+      summary: 查詢/搜尋NFT系列清單.
+      description: 查詢NFT集合
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              properties:
+                chainId:
+                  type: integer
+                  description: 公鏈ID
+                contract:
+                  type: string
+                  description: NFT合約地址
+                offset:
+                  type: integer
+                  description: 起始位置
+                limit:
+                  type: integer
+                  description: 單頁數量
+                filter:
+                  type: object
+                  properties:
+                    idStart:
+                      type: integer
+                    idEnd:
+                      type: integer
+                    rarityStart:
+                      type: integer
+                    rarityEnd:
+                      type: integer
+                    buyNow:
+                      type: boolean
+                    shops:
+                      type: array
+                      items:
+                        type: string
+                        description: contibit | opensea
+                    attributes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          key:
+                            type: string
+                          value:
+                            type: string
+                sort:
+                  type: object
+                  properties:
+                    price:
+                      type: string
+                      description: asc | des
+                    rarity:
+                      type: string
+                      description: asc | des
+                    id:
+                      type: string
+                      description: asc | des
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: |-
+                  NFT 系列回傳物件
+                properties:
+                  total:
+                    type: integer
+                    description: 查詢結果總數
+                  offset:
+                    type: integer
+                    description: 回傳起始位置
+                  rarity:
+                    type: array
+                    description: 稀有度資料
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                        values:
+                          type: array
+                          items:
+                            type: string
+                  idMin:
+                    type: integer
+                  idMax:
+                    type: integer
+                  rarityMin:
+                    type: integer
+                  rarityMax:
+                    type: integer
+                  totalSupply:
+                    type: integer
+                  floorPrice:
+                    type: number
+                  chainId:
+                    type: integer
+                  contract:
+                    type: string
+                  name:
+                    type: string
+                  symbol:
+                    type: string
+                  description:
+                    type: string
+                  chainOn:
+                    type: integer
+                    description: 部署上鏈時間
+                  nftId:
+                    type: string
+                    description: 資料庫 NFT ID
+                  catagories:
+                    type: array
+                    items:
+                      type: string
+                  list:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        rarity:
+                          type: integer
+                        attrubutes:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              key:
+                                type: string
+                              value:
+                                type: string
+                        imgUrl:
+                          type: string
+                        name:
+                          type: string
+                        shops:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              buyNow: 
+                                type: boolean
+                              currency:
+                                type: string
+                              price:
+                                type: number
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  chainId:
+                    type: string
+                    example: ...
+                  contract:
+                    type: string
+                    example: ...
+                  offset:
+                    type: string
+                    example: ...
+                  limit:
+                    type: string
+                    example: ...
+                  filter:
+                    type: string
+                    example: ...
+                  sort:
+                    type: string
+                    example: ...
+        default:
+          $ref: "#/components/responses/BaseError"
+  /collection/member:
+    post:
+      operationId: collectionMember
+      tags:
+        - collection
+      summary: 查詢我的NFT清單.
+      description: 查詢我的NFT集合
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                  description: member ID
+                offset:
+                  type: integer
+                  description: 起始位置
+                limit:
+                  type: integer
+                  description: 單頁數量
+                filter:
+                  type: object
+                  properties:
+                    chainId:
+                      type: integer
+                    contract:
+                      type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: |-
+                  NFT 系列回傳物件
+                properties:
+                  userId:
+                    type: string
+                  chains:
+                    type: array
+                    description: 公鏈及NFT合約地址
+                    items:
+                      type: object
+                      properties:
+                        chainId:
+                          type: integer
+                        contract:
+                          type: string
+                        name:
+                          type: string
+                  total:
+                    type: integer
+                    description: 查詢結果總數
+                  offset:
+                    type: integer
+                    description: 回傳起始位置
+                  list:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        rarity:
+                          type: integer
+                        attrubutes:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              key:
+                                type: string
+                              value:
+                                type: string
+                        imgUrl:
+                          type: string
+                        name:
+                          type: string
+                        shops:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              currency:
+                                type: string
+                              price:
+                                type: number
+                              # buyNow: 
+                              #   type: boolean
+                        chainId:
+                          type: integer
+                        contract:
+                          type: string
+                        collection:
+                          type: string
+                        symbol:
+                          type: string
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  userId:
+                    type: string
+                    example: ...
+                  offset:
+                    type: string
+                    example: ...
+                  filter:
+                    type: string
+                    example: ...
+        default:
+          $ref: "#/components/responses/BaseError"
+components:
+  schemas:
+    BaseAny:
+      type: object
+      properties: {}
+    BaseArrayAny:
+      type: array
+      items:
+        $ref: "#/components/schemas/BaseAny"
+    BaseError:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          description: Error code
+          type: integer
+        message:
+          description: Error Message
+          type: string
+        data:
+          $ref: "#/components/schemas/BaseAny"
+  responses:
+    BaseAny:
+      description: Response any object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseAny"
+    BaseArrayAny:
+      description: Response array of any
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseArrayAny"
+    BaseError:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseError"

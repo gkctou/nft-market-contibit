@@ -88,6 +88,369 @@ fetch('http://localhost/api/master/v0/base/ping',
 This operation does not require authentication
 </aside>
 
+<h1 id="nft-market-catagory">catagory</h1>
+
+NFT 集合查詢
+
+## post__catagory_query
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "keyword": "string",
+  "catagory": "string",
+  "offset": 0,
+  "limit": 0
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('http://localhost/api/master/v0/catagory/query',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /catagory/query`
+
+*查詢/搜尋NFT集合清單.*
+
+空查詢時各分類導入固定數量,
+關鍵字回傳固定使用名稱排序.
+關鍵字查詢使用 Moralis.
+分類索引使用系統資料庫.
+
+> Body parameter
+
+```json
+{
+  "keyword": "string",
+  "catagory": "string",
+  "offset": 0,
+  "limit": 0
+}
+```
+
+<h3 id="post__catagory_query-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|none|
+|» keyword|body|string|false|關鍵字查詢|
+|» catagory|body|string|false|分類查詢|
+|» offset|body|integer|false|起始位置|
+|» limit|body|integer|false|單頁數量|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "total": 0,
+  "offset": 0,
+  "list": [
+    {
+      "nftId": "string",
+      "imgUrl": "string",
+      "name": "string",
+      "catagory": "catagory.hot",
+      "chainId": 0,
+      "contract": "string"
+    }
+  ]
+}
+```
+
+<h3 id="post__catagory_query-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="post__catagory_query-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*NFT 集合回傳物件*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» total|integer|false|none|查詢結果總數|
+|» offset|integer|false|none|回傳起始位置|
+|» list|[object]|false|none|none|
+|»» nftId|string|false|none|資料庫 NFT ID|
+|»» imgUrl|string|false|none|none|
+|»» name|string|false|none|none|
+|»» catagory|string|false|none|none|
+|»» chainId|integer|false|none|none|
+|»» contract|string|false|none|NFT 合約地址|
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» catagory|string|false|none|none|
+|» keyword|string|false|none|none|
+|» offset|string|false|none|none|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h1 id="nft-market-collection">collection</h1>
+
+NFT 系列查詢
+
+## post__collection_query
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "chainId": 0,
+  "contract": "string",
+  "offset": 0,
+  "limit": 0,
+  "filter": {
+    "idStart": 0,
+    "idEnd": 0,
+    "rarityStart": 0,
+    "rarityEnd": 0,
+    "buyNow": true,
+    "shops": [
+      "string"
+    ],
+    "attributes": [
+      {
+        "key": "string",
+        "value": "string"
+      }
+    ]
+  },
+  "sort": {
+    "price": "string",
+    "rarity": "string",
+    "id": "string"
+  }
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('http://localhost/api/master/v0/collection/query',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /collection/query`
+
+*查詢/搜尋NFT系列清單.*
+
+查詢NFT集合
+
+> Body parameter
+
+```json
+{
+  "chainId": 0,
+  "contract": "string",
+  "offset": 0,
+  "limit": 0,
+  "filter": {
+    "idStart": 0,
+    "idEnd": 0,
+    "rarityStart": 0,
+    "rarityEnd": 0,
+    "buyNow": true,
+    "shops": [
+      "string"
+    ],
+    "attributes": [
+      {
+        "key": "string",
+        "value": "string"
+      }
+    ]
+  },
+  "sort": {
+    "price": "string",
+    "rarity": "string",
+    "id": "string"
+  }
+}
+```
+
+<h3 id="post__collection_query-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|none|
+|» chainId|body|integer|false|公鏈ID|
+|» contract|body|string|false|NFT合約地址|
+|» offset|body|integer|false|起始位置|
+|» limit|body|integer|false|單頁數量|
+|» filter|body|object|false|none|
+|»» idStart|body|integer|false|none|
+|»» idEnd|body|integer|false|none|
+|»» rarityStart|body|integer|false|none|
+|»» rarityEnd|body|integer|false|none|
+|»» buyNow|body|boolean|false|none|
+|»» shops|body|[string]|false|none|
+|»» attributes|body|[object]|false|none|
+|»»» key|body|string|false|none|
+|»»» value|body|string|false|none|
+|» sort|body|object|false|none|
+|»» price|body|string|false|asc | des|
+|»» rarity|body|string|false|asc | des|
+|»» id|body|string|false|asc | des|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "total": 0,
+  "offset": 0,
+  "rarity": [
+    {
+      "key": "string",
+      "values": [
+        "string"
+      ]
+    }
+  ],
+  "idFrom": 0,
+  "idTo": 0,
+  "rarity:From": 0,
+  "rarityTo": 0,
+  "totalSupply": 0,
+  "floorPrice": 0,
+  "chainId": 0,
+  "contract": "string",
+  "name": "string",
+  "symbol": "string",
+  "description": "string",
+  "chainOn": 0,
+  "nftId": "string",
+  "catagories": [
+    "string"
+  ],
+  "list": [
+    {
+      "id": 0,
+      "rarity": 0,
+      "attrubutes": [
+        {
+          "key": "string",
+          "value": "string"
+        }
+      ],
+      "imgUrl": "string",
+      "name": "string",
+      "shops": [
+        {
+          "buyNow": true,
+          "currency": "string",
+          "price": 0
+        }
+      ]
+    }
+  ]
+}
+```
+
+<h3 id="post__collection_query-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="post__collection_query-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*NFT 系列回傳物件*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» total|integer|false|none|查詢結果總數|
+|» offset|integer|false|none|回傳起始位置|
+|» rarity|[object]|false|none|稀有度資料|
+|»» key|string|false|none|none|
+|»» values|[string]|false|none|none|
+|» idFrom|integer|false|none|none|
+|» idTo|integer|false|none|none|
+|» rarity:From|integer|false|none|none|
+|» rarityTo|integer|false|none|none|
+|» totalSupply|integer|false|none|none|
+|» floorPrice|number|false|none|none|
+|» chainId|integer|false|none|none|
+|» contract|string|false|none|none|
+|» name|string|false|none|none|
+|» symbol|string|false|none|none|
+|» description|string|false|none|none|
+|» chainOn|integer|false|none|部署上鏈時間|
+|» nftId|string|false|none|資料庫 NFT ID|
+|» catagories|[string]|false|none|none|
+|» list|[object]|false|none|none|
+|»» id|integer|false|none|none|
+|»» rarity|integer|false|none|none|
+|»» attrubutes|[object]|false|none|none|
+|»»» key|string|false|none|none|
+|»»» value|string|false|none|none|
+|»» imgUrl|string|false|none|none|
+|»» name|string|false|none|none|
+|»» shops|[object]|false|none|none|
+|»»» buyNow|boolean|false|none|none|
+|»»» currency|string|false|none|none|
+|»»» price|number|false|none|none|
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» chainId|string|false|none|none|
+|» contract|string|false|none|none|
+|» offset|string|false|none|none|
+|» limit|string|false|none|none|
+|» filter|string|false|none|none|
+|» sort|string|false|none|none|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
 <h1 id="nft-market-guest">guest</h1>
 
 未登入使用者操作界面

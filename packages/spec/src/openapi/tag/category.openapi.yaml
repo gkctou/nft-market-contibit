@@ -1,0 +1,138 @@
+openapi: 3.0.0
+info:
+  title: NFT Market
+  description: NFT Market API
+  version: 0.0.1
+servers:
+  - url: "http://localhost/api/master/v0"
+tags: 
+  - name: catagory
+    description: NFT 集合查詢
+paths:
+  /catagory/query:
+    post:
+      operationId: catagoryQuery
+      tags:
+        - catagory
+      summary: 查詢/搜尋NFT集合清單.
+      description: |
+        空查詢時各分類導入固定數量,
+        關鍵字回傳固定使用名稱排序.
+        關鍵字查詢使用 Moralis.
+        分類索引使用系統資料庫.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              properties:
+                keyword:
+                  type: string
+                  description: 關鍵字查詢
+                catagory:
+                  type: string
+                  description: 分類查詢
+                offset:
+                  type: integer
+                  description: 起始位置
+                limit:
+                  type: integer
+                  description: 單頁數量
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: |-
+                  NFT 集合回傳物件
+                properties:
+                  total:
+                    type: integer
+                    description: 查詢結果總數
+                  offset:
+                    type: integer
+                    description: 回傳起始位置
+                  list:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        nftId:
+                          type: string
+                          description: 資料庫 NFT ID
+                        imgUrl:
+                          type: string
+                        name:
+                          type: string
+                        catagory:
+                          type: string
+                          example: catagory.hot
+                        chainId:
+                          type: integer
+                        contract:
+                          type: string
+                          description: NFT 合約地址
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  catagory:
+                    type: string
+                    example: api.catagory.query.error.catagory.notExist
+                  keyword:
+                    type: string
+                    example: api.catagory.query.error.keyword.format
+                  offset:
+                    type: string
+                    example: api.catagory.query.error.offset.overCount
+        default:
+          $ref: "#/components/responses/BaseError"
+components:
+  schemas:
+    BaseAny:
+      type: object
+      properties: {}
+    BaseArrayAny:
+      type: array
+      items:
+        $ref: "#/components/schemas/BaseAny"
+    BaseError:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          description: Error code
+          type: integer
+        message:
+          description: Error Message
+          type: string
+        data:
+          $ref: "#/components/schemas/BaseAny"
+  responses:
+    BaseAny:
+      description: Response any object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseAny"
+    BaseArrayAny:
+      description: Response array of any
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseArrayAny"
+    BaseError:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/BaseError"

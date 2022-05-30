@@ -8,6 +8,10 @@ servers:
 tags:
   - name: base
     description: base api define
+  - name: catagory
+    description: NFT 集合查詢
+  - name: collection
+    description: NFT 系列查詢
   - name: guest
     description: 未登入使用者操作界面
   - name: member
@@ -35,6 +39,275 @@ paths:
               schema:
                 type: integer
                 description: 伺服器時間戳
+        default:
+          $ref: '#/components/responses/BaseError'
+  /catagory/query:
+    post:
+      tags:
+        - catagory
+      summary: 查詢/搜尋NFT集合清單.
+      description: |
+        空查詢時各分類導入固定數量,
+        關鍵字回傳固定使用名稱排序.
+        關鍵字查詢使用 Moralis.
+        分類索引使用系統資料庫.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                keyword:
+                  type: string
+                  description: 關鍵字查詢
+                catagory:
+                  type: string
+                  description: 分類查詢
+                offset:
+                  type: integer
+                  description: 起始位置
+                limit:
+                  type: integer
+                  description: 單頁數量
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: NFT 集合回傳物件
+                properties:
+                  total:
+                    type: integer
+                    description: 查詢結果總數
+                  offset:
+                    type: integer
+                    description: 回傳起始位置
+                  list:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        nftId:
+                          type: string
+                          description: 資料庫 NFT ID
+                        imgUrl:
+                          type: string
+                        name:
+                          type: string
+                        catagory:
+                          type: string
+                          example: catagory.hot
+                        chainId:
+                          type: integer
+                        contract:
+                          type: string
+                          description: NFT 合約地址
+        '403':
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  catagory:
+                    type: string
+                    example: api.catagory.query.error.catagory.notExist
+                  keyword:
+                    type: string
+                    example: api.catagory.query.error.keyword.format
+                  offset:
+                    type: string
+                    example: api.catagory.query.error.offset.overCount
+        default:
+          $ref: '#/components/responses/BaseError'
+  /collection/query:
+    post:
+      tags:
+        - collection
+      summary: 查詢/搜尋NFT系列清單.
+      description: 查詢NFT集合
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chainId:
+                  type: integer
+                  description: 公鏈ID
+                contract:
+                  type: string
+                  description: NFT合約地址
+                offset:
+                  type: integer
+                  description: 起始位置
+                limit:
+                  type: integer
+                  description: 單頁數量
+                filter:
+                  type: object
+                  properties:
+                    idStart:
+                      type: integer
+                    idEnd:
+                      type: integer
+                    rarityStart:
+                      type: integer
+                    rarityEnd:
+                      type: integer
+                    buyNow:
+                      type: boolean
+                    shops:
+                      type: array
+                      items:
+                        type: string
+                        description: contibit | opensea
+                    attributes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          key:
+                            type: string
+                          value:
+                            type: string
+                sort:
+                  type: object
+                  properties:
+                    price:
+                      type: string
+                      description: asc | des
+                    rarity:
+                      type: string
+                      description: asc | des
+                    id:
+                      type: string
+                      description: asc | des
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: NFT 系列回傳物件
+                properties:
+                  total:
+                    type: integer
+                    description: 查詢結果總數
+                  offset:
+                    type: integer
+                    description: 回傳起始位置
+                  rarity:
+                    type: array
+                    description: 稀有度資料
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                        values:
+                          type: array
+                          items:
+                            type: string
+                  idFrom:
+                    type: integer
+                  idTo:
+                    type: integer
+                  rarity:From:
+                    type: integer
+                  rarityTo:
+                    type: integer
+                  totalSupply:
+                    type: integer
+                  floorPrice:
+                    type: number
+                  chainId:
+                    type: integer
+                  contract:
+                    type: string
+                  name:
+                    type: string
+                  symbol:
+                    type: string
+                  description:
+                    type: string
+                  chainOn:
+                    type: integer
+                    description: 部署上鏈時間
+                  nftId:
+                    type: string
+                    description: 資料庫 NFT ID
+                  catagories:
+                    type: array
+                    items:
+                      type: string
+                  list:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        rarity:
+                          type: integer
+                        attrubutes:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              key:
+                                type: string
+                              value:
+                                type: string
+                        imgUrl:
+                          type: string
+                        name:
+                          type: string
+                        shops:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              buyNow:
+                                type: boolean
+                              currency:
+                                type: string
+                              price:
+                                type: number
+        '403':
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  chainId:
+                    type: string
+                    example: ...
+                  contract:
+                    type: string
+                    example: ...
+                  offset:
+                    type: string
+                    example: ...
+                  limit:
+                    type: string
+                    example: ...
+                  filter:
+                    type: string
+                    example: ...
+                  sort:
+                    type: string
+                    example: ...
         default:
           $ref: '#/components/responses/BaseError'
   /guest/register/phone:
