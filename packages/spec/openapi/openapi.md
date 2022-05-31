@@ -92,9 +92,9 @@ This operation does not require authentication
 
 NFT 購物/上架/提領/匯入車 相關操作
 
-## car
+## carShoppingLoad
 
-<a id="opIdcar"></a>
+<a id="opIdcarShoppingLoad"></a>
 
 > Code samples
 
@@ -136,11 +136,11 @@ fetch('http://localhost/api/master/v0/car/shopping/load',
 }
 ```
 
-<h3 id="car-parameters">Parameters</h3>
+<h3 id="carshoppingload-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|true|user id|
+|body|body|object|true|user check|
 |» userId|body|string|true|none|
 
 > Example responses
@@ -160,7 +160,8 @@ fetch('http://localhost/api/master/v0/car/shopping/load',
       "nftName": "string",
       "shop": "string",
       "currency": "string",
-      "price": 0
+      "price": 0,
+      "enable": true
     }
   ],
   "amount": [
@@ -200,49 +201,194 @@ fetch('http://localhost/api/master/v0/car/shopping/load',
 }
 ```
 
-<h3 id="car-responses">Responses</h3>
+<h3 id="carshoppingload-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[CartShoppingModel](#schemacartshoppingmodel)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
 |default|Default|Error response|[BaseError](#schemabaseerror)|
 
-<h3 id="car-responseschema">Response Schema</h3>
+<h3 id="carshoppingload-responseschema">Response Schema</h3>
 
-Status Code **200**
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» hash|string|false|none|目前資料 hash(防呆,更新時比對)|
 |» userId|string|false|none|none|
-|» list|[object]|false|none|none|
-|»» chainId|integer|false|none|none|
-|»» contract|string|false|none|none|
-|»» collection|string|false|none|集合名稱|
-|»» id|integer|false|none|none|
-|»» nftName|string|false|none|none|
-|»» shop|string|false|none|none|
-|»» currency|string|false|none|none|
-|»» price|number|false|none|none|
-|» amount|[object]|false|none|none|
-|»» currency|string|false|none|none|
-|»» amount|number|false|none|none|
-|» gas|[object]|false|none|none|
-|»» currency|string|false|none|none|
-|»» amount|number|false|none|none|
-|» wallet|[object]|false|none|none|
-|»» currency|string|false|none|none|
-|»» balance|number|false|none|none|
-|»» enable|boolean|false|none|none|
-|»» willPay|number|false|none|none|
-|» payment|[object]|false|none|none|
-|»» currency|string|false|none|none|
-|»» amount|number|false|none|none|
-|»» payBy|[object]|false|none|none|
-|»»» currency|string|false|none|none|
-|»»» used|number|false|none|none|
-|»»» rate|number|false|none|none|
-|»»» amount|number|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## carShoppingSave
+
+<a id="opIdcarShoppingSave"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "list": [
+    {
+      "chainId": 0,
+      "contract": "string",
+      "id": 0,
+      "shop": "string"
+    }
+  ],
+  "wallet": [
+    {
+      "currency": "string",
+      "enable": true
+    }
+  ]
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/car/shopping/save',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /car/shopping/save`
+
+*取得購物車資訊*
+
+取得購物車資訊
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "list": [
+    {
+      "chainId": 0,
+      "contract": "string",
+      "id": 0,
+      "shop": "string"
+    }
+  ],
+  "wallet": [
+    {
+      "currency": "string",
+      "enable": true
+    }
+  ]
+}
+```
+
+<h3 id="carshoppingsave-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user check|
+|» userId|body|string|true|none|
+|» list|body|[object]|false|none|
+|»» chainId|body|integer|false|none|
+|»» contract|body|string|false|none|
+|»» id|body|integer|false|none|
+|»» shop|body|string|false|none|
+|» wallet|body|[object]|false|none|
+|»» currency|body|string|false|none|
+|»» enable|body|boolean|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "hash": "string",
+  "userId": "string",
+  "list": [
+    {
+      "chainId": 0,
+      "contract": "string",
+      "collection": "string",
+      "id": 0,
+      "nftName": "string",
+      "shop": "string",
+      "currency": "string",
+      "price": 0,
+      "enable": true
+    }
+  ],
+  "amount": [
+    {
+      "currency": "string",
+      "amount": 0
+    }
+  ],
+  "gas": [
+    {
+      "currency": "string",
+      "amount": 0
+    }
+  ],
+  "wallet": [
+    {
+      "currency": "string",
+      "balance": 0,
+      "enable": true,
+      "willPay": 0
+    }
+  ],
+  "payment": [
+    {
+      "currency": "string",
+      "amount": 0,
+      "payBy": [
+        {
+          "currency": "string",
+          "used": 0,
+          "rate": 0,
+          "amount": 0
+        }
+      ]
+    }
+  ]
+}
+```
+
+<h3 id="carshoppingsave-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[CartShoppingModel](#schemacartshoppingmodel)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="carshoppingsave-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» hash|string|false|none|none|
+|» userId|string|false|none|none|
+|» list|string|false|none|none|
+|» wallet|string|false|none|none|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -2363,4 +2509,102 @@ BaseApiKey
 |code|integer|true|none|Error code|
 |message|string|false|none|Error Message|
 |data|[BaseAny](#schemabaseany)|false|none|none|
+
+<h2 id="tocS_CartShoppingModel">CartShoppingModel</h2>
+<!-- backwards compatibility -->
+<a id="schemacartshoppingmodel"></a>
+<a id="schema_CartShoppingModel"></a>
+<a id="tocScartshoppingmodel"></a>
+<a id="tocscartshoppingmodel"></a>
+
+```json
+{
+  "hash": "string",
+  "userId": "string",
+  "list": [
+    {
+      "chainId": 0,
+      "contract": "string",
+      "collection": "string",
+      "id": 0,
+      "nftName": "string",
+      "shop": "string",
+      "currency": "string",
+      "price": 0,
+      "enable": true
+    }
+  ],
+  "amount": [
+    {
+      "currency": "string",
+      "amount": 0
+    }
+  ],
+  "gas": [
+    {
+      "currency": "string",
+      "amount": 0
+    }
+  ],
+  "wallet": [
+    {
+      "currency": "string",
+      "balance": 0,
+      "enable": true,
+      "willPay": 0
+    }
+  ],
+  "payment": [
+    {
+      "currency": "string",
+      "amount": 0,
+      "payBy": [
+        {
+          "currency": "string",
+          "used": 0,
+          "rate": 0,
+          "amount": 0
+        }
+      ]
+    }
+  ]
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|hash|string|false|none|目前資料 hash(防呆,更新時比對)|
+|userId|string|false|none|none|
+|list|[object]|false|none|none|
+|» chainId|integer|false|none|none|
+|» contract|string|false|none|none|
+|» collection|string|false|none|集合名稱|
+|» id|integer|false|none|none|
+|» nftName|string|false|none|none|
+|» shop|string|false|none|none|
+|» currency|string|false|none|none|
+|» price|number|false|none|none|
+|» enable|boolean|false|none|none|
+|amount|[object]|false|none|none|
+|» currency|string|false|none|none|
+|» amount|number|false|none|none|
+|gas|[object]|false|none|none|
+|» currency|string|false|none|none|
+|» amount|number|false|none|none|
+|wallet|[object]|false|none|none|
+|» currency|string|false|none|none|
+|» balance|number|false|none|none|
+|» enable|boolean|false|none|none|
+|» willPay|number|false|none|none|
+|payment|[object]|false|none|none|
+|» currency|string|false|none|none|
+|» amount|number|false|none|none|
+|» payBy|[object]|false|none|none|
+|»» currency|string|false|none|none|
+|»» used|number|false|none|none|
+|»» rate|number|false|none|none|
+|»» amount|number|false|none|none|
 
