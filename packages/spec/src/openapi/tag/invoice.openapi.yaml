@@ -41,7 +41,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/InvoiceShoppingStatus"
+                $ref: "#/components/schemas/InvoiceStatus"
         403:
           description: 資訊錯誤
           content:
@@ -58,13 +58,13 @@ paths:
                     type: string
         default:
           $ref: "#/components/responses/BaseError"
-  /invoice/shopping/check:
+  /invoice/check:
     post:
-      operationId: invoiceShoppingCheck
+      operationId: invoicegCheck
       tags:
         - invoice
-      summary: 查詢購物訂單資訊
-      description: 查詢購物訂單資訊
+      summary: 查詢訂單資訊
+      description: 查詢訂單資訊
       parameters: []
       requestBody:
         description: user check
@@ -77,6 +77,8 @@ paths:
                 - userId
               properties:
                 userId:
+                  type: string
+                invoiceType:
                   type: string
                 invoiceId:
                   type: string
@@ -88,7 +90,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/InvoiceShoppingStatus"
+                $ref: "#/components/schemas/InvoiceStatus"
         403:
           description: 資訊錯誤
           content:
@@ -101,16 +103,16 @@ paths:
                     type: string
         default:
           $ref: "#/components/responses/BaseError"
-  /cart/selling/load:
+  /invoice/selling/create:
     post:
-      operationId: cartSellingLoad
+      operationId: invoiceSellingCreate
       tags:
-        - cart
-      summary: 取得上架車資訊
-      description: 取得上架車資訊
+        - invoice
+      summary: 建立上架車交易訂單
+      description: 建立上架車交易訂單
       parameters: []
       requestBody:
-        description: user check
+        description: shopping order
         required: true
         content:
           "application/json":
@@ -121,76 +123,17 @@ paths:
               properties:
                 userId:
                   type: string
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CartSellingModel"
-        403:
-          description: 資訊錯誤
-          content:
-            application/json:
-              schema:
-                description: 回傳對應欄位的錯誤訊息/代號
-                type: object
-                properties:
-                  userId:
-                    type: string
-        default:
-          $ref: "#/components/responses/BaseError"
-  /cart/selling/save:
-    post:
-      operationId: cartSellingSave
-      tags:
-        - cart
-      summary: 更新上架車資訊
-      description: 更新上架車資訊
-      parameters: []
-      requestBody:
-        description: user check
-        required: true
-        content:
-          "application/json":
-            schema:
-              type: object
-              required:
-                - userId
-              properties:
-                userId:
+                cartHash:
                   type: string
-                list:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        chainId:
-                          type: integer
-                        contract:
-                          type: string
-                        id:
-                          type: integer
-                        shop:
-                          type: string
-                wallet:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        currency:
-                          type: string
-                        enable:
-                          type: boolean
-                        rate:
-                          type: number
+                lang:
+                  type: string
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CartSellingModel"
+                $ref: "#/components/schemas/InvoiceStatus"
         403:
           description: 資訊錯誤
           content:
@@ -199,23 +142,21 @@ paths:
                 description: 回傳對應欄位的錯誤訊息/代號
                 type: object
                 properties:
-                  hash:
-                    type: string
                   userId:
                     type: string
-                  list:
+                  cartHash:
                     type: string
-                  wallet:
+                  lang:
                     type: string
         default:
           $ref: "#/components/responses/BaseError"
-  /cart/import/register:
+  /invoice/export/create:
     post:
-      operationId: cartImportRegister
+      operationId: invoiceExportCreate
       tags:
         - cart
-      summary: 注冊NFT匯入並取得匯入錢包賬號
-      description: 注冊NFT匯入並取得匯入錢包賬號
+      summary: 建立NFT匯出訂單
+      description: 建立NFT匯出訂單
       parameters: []
       requestBody:
         description: user check
@@ -242,9 +183,9 @@ paths:
                       id:
                         type: integer
                         description: nft id
-                importer:
+                receiver:
                   type: string
-                  description: 匯入錢包賬號
+                  description: 匯出錢包賬號
                 sign:
                   type: string
                   description: eip712 簽名證明為錢包持有人
@@ -323,11 +264,14 @@ components:
           type: string
         data:
           $ref: "#/components/schemas/BaseAny"
-    InvoiceShoppingStatus:
+    InvoiceStatus:
       type: object
       properties:
         userId:
           type: string
+        invoiceType:
+          type: string
+          description: 訂單類型
         invoiceId:
           type: string
           description: 訂單編號(ID)
@@ -370,87 +314,6 @@ components:
                 type: number
               description:
                 type: string
-    CartSellingModel:
-      type: object
-      properties:
-        hash:
-          type: string
-          description: 目前資料 hash(防呆,更新時比對)
-        userId:
-          type: string
-        list:
-          type: array
-          items:
-            type: object
-            properties:
-              chainId:
-                type: integer
-              contract:
-                type: string
-              collection:
-                type: string
-                description: 集合名稱
-              id:
-                type: integer
-              nftName:
-                type: string
-              shops:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    shop:
-                      type: string
-                    currency:
-                      type: string
-                    price:
-                      type: number
-                    enable:
-                      type: boolean
-        gas:
-          type: array
-          items:
-            type: object
-            properties:
-              currency:
-                type: string
-              amount:
-                type: number
-        wallet:
-          type: array
-          items:
-            type: object
-            properties:
-              currency:
-                type: string
-              balance:
-                type: number
-              enable:
-                type: boolean
-              willPay:
-                type: number 
-        payment:
-          type: array
-          items:
-            type: object
-            properties:
-              currency:
-                type: string
-              amount:
-                type: number
-              payBy:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    currency:
-                      type: string
-                    used:
-                      type: number
-                    rate:
-                      type: number
-                    amount:
-                      type: number
   responses:
     BaseAny:
       description: Response any object

@@ -227,6 +227,93 @@ paths:
                     type: string
         default:
           $ref: "#/components/responses/BaseError"
+  /cart/export/check:
+    post:
+      operationId: cartExportRegister
+      tags:
+        - cart
+      summary: 檢查匯出車内品項及計算匯出手續費
+      description: 檢查匯出車内品項及計算匯出手續費
+      parameters: []
+      requestBody:
+        description: user check
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                chainId:
+                  type: integer
+                list:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      contract:
+                        type: string
+                        description: contract address
+                      id:
+                        type: integer
+                        description: nft id
+                receiver:
+                  type: string
+                  description: 收件人錢包賬號
+                sign:
+                  type: string
+                  description: eip712 簽名證明為錢包持有人
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - userId
+                properties:
+                  userId:
+                    type: string
+                  chainId:
+                    type: integer
+                  list:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        contract:
+                          type: string
+                          description: contract address
+                        id:
+                          type: integer
+                          description: nft id
+                        transfer:
+                          type: string
+                          description: 目標匯入賬號地址
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  chainId:
+                    type: string
+                  userId:
+                    type: string
+                  list:
+                    type: string
+                  sender:
+                    type: string
+                  sign:
+                    type: string
+        default:
+          $ref: "#/components/responses/BaseError"
   /cart/import/register:
     post:
       operationId: cartImportRegister
@@ -260,7 +347,7 @@ paths:
                       id:
                         type: integer
                         description: nft id
-                importer:
+                sender:
                   type: string
                   description: 匯入錢包賬號
                 sign:
@@ -308,7 +395,7 @@ paths:
                     type: string
                   list:
                     type: string
-                  importer:
+                  sender:
                     type: string
                   sign:
                     type: string
