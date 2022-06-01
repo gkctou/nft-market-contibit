@@ -229,7 +229,7 @@ paths:
           $ref: "#/components/responses/BaseError"
   /cart/export/check:
     post:
-      operationId: cartExportRegister
+      operationId: cartExportCheck
       tags:
         - cart
       summary: 檢查匯出車内品項及計算匯出手續費
@@ -266,6 +266,15 @@ paths:
                 sign:
                   type: string
                   description: eip712 簽名證明為錢包持有人
+                wallet:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      currency:
+                        type: string
+                      enable:
+                        type: boolean
       responses:
         200:
           description: OK
@@ -294,6 +303,53 @@ paths:
                         transfer:
                           type: string
                           description: 目標匯入賬號地址
+                  cost:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          description: gas / price / fee
+                        currency:
+                          type: string
+                        amount:
+                          type: number
+                  wallet:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        currency:
+                          type: string
+                        balance:
+                          type: number
+                        enable:
+                          type: boolean
+                        willPay:
+                          type: number 
+                  payment:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        currency:
+                          type: string
+                        amount:
+                          type: number
+                        payBy:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              currency:
+                                type: string
+                              used:
+                                type: number
+                              rate:
+                                type: number
+                              amount:
+                                type: number
         403:
           description: 資訊錯誤
           content:
@@ -460,24 +516,27 @@ components:
                 type: number
               enable:
                 type: boolean
-        amount:
+        cost:
           type: array
           items:
             type: object
             properties:
+              type:
+                type: string
+                description: gas/price/fee
               currency:
                 type: string
               amount:
                 type: number
-        gas:
-          type: array
-          items:
-            type: object
-            properties:
-              currency:
-                type: string
-              amount:
-                type: number
+        # gas:
+        #   type: array
+        #   items:
+        #     type: object
+        #     properties:
+        #       currency:
+        #         type: string
+        #       amount:
+        #         type: number
         wallet:
           type: array
           items:
@@ -550,11 +609,14 @@ components:
                       type: number
                     enable:
                       type: boolean
-        gas:
+        cost:
           type: array
           items:
             type: object
             properties:
+              type:
+                type: string
+                description: gas / price / fee
               currency:
                 type: string
               amount:

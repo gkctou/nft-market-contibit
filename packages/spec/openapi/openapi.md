@@ -164,14 +164,9 @@ fetch('http://localhost/api/master/v0/cart/shopping/load',
       "enable": true
     }
   ],
-  "amount": [
+  "cost": [
     {
-      "currency": "string",
-      "amount": 0
-    }
-  ],
-  "gas": [
-    {
+      "type": "string",
       "currency": "string",
       "amount": 0
     }
@@ -335,14 +330,9 @@ fetch('http://localhost/api/master/v0/cart/shopping/save',
       "enable": true
     }
   ],
-  "amount": [
+  "cost": [
     {
-      "currency": "string",
-      "amount": 0
-    }
-  ],
-  "gas": [
-    {
+      "type": "string",
       "currency": "string",
       "amount": 0
     }
@@ -474,8 +464,9 @@ fetch('http://localhost/api/master/v0/cart/selling/load',
       ]
     }
   ],
-  "gas": [
+  "cost": [
     {
+      "type": "string",
       "currency": "string",
       "amount": 0
     }
@@ -643,8 +634,9 @@ fetch('http://localhost/api/master/v0/cart/selling/save',
       ]
     }
   ],
-  "gas": [
+  "cost": [
     {
+      "type": "string",
       "currency": "string",
       "amount": 0
     }
@@ -700,6 +692,198 @@ To perform this operation, you must be authenticated by means of one of the foll
 BaseApiKey
 </aside>
 
+## cartExportCheck
+
+<a id="opIdcartExportCheck"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "chainId": 0,
+  "list": [
+    {
+      "contract": "string",
+      "id": 0
+    }
+  ],
+  "receiver": "string",
+  "sign": "string",
+  "wallet": [
+    {
+      "currency": "string",
+      "enable": true
+    }
+  ]
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/cart/export/check',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /cart/export/check`
+
+*檢查匯出車内品項及計算匯出手續費*
+
+檢查匯出車内品項及計算匯出手續費
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "chainId": 0,
+  "list": [
+    {
+      "contract": "string",
+      "id": 0
+    }
+  ],
+  "receiver": "string",
+  "sign": "string",
+  "wallet": [
+    {
+      "currency": "string",
+      "enable": true
+    }
+  ]
+}
+```
+
+<h3 id="cartexportcheck-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user check|
+|» userId|body|string|true|none|
+|» chainId|body|integer|false|none|
+|» list|body|[object]|false|none|
+|»» contract|body|string|false|contract address|
+|»» id|body|integer|false|nft id|
+|» receiver|body|string|false|收件人錢包賬號|
+|» sign|body|string|false|eip712 簽名證明為錢包持有人|
+|» wallet|body|[object]|false|none|
+|»» currency|body|string|false|none|
+|»» enable|body|boolean|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "userId": "string",
+  "chainId": 0,
+  "list": [
+    {
+      "contract": "string",
+      "id": 0,
+      "transfer": "string"
+    }
+  ],
+  "cost": [
+    {
+      "type": "string",
+      "currency": "string",
+      "amount": 0
+    }
+  ],
+  "wallet": [
+    {
+      "currency": "string",
+      "balance": 0,
+      "enable": true,
+      "willPay": 0
+    }
+  ],
+  "payment": [
+    {
+      "currency": "string",
+      "amount": 0,
+      "payBy": [
+        {
+          "currency": "string",
+          "used": 0,
+          "rate": 0,
+          "amount": 0
+        }
+      ]
+    }
+  ]
+}
+```
+
+<h3 id="cartexportcheck-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="cartexportcheck-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|true|none|none|
+|» chainId|integer|false|none|none|
+|» list|[object]|false|none|none|
+|»» contract|string|false|none|contract address|
+|»» id|integer|false|none|nft id|
+|»» transfer|string|false|none|目標匯入賬號地址|
+|» cost|[object]|false|none|none|
+|»» type|string|false|none|gas / price / fee|
+|»» currency|string|false|none|none|
+|»» amount|number|false|none|none|
+|» wallet|[object]|false|none|none|
+|»» currency|string|false|none|none|
+|»» balance|number|false|none|none|
+|»» enable|boolean|false|none|none|
+|»» willPay|number|false|none|none|
+|» payment|[object]|false|none|none|
+|»» currency|string|false|none|none|
+|»» amount|number|false|none|none|
+|»» payBy|[object]|false|none|none|
+|»»» currency|string|false|none|none|
+|»»» used|number|false|none|none|
+|»»» rate|number|false|none|none|
+|»»» amount|number|false|none|none|
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» chainId|string|false|none|none|
+|» userId|string|false|none|none|
+|» list|string|false|none|none|
+|» sender|string|false|none|none|
+|» sign|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
 ## cartImportRegister
 
 <a id="opIdcartImportRegister"></a>
@@ -716,7 +900,7 @@ const inputBody = '{
       "id": 0
     }
   ],
-  "importer": "string",
+  "sender": "string",
   "sign": "string"
 }';
 const headers = {
@@ -757,7 +941,7 @@ fetch('http://localhost/api/master/v0/cart/import/register',
       "id": 0
     }
   ],
-  "importer": "string",
+  "sender": "string",
   "sign": "string"
 }
 ```
@@ -772,7 +956,7 @@ fetch('http://localhost/api/master/v0/cart/import/register',
 |» list|body|[object]|false|none|
 |»» contract|body|string|false|contract address|
 |»» id|body|integer|false|nft id|
-|» importer|body|string|false|匯入錢包賬號|
+|» sender|body|string|false|匯入錢包賬號|
 |» sign|body|string|false|eip712 簽名證明為錢包持有人|
 
 > Example responses
@@ -823,7 +1007,7 @@ Status Code **403**
 |» chainId|string|false|none|none|
 |» userId|string|false|none|none|
 |» list|string|false|none|none|
-|» importer|string|false|none|none|
+|» sender|string|false|none|none|
 |» sign|string|false|none|none|
 
 <aside class="warning">
@@ -1346,6 +1530,162 @@ Status Code **200**
 |»» contract|string|false|none|none|
 |»» collection|string|false|none|none|
 |»» symbol|string|false|none|none|
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|false|none|none|
+|» offset|string|false|none|none|
+|» filter|string|false|none|none|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## collectionSelling
+
+<a id="opIdcollectionSelling"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "offset": 0,
+  "limit": 0,
+  "filter": {
+    "chainId": 0,
+    "contract": "string",
+    "shops": "string"
+  }
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('http://localhost/api/master/v0/collection/selling',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /collection/selling`
+
+*查詢已上架NFT清單.*
+
+查詢已上架NFT集合
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "offset": 0,
+  "limit": 0,
+  "filter": {
+    "chainId": 0,
+    "contract": "string",
+    "shops": "string"
+  }
+}
+```
+
+<h3 id="collectionselling-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|none|
+|» userId|body|string|true|member ID|
+|» offset|body|integer|false|起始位置|
+|» limit|body|integer|false|單頁數量|
+|» filter|body|object|false|none|
+|»» chainId|body|integer|false|none|
+|»» contract|body|string|false|none|
+|»» shops|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "userId": "string",
+  "chains": [
+    {
+      "chainId": 0,
+      "contract": "string",
+      "name": "string"
+    }
+  ],
+  "shops": [
+    "string"
+  ],
+  "total": 0,
+  "offset": 0,
+  "list": [
+    {
+      "id": 0,
+      "rarity": 0,
+      "imgUrl": "string",
+      "name": "string",
+      "shop": "string",
+      "chainId": 0,
+      "contract": "string",
+      "collection": "string",
+      "symbol": "string",
+      "invoiceId": "string"
+    }
+  ]
+}
+```
+
+<h3 id="collectionselling-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="collectionselling-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*NFT 系列回傳物件*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|false|none|none|
+|» chains|[object]|false|none|公鏈及NFT合約地址|
+|»» chainId|integer|false|none|none|
+|»» contract|string|false|none|none|
+|»» name|string|false|none|none|
+|» shops|[string]|false|none|none|
+|» total|integer|false|none|查詢結果總數|
+|» offset|integer|false|none|回傳起始位置|
+|» list|[object]|false|none|none|
+|»» id|integer|false|none|none|
+|»» rarity|integer|false|none|none|
+|»» imgUrl|string|false|none|none|
+|»» name|string|false|none|none|
+|»» shop|string|false|none|none|
+|»» chainId|integer|false|none|none|
+|»» contract|string|false|none|none|
+|»» collection|string|false|none|none|
+|»» symbol|string|false|none|none|
+|»» invoiceId|string|false|none|none|
 
 Status Code **403**
 
@@ -1904,6 +2244,991 @@ Status Code **403**
 
 <aside class="success">
 This operation does not require authentication
+</aside>
+
+<h1 id="nft-market-invoice">invoice</h1>
+
+購物/上架/提領 訂單處理相關操作
+
+## invoiceShoppingCreate
+
+<a id="opIdinvoiceShoppingCreate"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "cartHash": "string",
+  "lang": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/invoice/shopping/create',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /invoice/shopping/create`
+
+*建立購物車交易訂單*
+
+建立購物車交易訂單
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "cartHash": "string",
+  "lang": "string"
+}
+```
+
+<h3 id="invoiceshoppingcreate-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|shopping order|
+|» userId|body|string|true|none|
+|» cartHash|body|string|false|none|
+|» lang|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "userId": "string",
+  "invoiceType": "string",
+  "invoiceId": "string",
+  "status": "success",
+  "createOn": 0,
+  "jobs": [
+    {
+      "jobType": "string",
+      "jobId": "string",
+      "data": {},
+      "status": "success",
+      "finishOn": 0,
+      "description": "string"
+    }
+  ]
+}
+```
+
+<h3 id="invoiceshoppingcreate-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[InvoiceStatus](#schemainvoicestatus)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="invoiceshoppingcreate-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|false|none|none|
+|» cartHash|string|false|none|none|
+|» lang|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## invoiceCheck
+
+<a id="opIdinvoiceCheck"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "invoiceType": "string",
+  "invoiceId": "string",
+  "lang": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/invoice/check',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /invoice/check`
+
+*查詢訂單資訊*
+
+查詢訂單資訊
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "invoiceType": "string",
+  "invoiceId": "string",
+  "lang": "string"
+}
+```
+
+<h3 id="invoicecheck-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user check|
+|» userId|body|string|true|none|
+|» invoiceType|body|string|false|shopping / selling / export / mint|
+|» invoiceId|body|string|false|none|
+|» lang|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "userId": "string",
+  "invoiceType": "string",
+  "invoiceId": "string",
+  "status": "success",
+  "createOn": 0,
+  "jobs": [
+    {
+      "jobType": "string",
+      "jobId": "string",
+      "data": {},
+      "status": "success",
+      "finishOn": 0,
+      "description": "string"
+    }
+  ]
+}
+```
+
+<h3 id="invoicecheck-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[InvoiceStatus](#schemainvoicestatus)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="invoicecheck-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## invoiceSellingCreate
+
+<a id="opIdinvoiceSellingCreate"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "cartHash": "string",
+  "lang": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/invoice/selling/create',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /invoice/selling/create`
+
+*建立上架車交易訂單*
+
+建立上架車交易訂單
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "cartHash": "string",
+  "lang": "string"
+}
+```
+
+<h3 id="invoicesellingcreate-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|shopping order|
+|» userId|body|string|true|none|
+|» cartHash|body|string|false|none|
+|» lang|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "userId": "string",
+  "invoiceType": "string",
+  "invoiceId": "string",
+  "status": "success",
+  "createOn": 0,
+  "jobs": [
+    {
+      "jobType": "string",
+      "jobId": "string",
+      "data": {},
+      "status": "success",
+      "finishOn": 0,
+      "description": "string"
+    }
+  ]
+}
+```
+
+<h3 id="invoicesellingcreate-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[InvoiceStatus](#schemainvoicestatus)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="invoicesellingcreate-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|false|none|none|
+|» cartHash|string|false|none|none|
+|» lang|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## invoiceSellingCancel
+
+<a id="opIdinvoiceSellingCancel"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "invoiceId": "string",
+  "chainId": 0,
+  "contract": "string",
+  "id": "string",
+  "shop": "string",
+  "payable": {
+    "cost": [
+      {
+        "type": "string",
+        "currency": "string",
+        "amount": 0
+      }
+    ],
+    "wallet": [
+      {
+        "currency": "string",
+        "enable": true
+      }
+    ],
+    "payment": [
+      {
+        "currency": "string",
+        "amount": 0,
+        "payBy": [
+          {
+            "currency": "string",
+            "used": 0,
+            "rate": 0,
+            "amount": 0
+          }
+        ]
+      }
+    ]
+  }
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/invoice/selling/cancel',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /invoice/selling/cancel`
+
+*取消單一NFT上架訂單*
+
+取消單一NFT上架訂單
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "invoiceId": "string",
+  "chainId": 0,
+  "contract": "string",
+  "id": "string",
+  "shop": "string",
+  "payable": {
+    "cost": [
+      {
+        "type": "string",
+        "currency": "string",
+        "amount": 0
+      }
+    ],
+    "wallet": [
+      {
+        "currency": "string",
+        "enable": true
+      }
+    ],
+    "payment": [
+      {
+        "currency": "string",
+        "amount": 0,
+        "payBy": [
+          {
+            "currency": "string",
+            "used": 0,
+            "rate": 0,
+            "amount": 0
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+<h3 id="invoicesellingcancel-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|cancel selling order|
+|» userId|body|string|true|none|
+|» invoiceId|body|string|false|none|
+|» chainId|body|number|false|none|
+|» contract|body|string|false|none|
+|» id|body|string|false|none|
+|» shop|body|string|false|none|
+|» payable|body|object|false|none|
+|»» cost|body|[object]|false|none|
+|»»» type|body|string|false|gas / price / fee|
+|»»» currency|body|string|false|none|
+|»»» amount|body|number|false|none|
+|»» wallet|body|[object]|false|none|
+|»»» currency|body|string|false|none|
+|»»» enable|body|boolean|false|none|
+|»» payment|body|[object]|false|none|
+|»»» currency|body|string|false|none|
+|»»» amount|body|number|false|none|
+|»»» payBy|body|[object]|false|none|
+|»»»» currency|body|string|false|none|
+|»»»» used|body|number|false|none|
+|»»»» rate|body|number|false|none|
+|»»»» amount|body|number|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "userId": "string",
+  "invoiceType": "string",
+  "invoiceId": "string",
+  "status": "success",
+  "createOn": 0,
+  "jobs": [
+    {
+      "jobType": "string",
+      "jobId": "string",
+      "data": {},
+      "status": "success",
+      "finishOn": 0,
+      "description": "string"
+    }
+  ]
+}
+```
+
+<h3 id="invoicesellingcancel-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[InvoiceStatus](#schemainvoicestatus)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="invoicesellingcancel-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|false|none|none|
+|» cartHash|string|false|none|none|
+|» lang|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## invoiceSellingCancelCost
+
+<a id="opIdinvoiceSellingCancelCost"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "invoiceId": "string",
+  "chainId": 0,
+  "contract": "string",
+  "id": "string",
+  "shop": "string",
+  "wallet": [
+    {
+      "currency": "string",
+      "enable": true
+    }
+  ]
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/invoice/selling/cancel/cost',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /invoice/selling/cancel/cost`
+
+*查詢取消單一NFT上架費用*
+
+查詢取消單一NFT上架費用
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "invoiceId": "string",
+  "chainId": 0,
+  "contract": "string",
+  "id": "string",
+  "shop": "string",
+  "wallet": [
+    {
+      "currency": "string",
+      "enable": true
+    }
+  ]
+}
+```
+
+<h3 id="invoicesellingcancelcost-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|none|
+|» userId|body|string|true|none|
+|» invoiceId|body|string|true|none|
+|» chainId|body|number|true|none|
+|» contract|body|string|true|none|
+|» id|body|string|true|none|
+|» shop|body|string|true|none|
+|» wallet|body|[object]|false|none|
+|»» currency|body|string|false|none|
+|»» enable|body|boolean|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "cost": [
+    {
+      "type": "string",
+      "currency": "string",
+      "amount": 0
+    }
+  ],
+  "wallet": [
+    {
+      "currency": "string",
+      "enable": true,
+      "balance": 0
+    }
+  ],
+  "payment": [
+    {
+      "currency": "string",
+      "amount": 0,
+      "payBy": [
+        {
+          "currency": "string",
+          "used": 0,
+          "rate": 0,
+          "amount": 0
+        }
+      ]
+    }
+  ]
+}
+```
+
+<h3 id="invoicesellingcancelcost-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="invoicesellingcancelcost-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» cost|[object]|false|none|none|
+|»» type|string|false|none|gas / price / fee|
+|»» currency|string|false|none|none|
+|»» amount|number|false|none|none|
+|» wallet|[object]|false|none|none|
+|»» currency|string|false|none|none|
+|»» enable|boolean|false|none|none|
+|»» balance|number|false|none|none|
+|» payment|[object]|false|none|none|
+|»» currency|string|false|none|none|
+|»» amount|number|false|none|none|
+|»» payBy|[object]|false|none|none|
+|»»» currency|string|false|none|none|
+|»»» used|number|false|none|none|
+|»»» rate|number|false|none|none|
+|»»» amount|number|false|none|none|
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|false|none|none|
+|» cartHash|string|false|none|none|
+|» lang|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## invoiceExportCreate
+
+<a id="opIdinvoiceExportCreate"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "chainId": 0,
+  "list": [
+    {
+      "contract": "string",
+      "id": 0
+    }
+  ],
+  "receiver": "string",
+  "sign": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/invoice/export/create',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /invoice/export/create`
+
+*建立NFT匯出訂單*
+
+建立NFT匯出訂單
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "chainId": 0,
+  "list": [
+    {
+      "contract": "string",
+      "id": 0
+    }
+  ],
+  "receiver": "string",
+  "sign": "string"
+}
+```
+
+<h3 id="invoiceexportcreate-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user check|
+|» userId|body|string|true|none|
+|» chainId|body|integer|false|none|
+|» list|body|[object]|false|none|
+|»» contract|body|string|false|contract address|
+|»» id|body|integer|false|nft id|
+|» receiver|body|string|false|匯出錢包賬號|
+|» sign|body|string|false|eip712 簽名證明為錢包持有人(可選)|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "userId": "string",
+  "invoiceType": "string",
+  "invoiceId": "string",
+  "status": "success",
+  "createOn": 0,
+  "jobs": [
+    {
+      "jobType": "string",
+      "jobId": "string",
+      "data": {},
+      "status": "success",
+      "finishOn": 0,
+      "description": "string"
+    }
+  ]
+}
+```
+
+<h3 id="invoiceexportcreate-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[InvoiceStatus](#schemainvoicestatus)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="invoiceexportcreate-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» chainId|string|false|none|none|
+|» userId|string|false|none|none|
+|» list|string|false|none|none|
+|» importer|string|false|none|none|
+|» sign|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## invoiceMintCreate
+
+<a id="opIdinvoiceMintCreate"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "collectionId": "string",
+  "mintId": "string",
+  "payable": {
+    "cost": [
+      {
+        "type": "string",
+        "currency": "string",
+        "amount": 0
+      }
+    ],
+    "wallet": [
+      {
+        "currency": "string",
+        "enable": true
+      }
+    ],
+    "payment": [
+      {
+        "currency": "string",
+        "amount": 0,
+        "payBy": [
+          {
+            "currency": "string",
+            "used": 0,
+            "rate": 0,
+            "amount": 0
+          }
+        ]
+      }
+    ]
+  }
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/invoice/mint/create',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /invoice/mint/create`
+
+*建立NFT鑄造訂單*
+
+建立NFT鑄造訂單
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "collectionId": "string",
+  "mintId": "string",
+  "payable": {
+    "cost": [
+      {
+        "type": "string",
+        "currency": "string",
+        "amount": 0
+      }
+    ],
+    "wallet": [
+      {
+        "currency": "string",
+        "enable": true
+      }
+    ],
+    "payment": [
+      {
+        "currency": "string",
+        "amount": 0,
+        "payBy": [
+          {
+            "currency": "string",
+            "used": 0,
+            "rate": 0,
+            "amount": 0
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+<h3 id="invoicemintcreate-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user check|
+|» userId|body|string|true|none|
+|» collectionId|body|string|false|資料庫内 collection widget ID|
+|» mintId|body|string|false|資料庫内 mint 按鈕 widget ID|
+|» payable|body|object|false|none|
+|»» cost|body|[object]|false|none|
+|»»» type|body|string|false|gas / price / fee|
+|»»» currency|body|string|false|none|
+|»»» amount|body|number|false|none|
+|»» wallet|body|[object]|false|none|
+|»»» currency|body|string|false|none|
+|»»» enable|body|boolean|false|none|
+|»» payment|body|[object]|false|none|
+|»»» currency|body|string|false|none|
+|»»» amount|body|number|false|none|
+|»»» payBy|body|[object]|false|none|
+|»»»» currency|body|string|false|none|
+|»»»» used|body|number|false|none|
+|»»»» rate|body|number|false|none|
+|»»»» amount|body|number|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "userId": "string",
+  "invoiceType": "string",
+  "invoiceId": "string",
+  "status": "success",
+  "createOn": 0,
+  "jobs": [
+    {
+      "jobType": "string",
+      "jobId": "string",
+      "data": {},
+      "status": "success",
+      "finishOn": 0,
+      "description": "string"
+    }
+  ]
+}
+```
+
+<h3 id="invoicemintcreate-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[InvoiceStatus](#schemainvoicestatus)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="invoicemintcreate-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|false|none|none|
+|» collectionId|string|false|none|none|
+|» mintId|string|false|none|none|
+|» cost|string|false|none|none|
+|» wallet|string|false|none|none|
+|» payment|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
 </aside>
 
 <h1 id="nft-market-member">member</h1>
@@ -2970,14 +4295,9 @@ BaseApiKey
       "enable": true
     }
   ],
-  "amount": [
+  "cost": [
     {
-      "currency": "string",
-      "amount": 0
-    }
-  ],
-  "gas": [
-    {
+      "type": "string",
       "currency": "string",
       "amount": 0
     }
@@ -3024,10 +4344,8 @@ BaseApiKey
 |» currency|string|false|none|none|
 |» price|number|false|none|none|
 |» enable|boolean|false|none|none|
-|amount|[object]|false|none|none|
-|» currency|string|false|none|none|
-|» amount|number|false|none|none|
-|gas|[object]|false|none|none|
+|cost|[object]|false|none|none|
+|» type|string|false|none|gas/price/fee|
 |» currency|string|false|none|none|
 |» amount|number|false|none|none|
 |wallet|[object]|false|none|none|
@@ -3072,8 +4390,9 @@ BaseApiKey
       ]
     }
   ],
-  "gas": [
+  "cost": [
     {
+      "type": "string",
       "currency": "string",
       "amount": 0
     }
@@ -3121,7 +4440,8 @@ BaseApiKey
 |»» currency|string|false|none|none|
 |»» price|number|false|none|none|
 |»» enable|boolean|false|none|none|
-|gas|[object]|false|none|none|
+|cost|[object]|false|none|none|
+|» type|string|false|none|gas / price / fee|
 |» currency|string|false|none|none|
 |» amount|number|false|none|none|
 |wallet|[object]|false|none|none|
@@ -3137,4 +4457,70 @@ BaseApiKey
 |»» used|number|false|none|none|
 |»» rate|number|false|none|none|
 |»» amount|number|false|none|none|
+
+<h2 id="tocS_InvoiceStatus">InvoiceStatus</h2>
+<!-- backwards compatibility -->
+<a id="schemainvoicestatus"></a>
+<a id="schema_InvoiceStatus"></a>
+<a id="tocSinvoicestatus"></a>
+<a id="tocsinvoicestatus"></a>
+
+```json
+{
+  "userId": "string",
+  "invoiceType": "string",
+  "invoiceId": "string",
+  "status": "success",
+  "createOn": 0,
+  "jobs": [
+    {
+      "jobType": "string",
+      "jobId": "string",
+      "data": {},
+      "status": "success",
+      "finishOn": 0,
+      "description": "string"
+    }
+  ]
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|userId|string|false|none|none|
+|invoiceType|string|false|none|訂單類型|
+|invoiceId|string|false|none|訂單編號(ID)|
+|status|string|false|none|none|
+|createOn|number|false|none|建立時間|
+|jobs|[object]|false|none|none|
+|» jobType|string|false|none|換匯/鎖幣/站內購入/外站購入/結帳|
+|» jobId|string|false|none|none|
+|» data|object|false|none|none|
+|» status|string|false|none|none|
+|» finishOn|number|false|none|none|
+|» description|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|status|success|
+|status|fail|
+|status|partial|
+|status|processing|
+|status|waiting|
+|status|error|
+|status|pause|
+|status|cancel|
+|status|success|
+|status|fail|
+|status|partial|
+|status|processing|
+|status|waiting|
+|status|error|
+|status|pause|
+|status|cancel|
 

@@ -319,6 +319,128 @@ paths:
                     example: ...
         default:
           $ref: "#/components/responses/BaseError"
+  /collection/selling:
+    post:
+      operationId: collectionSelling
+      tags:
+        - collection
+      summary: 查詢已上架NFT清單.
+      description: 查詢已上架NFT集合
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                  description: member ID
+                offset:
+                  type: integer
+                  description: 起始位置
+                limit:
+                  type: integer
+                  description: 單頁數量
+                filter:
+                  type: object
+                  properties:
+                    chainId:
+                      type: integer
+                    contract:
+                      type: string
+                    shops:
+                      type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: |-
+                  NFT 系列回傳物件
+                properties:
+                  userId:
+                    type: string
+                  chains:
+                    type: array
+                    description: 公鏈及NFT合約地址
+                    items:
+                      type: object
+                      properties:
+                        chainId:
+                          type: integer
+                        contract:
+                          type: string
+                        name:
+                          type: string
+                  shops:
+                    type: array
+                    items:
+                      type: string
+                  total:
+                    type: integer
+                    description: 查詢結果總數
+                  offset:
+                    type: integer
+                    description: 回傳起始位置
+                  list:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        rarity:
+                          type: integer
+                        # attrubutes:
+                        #   type: array
+                        #   items:
+                        #     type: object
+                        #     properties:
+                        #       key:
+                        #         type: string
+                        #       value:
+                        #         type: string
+                        imgUrl:
+                          type: string
+                        name:
+                          type: string
+                        shop:
+                          type: string
+                        chainId:
+                          type: integer
+                        contract:
+                          type: string
+                        collection:
+                          type: string
+                        symbol:
+                          type: string
+                        invoiceId:
+                          type: string
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  userId:
+                    type: string
+                    example: ...
+                  offset:
+                    type: string
+                    example: ...
+                  filter:
+                    type: string
+                    example: ...
+        default:
+          $ref: "#/components/responses/BaseError"
 components:
   schemas:
     BaseAny:

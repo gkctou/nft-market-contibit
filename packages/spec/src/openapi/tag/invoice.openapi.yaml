@@ -60,7 +60,7 @@ paths:
           $ref: "#/components/responses/BaseError"
   /invoice/check:
     post:
-      operationId: invoicegCheck
+      operationId: invoiceCheck
       tags:
         - invoice
       summary: 查詢訂單資訊
@@ -80,6 +80,7 @@ paths:
                   type: string
                 invoiceType:
                   type: string
+                  description: shopping / selling / export / mint
                 invoiceId:
                   type: string
                 lang:
@@ -150,11 +151,224 @@ paths:
                     type: string
         default:
           $ref: "#/components/responses/BaseError"
+  /invoice/selling/cancel:
+    post:
+      operationId: invoiceSellingCancel
+      tags:
+        - invoice
+      summary: 取消單一NFT上架訂單
+      description: 取消單一NFT上架訂單
+      parameters: []
+      requestBody:
+        description: cancel selling order
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                invoiceId:
+                  type: string
+                chainId:
+                  type: number
+                contract:
+                  type: string
+                id:
+                  type: string
+                shop:
+                  type: string
+                payable:
+                  type: object
+                  properties:
+                    cost:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            description: gas / price / fee
+                          currency:
+                            type: string
+                          amount:
+                            type: number
+                    wallet:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          currency:
+                            type: string
+                          enable:
+                            type: boolean
+                    payment:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          currency:
+                            type: string
+                          amount:
+                            type: number
+                          payBy:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                currency:
+                                  type: string
+                                used:
+                                  type: number
+                                rate:
+                                  type: number
+                                amount:
+                                  type: number
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceStatus"
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                additionalProperties: false
+                properties:
+                  userId:
+                    type: string
+                  cartHash:
+                    type: string
+                  lang:
+                    type: string
+        default:
+          $ref: "#/components/responses/BaseError"
+  /invoice/selling/cancel/cost:
+    post:
+      operationId: invoiceSellingCancelCost
+      tags:
+        - invoice
+      summary: 查詢取消單一NFT上架費用
+      description: 查詢取消單一NFT上架費用
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+                - invoiceId
+                - chainId
+                - contract
+                - id
+                - shop
+              properties:
+                userId:
+                  type: string
+                invoiceId:
+                  type: string
+                chainId:
+                  type: number
+                contract:
+                  type: string
+                id:
+                  type: string
+                shop:
+                  type: string
+                wallet:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      currency:
+                        type: string
+                      enable:
+                        type: boolean
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cost:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          description: gas / price / fee
+                        currency:
+                          type: string
+                        amount:
+                          type: number
+                  wallet:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        currency:
+                          type: string
+                        enable:
+                          type: boolean
+                        balance:
+                          type: number
+                  payment:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        currency:
+                          type: string
+                        amount:
+                          type: number
+                        payBy:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              currency:
+                                type: string
+                              used:
+                                type: number
+                              rate:
+                                type: number
+                              amount:
+                                type: number
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                additionalProperties: false
+                properties:
+                  userId:
+                    type: string
+                  cartHash:
+                    type: string
+                  lang:
+                    type: string
+        default:
+          $ref: "#/components/responses/BaseError"
   /invoice/export/create:
     post:
       operationId: invoiceExportCreate
       tags:
-        - cart
+        - invoice
       summary: 建立NFT匯出訂單
       description: 建立NFT匯出訂單
       parameters: []
@@ -188,35 +402,14 @@ paths:
                   description: 匯出錢包賬號
                 sign:
                   type: string
-                  description: eip712 簽名證明為錢包持有人
+                  description: eip712 簽名證明為錢包持有人(可選)
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - userId
-                properties:
-                  userId:
-                    type: string
-                  chainId:
-                    type: integer
-                  list:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        contract:
-                          type: string
-                          description: contract address
-                        id:
-                          type: integer
-                          description: nft id
-                        transfer:
-                          type: string
-                          description: 目標匯入賬號地址
+                $ref: "#/components/schemas/InvoiceStatus"
         403:
           description: 資訊錯誤
           content:
@@ -234,6 +427,107 @@ paths:
                   importer:
                     type: string
                   sign:
+                    type: string
+        default:
+          $ref: "#/components/responses/BaseError"
+  /invoice/mint/create:
+    post:
+      operationId: invoiceMintCreate
+      tags:
+        - invoice
+      summary: 建立NFT鑄造訂單
+      description: 建立NFT鑄造訂單
+      parameters: []
+      requestBody:
+        description: user check
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                collectionId:
+                  type: string
+                  description: 資料庫内 collection widget ID
+                mintId:
+                  type: string
+                  description: 資料庫内 mint 按鈕 widget ID
+                payable:
+                  type: object
+                  properties:
+                    cost:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            description: gas / price / fee
+                          currency:
+                            type: string
+                          amount:
+                            type: number
+                    wallet:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          currency:
+                            type: string
+                          enable:
+                            type: boolean
+                    payment:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          currency:
+                            type: string
+                          amount:
+                            type: number
+                          payBy:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                currency:
+                                  type: string
+                                used:
+                                  type: number
+                                rate:
+                                  type: number
+                                amount:
+                                  type: number
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceStatus"
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  userId:
+                    type: string
+                  collectionId:
+                    type: string
+                  mintId:
+                    type: string
+                  cost:
+                    type: string
+                  wallet:
+                    type: string
+                  payment:
                     type: string
         default:
           $ref: "#/components/responses/BaseError"
@@ -285,6 +579,7 @@ components:
             - waiting
             - error
             - pause
+            - cancel
         createOn:
           type: number
           description: 建立時間
@@ -310,6 +605,7 @@ components:
                   - waiting
                   - error
                   - pause
+                  - cancel
               finishOn:
                 type: number
               description:
