@@ -3057,8 +3057,8 @@ BaseApiKey
 ```javascript
 const inputBody = '{
   "userId": "string",
-  "collectionId": "string",
   "mintId": "string",
+  "quantity": 0,
   "payable": {
     "cost": [
       {
@@ -3120,8 +3120,8 @@ fetch('http://localhost/api/master/v0/invoice/mint/create',
 ```json
 {
   "userId": "string",
-  "collectionId": "string",
   "mintId": "string",
+  "quantity": 0,
   "payable": {
     "cost": [
       {
@@ -3160,8 +3160,8 @@ fetch('http://localhost/api/master/v0/invoice/mint/create',
 |---|---|---|---|---|
 |body|body|object|true|user check|
 |» userId|body|string|true|none|
-|» collectionId|body|string|false|資料庫内 collection widget ID|
-|» mintId|body|string|false|資料庫内 mint 按鈕 widget ID|
+|» mintId|body|string|true|資料庫内 mint 按鈕 widget ID|
+|» quantity|body|integer|false|鑄造數量|
 |» payable|body|object|false|none|
 |»» cost|body|[object]|false|none|
 |»»» type|body|string|false|gas / price / fee|

@@ -1750,15 +1750,16 @@ paths:
               type: object
               required:
                 - userId
+                - mintId
               properties:
                 userId:
                   type: string
-                collectionId:
-                  type: string
-                  description: 資料庫内 collection widget ID
                 mintId:
                   type: string
                   description: 資料庫内 mint 按鈕 widget ID
+                quantity:
+                  type: integer
+                  description: 鑄造數量
                 payable:
                   type: object
                   properties:
