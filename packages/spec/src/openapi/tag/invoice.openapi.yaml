@@ -11,17 +11,16 @@ tags:
 security:
   - BaseApiKey: []
 paths:
-
-  /invoice/shopping/create:
+  /invoice/list:
     post:
-      operationId: invoiceShoppingCreate
+      operationId: invoiceList
       tags:
         - invoice
-      summary: 建立購物車交易訂單
-      description: 建立購物車交易訂單
+      summary: 查詢交易歷史紀錄
+      description: 查詢交易歷史紀錄
       parameters: []
       requestBody:
-        description: shopping order
+        description: user check
         required: true
         content:
           "application/json":
@@ -32,17 +31,67 @@ paths:
               properties:
                 userId:
                   type: string
-                cartHash:
-                  type: string
-                lang:
-                  type: string
+                offset:
+                  type: integer
+                limit:
+                  type: integer
+                filter:
+                  type: object
+                  properties:
+                    invoiceType:
+                      type: string
+                      description: shopping / selling / export / mint
+                    status:
+                      type: string
+                    createAfter:
+                      type: integer
+                    createBefore:
+                      type: integer
+                sort:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      field:
+                        type: string
+                        description: createOn
+                      mode:
+                        type: string
+                        enum:
+                          - asc
+                          - des
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/InvoiceStatus"
+                type: object
+                description: invoice 列表
+                properties:
+                  userId:
+                    type: string
+                  total:
+                    type: integer
+                    description: 查詢結果總數
+                  offset:
+                    type: integer
+                    description: 回傳起始位置
+                  list:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        invoiceId:
+                          type: string
+                        invoiceType:
+                          type: string
+                        createOn:
+                          type: integer
+                        status:
+                          type: string
+                        
+
         403:
           description: 資訊錯誤
           content:
@@ -52,10 +101,6 @@ paths:
                 type: object
                 properties:
                   userId:
-                    type: string
-                  cartHash:
-                    type: string
-                  lang:
                     type: string
         default:
           $ref: "#/components/responses/BaseError"
@@ -105,6 +150,54 @@ paths:
                     type: string
         default:
           $ref: "#/components/responses/BaseError"
+  /invoice/shopping/create:
+    post:
+      operationId: invoiceShoppingCreate
+      tags:
+        - invoice
+      summary: 建立購物車交易訂單
+      description: 建立購物車交易訂單
+      parameters: []
+      requestBody:
+        description: shopping order
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                cartHash:
+                  type: string
+                lang:
+                  type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceStatus"
+        403:
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  userId:
+                    type: string
+                  cartHash:
+                    type: string
+                  lang:
+                    type: string
+        default:
+          $ref: "#/components/responses/BaseError"
+
   /invoice/selling/create:
     post:
       operationId: invoiceSellingCreate
