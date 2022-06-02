@@ -2250,17 +2250,29 @@ This operation does not require authentication
 
 購物/上架/提領 訂單處理相關操作
 
-## invoiceShoppingCreate
+## invoiceList
 
-<a id="opIdinvoiceShoppingCreate"></a>
+<a id="opIdinvoiceList"></a>
 
 > Code samples
 
 ```javascript
 const inputBody = '{
   "userId": "string",
-  "cartHash": "string",
-  "lang": "string"
+  "offset": 0,
+  "limit": 0,
+  "filter": {
+    "invoiceType": "string",
+    "status": "string",
+    "createAfter": 0,
+    "createBefore": 0
+  },
+  "sort": [
+    {
+      "field": "string",
+      "mode": "asc"
+    }
+  ]
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -2268,7 +2280,7 @@ const headers = {
   'apikey':'API_KEY'
 };
 
-fetch('http://localhost/api/master/v0/invoice/shopping/create',
+fetch('http://localhost/api/master/v0/invoice/list',
 {
   method: 'POST',
   body: inputBody,
@@ -2282,30 +2294,57 @@ fetch('http://localhost/api/master/v0/invoice/shopping/create',
 
 ```
 
-`POST /invoice/shopping/create`
+`POST /invoice/list`
 
-*建立購物車交易訂單*
+*查詢交易歷史紀錄*
 
-建立購物車交易訂單
+查詢交易歷史紀錄
 
 > Body parameter
 
 ```json
 {
   "userId": "string",
-  "cartHash": "string",
-  "lang": "string"
+  "offset": 0,
+  "limit": 0,
+  "filter": {
+    "invoiceType": "string",
+    "status": "string",
+    "createAfter": 0,
+    "createBefore": 0
+  },
+  "sort": [
+    {
+      "field": "string",
+      "mode": "asc"
+    }
+  ]
 }
 ```
 
-<h3 id="invoiceshoppingcreate-parameters">Parameters</h3>
+<h3 id="invoicelist-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|true|shopping order|
+|body|body|object|true|user check|
 |» userId|body|string|true|none|
-|» cartHash|body|string|false|none|
-|» lang|body|string|false|none|
+|» offset|body|integer|false|none|
+|» limit|body|integer|false|none|
+|» filter|body|object|false|none|
+|»» invoiceType|body|string|false|shopping / selling / export / mint|
+|»» status|body|string|false|none|
+|»» createAfter|body|integer|false|none|
+|»» createBefore|body|integer|false|none|
+|» sort|body|[object]|false|none|
+|»» field|body|string|false|createOn|
+|»» mode|body|string|false|none|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|»» mode|asc|
+|»» mode|des|
 
 > Example responses
 
@@ -2314,32 +2353,61 @@ fetch('http://localhost/api/master/v0/invoice/shopping/create',
 ```json
 {
   "userId": "string",
-  "invoiceType": "string",
-  "invoiceId": "string",
-  "status": "success",
-  "createOn": 0,
-  "jobs": [
+  "total": 0,
+  "offset": 0,
+  "list": [
     {
-      "jobType": "string",
-      "jobId": "string",
-      "data": {},
-      "status": "success",
-      "finishOn": 0,
-      "description": "string"
+      "invoiceType": "string",
+      "invoiceId": "string",
+      "createOn": 0,
+      "status": "string",
+      "payment": [
+        {
+          "currency": "string",
+          "amount": 0
+        }
+      ],
+      "income": [
+        {
+          "currency": "string",
+          "amount": 0
+        }
+      ]
     }
   ]
 }
 ```
 
-<h3 id="invoiceshoppingcreate-responses">Responses</h3>
+<h3 id="invoicelist-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[InvoiceStatus](#schemainvoicestatus)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
 |default|Default|Error response|[BaseError](#schemabaseerror)|
 
-<h3 id="invoiceshoppingcreate-responseschema">Response Schema</h3>
+<h3 id="invoicelist-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*invoice 列表*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|false|none|none|
+|» total|integer|false|none|查詢結果總數|
+|» offset|integer|false|none|回傳起始位置|
+|» list|[object]|false|none|none|
+|»» invoiceType|string|false|none|none|
+|»» invoiceId|string|false|none|none|
+|»» createOn|integer|false|none|none|
+|»» status|string|false|none|none|
+|»» payment|[object]|false|none|none|
+|»»» currency|string|false|none|none|
+|»»» amount|number|false|none|none|
+|»» income|[object]|false|none|none|
+|»»» currency|string|false|none|none|
+|»»» amount|number|false|none|none|
 
 Status Code **403**
 
@@ -2348,8 +2416,6 @@ Status Code **403**
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» userId|string|false|none|none|
-|» cartHash|string|false|none|none|
-|» lang|string|false|none|none|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -2457,6 +2523,112 @@ Status Code **403**
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» userId|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## invoiceShoppingCreate
+
+<a id="opIdinvoiceShoppingCreate"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "cartHash": "string",
+  "lang": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/invoice/shopping/create',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /invoice/shopping/create`
+
+*建立購物車交易訂單*
+
+建立購物車交易訂單
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "cartHash": "string",
+  "lang": "string"
+}
+```
+
+<h3 id="invoiceshoppingcreate-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|shopping order|
+|» userId|body|string|true|none|
+|» cartHash|body|string|false|none|
+|» lang|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "userId": "string",
+  "invoiceType": "string",
+  "invoiceId": "string",
+  "status": "success",
+  "createOn": 0,
+  "jobs": [
+    {
+      "jobType": "string",
+      "jobId": "string",
+      "data": {},
+      "status": "success",
+      "finishOn": 0,
+      "description": "string"
+    }
+  ]
+}
+```
+
+<h3 id="invoiceshoppingcreate-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[InvoiceStatus](#schemainvoicestatus)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="invoiceshoppingcreate-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|false|none|none|
+|» cartHash|string|false|none|none|
+|» lang|string|false|none|none|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -3684,6 +3856,947 @@ To perform this operation, you must be authenticated by means of one of the foll
 BaseApiKey
 </aside>
 
+<h1 id="nft-market-mint">mint</h1>
+
+NFT 代客鑄造設定界面
+
+## mintList
+
+<a id="opIdmintList"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "offset": 0,
+  "limit": 0,
+  "filter": {
+    "status": "string",
+    "createAfter": 0,
+    "createBefore": 0,
+    "chainId": 0,
+    "category": "string",
+    "mints": [
+      "string"
+    ]
+  },
+  "sort": [
+    {
+      "field": "string",
+      "mode": "asc"
+    }
+  ]
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('http://localhost/api/master/v0/mint/list',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /mint/list`
+
+*mint list*
+
+mint list
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "offset": 0,
+  "limit": 0,
+  "filter": {
+    "status": "string",
+    "createAfter": 0,
+    "createBefore": 0,
+    "chainId": 0,
+    "category": "string",
+    "mints": [
+      "string"
+    ]
+  },
+  "sort": [
+    {
+      "field": "string",
+      "mode": "asc"
+    }
+  ]
+}
+```
+
+<h3 id="mintlist-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user id|
+|» userId|body|string|true|none|
+|» offset|body|integer|false|none|
+|» limit|body|integer|false|none|
+|» filter|body|object|false|none|
+|»» status|body|string|false|none|
+|»» createAfter|body|integer|false|none|
+|»» createBefore|body|integer|false|none|
+|»» chainId|body|integer|false|none|
+|»» category|body|string|false|none|
+|»» mints|body|[string]|false|none|
+|» sort|body|[object]|false|none|
+|»» field|body|string|false|none|
+|»» mode|body|string|false|none|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|»» mode|asc|
+|»» mode|des|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "total": 0,
+  "offset": 0,
+  "list": [
+    {
+      "id": "string",
+      "hash": "string",
+      "createOn": 0,
+      "banner": "string",
+      "image": "string",
+      "status": "string",
+      "title": "string",
+      "mintOn": 0,
+      "currency": "string",
+      "price": 0,
+      "totalMints": 0,
+      "totalSupply": 0,
+      "totalMinted": 0
+    }
+  ]
+}
+```
+
+<h3 id="mintlist-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="mintlist-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*NFT 系列回傳物件*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» total|integer|false|none|查詢結果總數|
+|» offset|integer|false|none|回傳起始位置|
+|» list|[[MintSummaryModel](#schemamintsummarymodel)]|false|none|none|
+|»» id|string|false|none|none|
+|»» hash|string|false|none|none|
+|»» createOn|integer|false|none|none|
+|»» banner|string|false|none|大圖連結|
+|»» image|string|false|none|小圖/NFT示意圖連結|
+|»» status|string|false|none|none|
+|»» title|string|false|none|none|
+|»» mintOn|integer|false|none|none|
+|»» currency|string|false|none|none|
+|»» price|number|false|none|none|
+|»» totalMints|integer|false|none|站内 mint 總次數|
+|»» totalSupply|integer|false|none|合約總供應量|
+|»» totalMinted|integer|false|none|合約已 mint 總數量|
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» filter|string|false|none|...|
+|» sort|string|false|none|...|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## mintRead
+
+<a id="opIdmintRead"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "mintId": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('http://localhost/api/master/v0/mint/read',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /mint/read`
+
+*mint list*
+
+mint list
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "mintId": "string"
+}
+```
+
+<h3 id="mintread-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user id|
+|» userId|body|string|true|none|
+|» mintId|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "string",
+  "hash": "string",
+  "createOn": 0,
+  "isLock": true,
+  "isPublish": true,
+  "editable": true,
+  "mintOn": 0,
+  "banner": "string",
+  "image": "string",
+  "description": "string",
+  "homepage": "string",
+  "communities": [
+    {
+      "platform": "string",
+      "url": "string"
+    }
+  ],
+  "status": "string",
+  "title": "string",
+  "currency": "string",
+  "price": 0,
+  "collection": "string",
+  "chainId": 0,
+  "contract": "string",
+  "function": "string",
+  "argument": {
+    "fix": 0,
+    "min": 0,
+    "max": 0
+  },
+  "expected": 0
+}
+```
+
+<h3 id="mintread-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[MintDetailModel](#schemamintdetailmodel)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="mintread-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» userId|string|false|none|...|
+|» mintId|string|false|none|...|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## mintCreate
+
+<a id="opIdmintCreate"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "detail": {
+    "id": "string",
+    "hash": "string",
+    "createOn": 0,
+    "isLock": true,
+    "isPublish": true,
+    "editable": true,
+    "mintOn": 0,
+    "banner": "string",
+    "image": "string",
+    "description": "string",
+    "homepage": "string",
+    "communities": [
+      {
+        "platform": "string",
+        "url": "string"
+      }
+    ],
+    "status": "string",
+    "title": "string",
+    "currency": "string",
+    "price": 0,
+    "collection": "string",
+    "chainId": 0,
+    "contract": "string",
+    "function": "string",
+    "argument": {
+      "fix": 0,
+      "min": 0,
+      "max": 0
+    },
+    "expected": 0
+  }
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/mint/create',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /mint/create`
+
+*mint create*
+
+mint create
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "detail": {
+    "id": "string",
+    "hash": "string",
+    "createOn": 0,
+    "isLock": true,
+    "isPublish": true,
+    "editable": true,
+    "mintOn": 0,
+    "banner": "string",
+    "image": "string",
+    "description": "string",
+    "homepage": "string",
+    "communities": [
+      {
+        "platform": "string",
+        "url": "string"
+      }
+    ],
+    "status": "string",
+    "title": "string",
+    "currency": "string",
+    "price": 0,
+    "collection": "string",
+    "chainId": 0,
+    "contract": "string",
+    "function": "string",
+    "argument": {
+      "fix": 0,
+      "min": 0,
+      "max": 0
+    },
+    "expected": 0
+  }
+}
+```
+
+<h3 id="mintcreate-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user id|
+|» userId|body|string|true|none|
+|» detail|body|[MintDetailModel](#schemamintdetailmodel)|false|none|
+|»» id|body|string|false|none|
+|»» hash|body|string|false|none|
+|»» createOn|body|integer|false|none|
+|»» isLock|body|boolean|false|是否已鎖定|
+|»» isPublish|body|boolean|false|是否已上架(可查詢)|
+|»» editable|body|boolean|false|是否可編輯，伺服器視狀態給予值|
+|»» mintOn|body|integer|false|合約可執行鑄造時間|
+|»» banner|body|string|false|大圖連結|
+|»» image|body|string|false|小圖/NFT示意圖連結|
+|»» description|body|string|false|項目及鑄造説明文字|
+|»» homepage|body|string|false|官方網站連結|
+|»» communities|body|[object]|false|none|
+|»»» platform|body|string|false|discord / facebook / twitter / github / telgram / instegram|
+|»»» url|body|string|false|none|
+|»» status|body|string|false|none|
+|»» title|body|string|false|none|
+|»» currency|body|string|false|none|
+|»» price|body|number|false|單價|
+|»» collection|body|string|false|NFT 集合名稱|
+|»» chainId|body|integer|false|none|
+|»» contract|body|string|false|NFT 合約地址|
+|»» function|body|string|false|呼叫合約函數名稱|
+|»» argument|body|object|false|呼叫合約參數(鑄造數量)|
+|»»» fix|body|integer|false|none|
+|»»» min|body|integer|false|none|
+|»»» max|body|integer|false|none|
+|»» expected|body|integer|false|預期收到NFT數量(不參與計算,在無argument情況下,顯示)|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "string",
+  "hash": "string",
+  "createOn": 0,
+  "isLock": true,
+  "isPublish": true,
+  "editable": true,
+  "mintOn": 0,
+  "banner": "string",
+  "image": "string",
+  "description": "string",
+  "homepage": "string",
+  "communities": [
+    {
+      "platform": "string",
+      "url": "string"
+    }
+  ],
+  "status": "string",
+  "title": "string",
+  "currency": "string",
+  "price": 0,
+  "collection": "string",
+  "chainId": 0,
+  "contract": "string",
+  "function": "string",
+  "argument": {
+    "fix": 0,
+    "min": 0,
+    "max": 0
+  },
+  "expected": 0
+}
+```
+
+<h3 id="mintcreate-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[MintDetailModel](#schemamintdetailmodel)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登入資訊錯誤|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="mintcreate-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» hash|string|false|none|none|
+|» detail|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## mintUpdate
+
+<a id="opIdmintUpdate"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "hash": "string",
+  "detail": {
+    "id": "string",
+    "hash": "string",
+    "createOn": 0,
+    "isLock": true,
+    "isPublish": true,
+    "editable": true,
+    "mintOn": 0,
+    "banner": "string",
+    "image": "string",
+    "description": "string",
+    "homepage": "string",
+    "communities": [
+      {
+        "platform": "string",
+        "url": "string"
+      }
+    ],
+    "status": "string",
+    "title": "string",
+    "currency": "string",
+    "price": 0,
+    "collection": "string",
+    "chainId": 0,
+    "contract": "string",
+    "function": "string",
+    "argument": {
+      "fix": 0,
+      "min": 0,
+      "max": 0
+    },
+    "expected": 0
+  }
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/mint/update',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /mint/update`
+
+*mint update*
+
+mint update
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "hash": "string",
+  "detail": {
+    "id": "string",
+    "hash": "string",
+    "createOn": 0,
+    "isLock": true,
+    "isPublish": true,
+    "editable": true,
+    "mintOn": 0,
+    "banner": "string",
+    "image": "string",
+    "description": "string",
+    "homepage": "string",
+    "communities": [
+      {
+        "platform": "string",
+        "url": "string"
+      }
+    ],
+    "status": "string",
+    "title": "string",
+    "currency": "string",
+    "price": 0,
+    "collection": "string",
+    "chainId": 0,
+    "contract": "string",
+    "function": "string",
+    "argument": {
+      "fix": 0,
+      "min": 0,
+      "max": 0
+    },
+    "expected": 0
+  }
+}
+```
+
+<h3 id="mintupdate-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user id|
+|» userId|body|string|true|none|
+|» hash|body|string|false|none|
+|» detail|body|[MintDetailModel](#schemamintdetailmodel)|false|none|
+|»» id|body|string|false|none|
+|»» hash|body|string|false|none|
+|»» createOn|body|integer|false|none|
+|»» isLock|body|boolean|false|是否已鎖定|
+|»» isPublish|body|boolean|false|是否已上架(可查詢)|
+|»» editable|body|boolean|false|是否可編輯，伺服器視狀態給予值|
+|»» mintOn|body|integer|false|合約可執行鑄造時間|
+|»» banner|body|string|false|大圖連結|
+|»» image|body|string|false|小圖/NFT示意圖連結|
+|»» description|body|string|false|項目及鑄造説明文字|
+|»» homepage|body|string|false|官方網站連結|
+|»» communities|body|[object]|false|none|
+|»»» platform|body|string|false|discord / facebook / twitter / github / telgram / instegram|
+|»»» url|body|string|false|none|
+|»» status|body|string|false|none|
+|»» title|body|string|false|none|
+|»» currency|body|string|false|none|
+|»» price|body|number|false|單價|
+|»» collection|body|string|false|NFT 集合名稱|
+|»» chainId|body|integer|false|none|
+|»» contract|body|string|false|NFT 合約地址|
+|»» function|body|string|false|呼叫合約函數名稱|
+|»» argument|body|object|false|呼叫合約參數(鑄造數量)|
+|»»» fix|body|integer|false|none|
+|»»» min|body|integer|false|none|
+|»»» max|body|integer|false|none|
+|»» expected|body|integer|false|預期收到NFT數量(不參與計算,在無argument情況下,顯示)|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "string",
+  "hash": "string",
+  "createOn": 0,
+  "isLock": true,
+  "isPublish": true,
+  "editable": true,
+  "mintOn": 0,
+  "banner": "string",
+  "image": "string",
+  "description": "string",
+  "homepage": "string",
+  "communities": [
+    {
+      "platform": "string",
+      "url": "string"
+    }
+  ],
+  "status": "string",
+  "title": "string",
+  "currency": "string",
+  "price": 0,
+  "collection": "string",
+  "chainId": 0,
+  "contract": "string",
+  "function": "string",
+  "argument": {
+    "fix": 0,
+    "min": 0,
+    "max": 0
+  },
+  "expected": 0
+}
+```
+
+<h3 id="mintupdate-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[MintDetailModel](#schemamintdetailmodel)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登入資訊錯誤|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="mintupdate-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» hash|string|false|none|none|
+|» detail|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## mintDelete
+
+<a id="opIdmintDelete"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "mintId": "string",
+  "mintHash": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/mint/delete',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /mint/delete`
+
+*mint delete*
+
+mint delete
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "mintId": "string",
+  "mintHash": "string"
+}
+```
+
+<h3 id="mintdelete-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user id|
+|» userId|body|string|true|none|
+|» mintId|body|string|false|none|
+|» mintHash|body|string|false|none|
+
+> Example responses
+
+> 403 Response
+
+```json
+{
+  "mintId": "string",
+  "mintHash": "string"
+}
+```
+
+<h3 id="mintdelete-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登入資訊錯誤|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="mintdelete-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» mintId|string|false|none|none|
+|» mintHash|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
+## mintAction
+
+<a id="opIdmintAction"></a>
+
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": "string",
+  "mintId": "string",
+  "hash": "string",
+  "action": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'apikey':'API_KEY'
+};
+
+fetch('http://localhost/api/master/v0/mint/action',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`POST /mint/action`
+
+*mint action*
+
+mint action
+
+> Body parameter
+
+```json
+{
+  "userId": "string",
+  "mintId": "string",
+  "hash": "string",
+  "action": "string"
+}
+```
+
+<h3 id="mintaction-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|user id|
+|» userId|body|string|true|none|
+|» mintId|body|string|false|none|
+|» hash|body|string|false|none|
+|» action|body|string|false|啓用 / 停用 / 上架 / 下架 / 送審 / 測試|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "string",
+  "hash": "string",
+  "createOn": 0,
+  "isLock": true,
+  "isPublish": true,
+  "editable": true,
+  "mintOn": 0,
+  "banner": "string",
+  "image": "string",
+  "description": "string",
+  "homepage": "string",
+  "communities": [
+    {
+      "platform": "string",
+      "url": "string"
+    }
+  ],
+  "status": "string",
+  "title": "string",
+  "currency": "string",
+  "price": 0,
+  "collection": "string",
+  "chainId": 0,
+  "contract": "string",
+  "function": "string",
+  "argument": {
+    "fix": 0,
+    "min": 0,
+    "max": 0
+  },
+  "expected": 0
+}
+```
+
+<h3 id="mintaction-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[MintDetailModel](#schemamintdetailmodel)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登入資訊錯誤|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|資訊錯誤|Inline|
+|default|Default|Error response|[BaseError](#schemabaseerror)|
+
+<h3 id="mintaction-responseschema">Response Schema</h3>
+
+Status Code **403**
+
+*回傳對應欄位的錯誤訊息/代號*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» mintId|string|false|none|none|
+|» hash|string|false|none|none|
+|» action|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+BaseApiKey
+</aside>
+
 <h1 id="nft-market-wallet">wallet</h1>
 
 使用者錢包操作
@@ -4523,4 +5636,124 @@ BaseApiKey
 |status|error|
 |status|pause|
 |status|cancel|
+
+<h2 id="tocS_MintSummaryModel">MintSummaryModel</h2>
+<!-- backwards compatibility -->
+<a id="schemamintsummarymodel"></a>
+<a id="schema_MintSummaryModel"></a>
+<a id="tocSmintsummarymodel"></a>
+<a id="tocsmintsummarymodel"></a>
+
+```json
+{
+  "id": "string",
+  "hash": "string",
+  "createOn": 0,
+  "banner": "string",
+  "image": "string",
+  "status": "string",
+  "title": "string",
+  "mintOn": 0,
+  "currency": "string",
+  "price": 0,
+  "totalMints": 0,
+  "totalSupply": 0,
+  "totalMinted": 0
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string|false|none|none|
+|hash|string|false|none|none|
+|createOn|integer|false|none|none|
+|banner|string|false|none|大圖連結|
+|image|string|false|none|小圖/NFT示意圖連結|
+|status|string|false|none|none|
+|title|string|false|none|none|
+|mintOn|integer|false|none|none|
+|currency|string|false|none|none|
+|price|number|false|none|none|
+|totalMints|integer|false|none|站内 mint 總次數|
+|totalSupply|integer|false|none|合約總供應量|
+|totalMinted|integer|false|none|合約已 mint 總數量|
+
+<h2 id="tocS_MintDetailModel">MintDetailModel</h2>
+<!-- backwards compatibility -->
+<a id="schemamintdetailmodel"></a>
+<a id="schema_MintDetailModel"></a>
+<a id="tocSmintdetailmodel"></a>
+<a id="tocsmintdetailmodel"></a>
+
+```json
+{
+  "id": "string",
+  "hash": "string",
+  "createOn": 0,
+  "isLock": true,
+  "isPublish": true,
+  "editable": true,
+  "mintOn": 0,
+  "banner": "string",
+  "image": "string",
+  "description": "string",
+  "homepage": "string",
+  "communities": [
+    {
+      "platform": "string",
+      "url": "string"
+    }
+  ],
+  "status": "string",
+  "title": "string",
+  "currency": "string",
+  "price": 0,
+  "collection": "string",
+  "chainId": 0,
+  "contract": "string",
+  "function": "string",
+  "argument": {
+    "fix": 0,
+    "min": 0,
+    "max": 0
+  },
+  "expected": 0
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string|false|none|none|
+|hash|string|false|none|none|
+|createOn|integer|false|none|none|
+|isLock|boolean|false|none|是否已鎖定|
+|isPublish|boolean|false|none|是否已上架(可查詢)|
+|editable|boolean|false|none|是否可編輯，伺服器視狀態給予值|
+|mintOn|integer|false|none|合約可執行鑄造時間|
+|banner|string|false|none|大圖連結|
+|image|string|false|none|小圖/NFT示意圖連結|
+|description|string|false|none|項目及鑄造説明文字|
+|homepage|string|false|none|官方網站連結|
+|communities|[object]|false|none|none|
+|» platform|string|false|none|discord / facebook / twitter / github / telgram / instegram|
+|» url|string|false|none|none|
+|status|string|false|none|none|
+|title|string|false|none|none|
+|currency|string|false|none|none|
+|price|number|false|none|單價|
+|collection|string|false|none|NFT 集合名稱|
+|chainId|integer|false|none|none|
+|contract|string|false|none|NFT 合約地址|
+|function|string|false|none|呼叫合約函數名稱|
+|argument|object|false|none|呼叫合約參數(鑄造數量)|
+|» fix|integer|false|none|none|
+|» min|integer|false|none|none|
+|» max|integer|false|none|none|
+|expected|integer|false|none|預期收到NFT數量(不參與計算,在無argument情況下,顯示)|
 

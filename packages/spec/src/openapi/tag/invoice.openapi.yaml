@@ -213,7 +213,6 @@ paths:
                     type: string
         default:
           $ref: "#/components/responses/BaseError"
-
   /invoice/selling/create:
     post:
       operationId: invoiceSellingCreate

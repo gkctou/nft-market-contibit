@@ -20,6 +20,8 @@ tags:
     description: 購物/上架/提領 訂單處理相關操作
   - name: member
     description: 已登入使用者操作界面
+  - name: mint
+    description: NFT 代客鑄造設定界面
   - name: wallet
     description: 使用者錢包操作
 paths:
@@ -1302,16 +1304,16 @@ paths:
                     type: integer
         default:
           $ref: '#/components/responses/BaseError'
-  /invoice/shopping/create:
+  /invoice/list:
     post:
-      operationId: invoiceShoppingCreate
+      operationId: invoiceList
       tags:
         - invoice
-      summary: 建立購物車交易訂單
-      description: 建立購物車交易訂單
+      summary: 查詢交易歷史紀錄
+      description: 查詢交易歷史紀錄
       parameters: []
       requestBody:
-        description: shopping order
+        description: user check
         required: true
         content:
           application/json:
@@ -1322,17 +1324,83 @@ paths:
               properties:
                 userId:
                   type: string
-                cartHash:
-                  type: string
-                lang:
-                  type: string
+                offset:
+                  type: integer
+                limit:
+                  type: integer
+                filter:
+                  type: object
+                  properties:
+                    invoiceType:
+                      type: string
+                      description: shopping / selling / export / mint
+                    status:
+                      type: string
+                    createAfter:
+                      type: integer
+                    createBefore:
+                      type: integer
+                sort:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      field:
+                        type: string
+                        description: createOn
+                      mode:
+                        type: string
+                        enum:
+                          - asc
+                          - des
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InvoiceStatus'
+                type: object
+                description: invoice 列表
+                properties:
+                  userId:
+                    type: string
+                  total:
+                    type: integer
+                    description: 查詢結果總數
+                  offset:
+                    type: integer
+                    description: 回傳起始位置
+                  list:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        invoiceType:
+                          type: string
+                        invoiceId:
+                          type: string
+                        createOn:
+                          type: integer
+                        status:
+                          type: string
+                        payment:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              currency:
+                                type: string
+                              amount:
+                                type: number
+                        income:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              currency:
+                                type: string
+                              amount:
+                                type: number
         '403':
           description: 資訊錯誤
           content:
@@ -1342,10 +1410,6 @@ paths:
                 type: object
                 properties:
                   userId:
-                    type: string
-                  cartHash:
-                    type: string
-                  lang:
                     type: string
         default:
           $ref: '#/components/responses/BaseError'
@@ -1394,6 +1458,55 @@ paths:
                 type: object
                 properties:
                   userId:
+                    type: string
+        default:
+          $ref: '#/components/responses/BaseError'
+      security:
+        - BaseApiKey: []
+  /invoice/shopping/create:
+    post:
+      operationId: invoiceShoppingCreate
+      tags:
+        - invoice
+      summary: 建立購物車交易訂單
+      description: 建立購物車交易訂單
+      parameters: []
+      requestBody:
+        description: shopping order
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                cartHash:
+                  type: string
+                lang:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceStatus'
+        '403':
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  userId:
+                    type: string
+                  cartHash:
+                    type: string
+                  lang:
                     type: string
         default:
           $ref: '#/components/responses/BaseError'
@@ -2089,6 +2202,335 @@ paths:
           $ref: '#/components/responses/BaseError'
       security:
         - BaseApiKey: []
+  /mint/list:
+    post:
+      operationId: mintList
+      tags:
+        - mint
+      summary: mint list
+      description: mint list
+      parameters: []
+      requestBody:
+        description: user id
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                offset:
+                  type: integer
+                limit:
+                  type: integer
+                filter:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                    createAfter:
+                      type: integer
+                    createBefore:
+                      type: integer
+                    chainId:
+                      type: integer
+                    category:
+                      type: string
+                    mints:
+                      type: array
+                      items:
+                        type: string
+                        description: filter by mintId
+                sort:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      field:
+                        type: string
+                      mode:
+                        type: string
+                        enum:
+                          - asc
+                          - des
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: NFT 系列回傳物件
+                properties:
+                  total:
+                    type: integer
+                    description: 查詢結果總數
+                  offset:
+                    type: integer
+                    description: 回傳起始位置
+                  list:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MintSummaryModel'
+        '403':
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  filter:
+                    type: string
+                    description: ...
+                  sort:
+                    type: string
+                    description: ...
+        default:
+          $ref: '#/components/responses/BaseError'
+  /mint/read:
+    post:
+      operationId: mintRead
+      tags:
+        - mint
+      summary: mint list
+      description: mint list
+      parameters: []
+      requestBody:
+        description: user id
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                mintId:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MintDetailModel'
+        '403':
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  userId:
+                    type: string
+                    description: ...
+                  mintId:
+                    type: string
+                    description: ...
+        default:
+          $ref: '#/components/responses/BaseError'
+  /mint/create:
+    post:
+      operationId: mintCreate
+      security:
+        - BaseApiKey: []
+      tags:
+        - mint
+      summary: mint create
+      description: mint create
+      parameters: []
+      requestBody:
+        description: user id
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                detail:
+                  $ref: '#/components/schemas/MintDetailModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MintDetailModel'
+        '401':
+          description: 登入資訊錯誤
+        '403':
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  hash:
+                    type: string
+                  detail:
+                    type: string
+        default:
+          $ref: '#/components/responses/BaseError'
+  /mint/update:
+    post:
+      operationId: mintUpdate
+      security:
+        - BaseApiKey: []
+      tags:
+        - mint
+      summary: mint update
+      description: mint update
+      parameters: []
+      requestBody:
+        description: user id
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                hash:
+                  type: string
+                detail:
+                  $ref: '#/components/schemas/MintDetailModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MintDetailModel'
+        '401':
+          description: 登入資訊錯誤
+        '403':
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  hash:
+                    type: string
+                  detail:
+                    type: string
+        default:
+          $ref: '#/components/responses/BaseError'
+  /mint/delete:
+    post:
+      operationId: mintDelete
+      security:
+        - BaseApiKey: []
+      tags:
+        - mint
+      summary: mint delete
+      description: mint delete
+      parameters: []
+      requestBody:
+        description: user id
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                mintId:
+                  type: string
+                mintHash:
+                  type: string
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: 登入資訊錯誤
+        '403':
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  mintId:
+                    type: string
+                  mintHash:
+                    type: string
+        default:
+          $ref: '#/components/responses/BaseError'
+  /mint/action:
+    post:
+      operationId: mintAction
+      security:
+        - BaseApiKey: []
+      tags:
+        - mint
+      summary: mint action
+      description: mint action
+      parameters: []
+      requestBody:
+        description: user id
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                mintId:
+                  type: string
+                hash:
+                  type: string
+                action:
+                  type: string
+                  description: 啓用 / 停用 / 上架 / 下架 / 送審 / 測試
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MintDetailModel'
+        '401':
+          description: 登入資訊錯誤
+        '403':
+          description: 資訊錯誤
+          content:
+            application/json:
+              schema:
+                description: 回傳對應欄位的錯誤訊息/代號
+                type: object
+                properties:
+                  mintId:
+                    type: string
+                  hash:
+                    type: string
+                  action:
+                    type: string
+        default:
+          $ref: '#/components/responses/BaseError'
   /wallet/balance:
     post:
       operationId: walletBalance
@@ -2687,6 +3129,116 @@ components:
                 type: number
               description:
                 type: string
+    MintSummaryModel:
+      type: object
+      properties:
+        id:
+          type: string
+        hash:
+          type: string
+        createOn:
+          type: integer
+        banner:
+          type: string
+          description: 大圖連結
+        image:
+          type: string
+          description: 小圖/NFT示意圖連結
+        status:
+          type: string
+        title:
+          type: string
+        mintOn:
+          type: integer
+        currency:
+          type: string
+        price:
+          type: number
+        totalMints:
+          type: integer
+          description: 站内 mint 總次數
+        totalSupply:
+          type: integer
+          description: 合約總供應量
+        totalMinted:
+          type: integer
+          description: 合約已 mint 總數量
+    MintDetailModel:
+      type: object
+      properties:
+        id:
+          type: string
+        hash:
+          type: string
+        createOn:
+          type: integer
+        isLock:
+          type: boolean
+          description: 是否已鎖定
+        isPublish:
+          type: boolean
+          description: 是否已上架(可查詢)
+        editable:
+          type: boolean
+          description: 是否可編輯，伺服器視狀態給予值
+        mintOn:
+          type: integer
+          description: 合約可執行鑄造時間
+        banner:
+          type: string
+          description: 大圖連結
+        image:
+          type: string
+          description: 小圖/NFT示意圖連結
+        description:
+          type: string
+          description: 項目及鑄造説明文字
+        homepage:
+          type: string
+          description: 官方網站連結
+        communities:
+          type: array
+          items:
+            type: object
+            properties:
+              platform:
+                type: string
+                description: discord / facebook / twitter / github / telgram / instegram
+              url:
+                type: string
+        status:
+          type: string
+        title:
+          type: string
+        currency:
+          type: string
+        price:
+          type: number
+          description: 單價
+        collection:
+          type: string
+          description: NFT 集合名稱
+        chainId:
+          type: integer
+        contract:
+          type: string
+          description: NFT 合約地址
+        function:
+          type: string
+          description: 呼叫合約函數名稱
+        argument:
+          type: object
+          description: 呼叫合約參數(鑄造數量)
+          properties:
+            fix:
+              type: integer
+            min:
+              type: integer
+            max:
+              type: integer
+        expected:
+          type: integer
+          description: 預期收到NFT數量(不參與計算,在無argument情況下,顯示)
   responses:
     BaseAny:
       description: Response any object
