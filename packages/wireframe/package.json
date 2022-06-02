@@ -34,7 +34,6 @@
     "vue-loader": "^16.8.3",
     "vue-tsc": "^0.34.16",
     "@storybook/addon-notes": "~5.3.21",
-    "rollup-plugin-polyfill-node": "~0.9.0",
-    "react-docgen-typescript": "~2.2.2"
+    "rollup-plugin-polyfill-node": "~0.9.0"
   }
 }

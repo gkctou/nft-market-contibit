@@ -1,4 +1,4 @@
-           <template>
+<template>
     <q-card square class="shadow-24" style="width:400px;height:auto;">
         <q-card-section class="bg-deep-purple-6">
             <h5 class="text-h5 text-white q-my-md">Login</h5>
