@@ -46,10 +46,10 @@
 const props = defineProps<{
     email: string
     password: string
-}>()
+}>();
 
 const emit = defineEmits<{
     (e: 'success', token: string): void
     (e: 'fail', message: string): void
-}>()
+}>();
 </script>

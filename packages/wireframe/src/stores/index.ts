@@ -3,13 +3,13 @@
 import { createPinia, Pinia } from 'pinia';
 
 // provide typings for `this.$store`
-declare module '@vue/runtime-core' {
-    interface ComponentCustomProperties {
-        $store: Pinia;
-    }
-}
+// declare module '@vue/runtime-core' {
+//     interface ComponentCustomProperties {
+//         $store: Pinia;
+//     }
+// }
 
-export function createStore() {
+export function createStore(): Pinia {
     const pinia = createPinia();
     return pinia;
 };

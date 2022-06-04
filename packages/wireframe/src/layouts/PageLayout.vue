@@ -1,7 +1,7 @@
 <template>
     <q-layout view="hHh lpR fFf">
         <q-page-container>
-            <q-page class="window-height window-width row justify-center items-center" style="background: linear-gradient(#333333, #999999);">
+            <q-page class="window-height window-width row justify-center items-center" style="background: linear-gradient(#333, #EEE);">
                 <Suspense>
                     <template #default>
                         <router-view />
