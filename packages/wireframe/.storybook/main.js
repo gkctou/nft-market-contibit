@@ -20,6 +20,7 @@ module.exports = {
   },
   // typescript: {
   //   reactDocgen: 'react-docgen-typescript',
+  //   // reactDocgen: 'react-docgen',
   //   reactDocgenTypescriptOptions: {
   //     check: false,
   //     checkOptions: {},

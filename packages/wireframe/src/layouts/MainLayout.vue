@@ -39,13 +39,14 @@
 </template>
 
 <script setup lang="ts">
-let leftDrawerOpen = $ref(false);
+import {ref} from 'vue'
+let leftDrawerOpen = ref(false);
 function toggleLeftDrawer() {
-    leftDrawerOpen = !leftDrawerOpen;
+    leftDrawerOpen.value = !leftDrawerOpen.value;
 };
 
-let rightDrawerOpen = $ref(false)
+let rightDrawerOpen = ref(false)
 function toggleRightDrawer() {
-    rightDrawerOpen = !rightDrawerOpen;
+    rightDrawerOpen.value = !rightDrawerOpen.value;
 }
 </script>

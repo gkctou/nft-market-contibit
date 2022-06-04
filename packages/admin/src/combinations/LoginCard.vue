@@ -1,9 +1,9 @@
 <template>
     <q-card square class="shadow-24" style="width:400px;height:auto;">
         <q-card-section class="bg-deep-purple-6">
-            <h5 class="text-h5 text-white q-my-md">Registration</h5>
+            <h5 class="text-h5 text-white q-my-md">Login</h5>
             <!-- <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
-                <q-btn fab icon="close" color="purple-4" />
+                <q-btn fab icon="add" color="purple-4" />
             </div> -->
         </q-card-section>
         <q-card-section>
@@ -13,11 +13,6 @@
                         <q-icon name="email" />
                     </template>
                 </q-input>
-                <q-input square clearable v-model="username" type="username" label="Username">
-                    <template v-slot:prepend>
-                        <q-icon name="person" />
-                    </template>
-                </q-input>
                 <q-input square clearable v-model="password" type="password" label="Password">
                     <template v-slot:prepend>
                         <q-icon name="lock" />
@@ -25,18 +20,36 @@
                 </q-input>
             </q-form>
         </q-card-section>
+        <!-- <q-card-section>
+            <div class="text-center q-pa-md q-gutter-md">
+                <q-btn round color="indigo-7">
+                    <q-icon name="fab fa-facebook-f" size="1.2rem" />
+                </q-btn>
+                <q-btn round color="red-8">
+                    <q-icon name="fab fa-google-plus-g" size="1.2rem" />
+                </q-btn>
+                <q-btn round color="light-blue-5">
+                    <q-icon name="fab fa-twitter" size="1.2rem" />
+                </q-btn>
+            </div>
+        </q-card-section> -->
         <q-card-actions class="q-px-lg">
-            <q-btn unelevated size="lg" color="purple-4" class="full-width text-white" label="Get Started" />
+            <q-btn unelevated size="lg" color="purple-4" class="full-width text-white" label="Sign In" />
         </q-card-actions>
         <q-card-section class="text-center q-pa-sm">
-            <p class="text-grey-6">Return to login</p>
+            <p class="text-grey-6">Forgot your password?</p>
         </q-card-section>
     </q-card>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-let email = ref('');
-let username = ref('');
-let password = ref('');
+const props = defineProps<{
+    email: string
+    password: string
+}>()
+
+const emit = defineEmits<{
+    (e: 'success', token: string): void
+    (e: 'fail', message: string): void
+}>()
 </script>

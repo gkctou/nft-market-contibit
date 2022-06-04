@@ -35,8 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-let email = ref('');
-let username = ref('');
-let password = ref('');
+let email = $ref('');
+let username = $ref('');
+let password = $ref('');
 </script>
