@@ -13,7 +13,7 @@
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
     "noImplicitAny": false,
-    "types": ["vue/ref-macros"]
+    // "types": ["vue/ref-macros"]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]

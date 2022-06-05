@@ -17,8 +17,9 @@
         </template>
 
         <template v-slot:after>
-            <q-btn>
-                <q-icon left size="sm" name="send" />
+            <q-btn color="secondary" :disable="true">
+                <q-icon left size="sm" name="timer" />
+                <!-- <q-icon left size="sm" name="send" /> -->
                 <div>發送</div>
             </q-btn>
             <!-- <q-btn round dense flat>
@@ -34,12 +35,19 @@ const text = ref('TEXT');
 const dense = ref(true);
 
 const props = defineProps<{
-    email: string
-    password: string
+    email?: string
+    password?: string
+    disable?: boolean
 }>();
 
 const emit = defineEmits<{
     (e: 'success', token: string): void
     (e: 'fail', message: string): void
 }>();
+
+// let val = $ref(Boolean);
+// defineExpose({
+//     text,
+//     dense
+// })
 </script>

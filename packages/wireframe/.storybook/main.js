@@ -1,3 +1,7 @@
+// const { mergeConfig } = require('vite');
+// const vue = require('@vitejs/plugin-vue').default;
+// const { quasar, transformAssetUrls } = require('@quasar/vite-plugin');
+
 module.exports = {
   stories: [
     "../src/**/*.stories.mdx",
@@ -18,18 +22,42 @@ module.exports = {
     interactionsDebugger: true,
     storyStoreV7: true
   },
-  // typescript: {
-  //   reactDocgen: 'react-docgen-typescript',
-  //   // reactDocgen: 'react-docgen',
-  //   reactDocgenTypescriptOptions: {
-  //     check: false,
-  //     checkOptions: {},
-  //     shouldExtractLiteralValuesFromEnum: true,
-  //     propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
-  //     compilerOptions: {
-  //       allowSyntheticDefaultImports: false,
-  //       esModuleInterop: false,
-  //     },
-  //   }
-  // }
+  // async viteFinal(config, { configType }) {
+  //   // return the customized config
+  //   // console.log(config);
+  //   return mergeConfig(config, {
+  //     // customize the Vite config here
+  //     // resolve: {
+  //     //   alias: { foo: 'bar' },
+  //     // },
+  //     plugins: [
+  //       vue({
+  //         template: {
+  //           transformAssetUrls
+  //         },
+  //         script: {
+  //           refSugar: true,
+  //           refTransform: true
+  //         }
+  //       }),
+  //       quasar({
+  //         sassVariables: 'src/quasar-variables.sass'
+  //       })
+  //     ],
+  //   });
+  // },
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+    // reactDocgen: 'react-docgen',
+    reactDocgenTypescriptOptions: {
+      check: false,
+      checkOptions: {},
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+      compilerOptions: {
+        allowSyntheticDefaultImports: false,
+        esModuleInterop: false,
+      },
+    }
+  }
 }

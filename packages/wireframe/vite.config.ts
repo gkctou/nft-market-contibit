@@ -14,7 +14,9 @@ export default defineConfig({
       include: ['node_modules/**/*.js', new RegExp('node_modules/.vite/.*js')]
     }),
     vue({
-      template: { transformAssetUrls },
+      template: {
+        transformAssetUrls
+      },
       // script: {
       //   refSugar: true,
       //   refTransform: true
