@@ -3,5 +3,7 @@
 import { addons } from '@storybook/addons';
 
 addons.setConfig({
-    showRoots: true
+    sidebar: {
+        showRoots: true
+    }
 });

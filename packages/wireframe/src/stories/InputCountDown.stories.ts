@@ -1,7 +1,9 @@
-import InputDountDown from '../components/InputCountDown.vue';
+import InputCountDown from '../components/InputCountDown.vue';
+import { Meta, StoryFn } from '@storybook/vue3';
+
 export default {
     title: 'Components/InputCountDown',
-    component: InputDountDown,
+    component: InputCountDown,
     // More on argTypes: https://storybook.js.org/docs/vue/api/argtypes
     argTypes: {
         // backgroundColor: { control: 'color' },
@@ -27,19 +29,28 @@ export default {
             // }
         }
     },
-};
-const Template = (args) => ({
+    // decorators: [(Story, args) => {
+    //     return {
+    //         components: { Story },
+    //         template: '<div style="margin: 1em;width:400px;"><Story /></div>'
+    //     };
+    // }]
+} as Meta<typeof InputCountDown>;
+
+const Template: StoryFn<typeof InputCountDown> = (args) => ({
     // Components used in your story `template` are defined in the `components` object
-    components: { InputDountDown },
+    components: { InputCountDown },
     // The story's `args` need to be mapped into the template through the `setup()` method
     setup() {
         return { args };
     },
     // And then the `args` are bound to your component with `v-bind="args"`
-    template: '<InputDountDown v-bind="args" />',
+    template: '<div style="width:350px;padding:1em;"><InputCountDown v-bind="args" /></div>'
 });
-export const Init: any = Template.bind({});
+
+export const Init: StoryFn<typeof InputCountDown> = Template.bind({});
 Init.args = {
     email: '',
     password: ''
 };
+// Init.decorators = [() => ({ template: '<div style="margin: 3em;"><story /></div>' })];

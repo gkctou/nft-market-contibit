@@ -13,6 +13,9 @@
                         <q-icon name="email" />
                     </template>
                 </q-input>
+
+                <InputCountDown :dense="true" />
+
                 <q-input square clearable v-model="password" type="password" label="Password">
                     <template v-slot:prepend>
                         <q-icon name="lock" />
@@ -37,12 +40,14 @@
             <q-btn unelevated size="lg" color="purple-4" class="full-width text-white" label="Sign In" />
         </q-card-actions>
         <q-card-section class="text-center q-pa-sm">
-            <p class="text-grey-6">Forgot your password?</p>
+            <p class="text-grey-6">Forgot your password?{{$q.screen.gt.xs?'gt':'xs'}}</p>
         </q-card-section>
     </q-card>
 </template>
 
 <script setup lang="ts">
+import InputCountDown from '../components/InputCountDown.vue';
+
 const props = defineProps<{
     email: string
     password: string

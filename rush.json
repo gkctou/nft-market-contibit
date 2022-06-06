@@ -49,6 +49,10 @@
             "projectFolder": "packages/wireframe"
         },
         {
+            "packageName": "nft-market-frontend",
+            "projectFolder": "packages/frontend"
+        },
+        {
             "packageName": "nft-market-admin",
             "projectFolder": "packages/admin"
         }

@@ -2,43 +2,47 @@
 	"folders": [
 		{
 			"name": "spec",
-			"path": "packages/spec"
+			"path": "packages\\spec"
 		},
 		{
 			"name": "contract",
-			"path": "packages/contract"
+			"path": "packages\\contract"
 		},
 		{
 			"name": "datacenter",
-			"path": "packages/datacenter"
+			"path": "packages\\datacenter"
 		},
 		{
 			"name": "web3",
-			"path": "packages/web3"
+			"path": "packages\\web3"
 		},
 		{
 			"name": "chain",
-			"path": "packages/chain"
+			"path": "packages\\chain"
 		},
 		{
 			"name": "modules",
-			"path": "packages/modules"
+			"path": "packages\\modules"
 		},
 		{
 			"name": "server",
-			"path": "packages/server"
+			"path": "packages\\server"
 		},
 		{
 			"name": "client",
-			"path": "packages/client"
+			"path": "packages\\client"
 		},
 		{
 			"name": "wireframe",
-			"path": "packages/wireframe"
+			"path": "packages\\wireframe"
+		},
+		{
+			"name": "frontend",
+			"path": "packages\\frontend"
 		},
 		{
 			"name": "admin",
-			"path": "packages/admin"
+			"path": "packages\\admin"
 		}
 	],
 	"settings": {}

@@ -7,7 +7,7 @@ import 'quasar/src/css/index.sass';
 import { app } from '@storybook/vue3'
 
 app.use(Quasar, {
-    plugins: {}, // import Quasar plugins and add here
+  plugins: {}, // import Quasar plugins and add here
 });
 
 export const parameters = {
@@ -19,3 +19,8 @@ export const parameters = {
     },
   },
 };
+
+// export const decorators = [(story) => ({
+//   components: { story },
+//   template: '<div style="margin: 3em;"><story /></div>'
+// })];

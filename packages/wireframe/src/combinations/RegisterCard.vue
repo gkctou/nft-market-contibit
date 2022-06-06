@@ -13,6 +13,7 @@
                         <q-icon name="email" />
                     </template>
                 </q-input>
+                <InputCountDown />
                 <q-input square clearable v-model="username" type="username" label="Username">
                     <template v-slot:prepend>
                         <q-icon name="person" />
@@ -35,6 +36,7 @@
 </template>
 
 <script setup lang="ts">
+import InputCountDown from '../components/InputCountDown.vue';
 import { ref } from 'vue';
 let email = ref('');
 let username = ref('');

@@ -1,6 +1,10 @@
 // const { mergeConfig } = require('vite');
 // const vue = require('@vitejs/plugin-vue').default;
 // const { quasar, transformAssetUrls } = require('@quasar/vite-plugin');
+// const vue = require('@vitejs/plugin-vue').default;
+// import vue from '@vitejs/plugin-vue'
+// const { quasar, transformAssetUrls } = require('@quasar/vite-plugin');
+// import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
 
 module.exports = {
   stories: [
@@ -24,7 +28,7 @@ module.exports = {
   },
   // async viteFinal(config, { configType }) {
   //   // return the customized config
-  //   // console.log(config);
+  //   console.log(config.plugins);
   //   return mergeConfig(config, {
   //     // customize the Vite config here
   //     // resolve: {
@@ -39,9 +43,6 @@ module.exports = {
   //           refSugar: true,
   //           refTransform: true
   //         }
-  //       }),
-  //       quasar({
-  //         sassVariables: 'src/quasar-variables.sass'
   //       })
   //     ],
   //   });

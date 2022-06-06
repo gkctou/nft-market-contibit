@@ -1,5 +1,5 @@
 <template>
-    <q-input outlined bottom-slots v-model="text" label="手機簡訊驗證碼" counter maxlength="12" :dense="dense">
+    <q-input outlined bottom-slots v-model="text" label="手機簡訊驗證碼" :counter="true" maxlength="12" :dense="dense">
         <template v-slot:before>
             <!-- <q-icon name="flight_takeoff" /> -->
             <!-- <q-avatar>
