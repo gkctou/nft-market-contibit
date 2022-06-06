@@ -18,9 +18,15 @@ export const parameters = {
       date: /Date$/,
     },
   },
-};
+}
 
 // export const decorators = [(story) => ({
 //   components: { story },
-//   template: '<div style="margin: 3em;"><story /></div>'
+//   template: `
+//       <div style="background: linear-gradient(#333 , #EEE);height: calc(100vh - 32px);display: flex;
+//       align-items: center;
+//       justify-content: center;">
+//         <div style="padding:1em;background-color:white;"><story /></div>
+//       </div>
+// `
 // })];

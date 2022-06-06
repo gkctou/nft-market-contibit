@@ -13,10 +13,10 @@ export default defineConfig({
     !production && nodePolyfills({
       include: ['node_modules/**/*.js', new RegExp('node_modules/.vite/.*js')]
     }),
-    {
-      // important! https://vitejs.dev/guide/using-plugins.html#enforcing-plugin-ordering
-      enforce: 'pre',
-    },
+    // {
+    //   // important! https://vitejs.dev/guide/using-plugins.html#enforcing-plugin-ordering
+    //   enforce: 'pre',
+    // },
     vue({
       template: {
         transformAssetUrls
