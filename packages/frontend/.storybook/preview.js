@@ -23,9 +23,7 @@ export const parameters = {
 // export const decorators = [(story) => ({
 //   components: { story },
 //   template: `
-//       <div style="background: linear-gradient(#333 , #EEE);height: calc(100vh - 32px);display: flex;
-//       align-items: center;
-//       justify-content: center;">
+//       <div style="background: linear-gradient(#333 , #EEE);height: calc(100vh - 32px);display: flex;align-items: center;justify-content: center;">
 //         <div style="padding:1em;background-color:white;"><story /></div>
 //       </div>
 // `

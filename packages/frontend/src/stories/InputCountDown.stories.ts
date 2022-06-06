@@ -53,4 +53,4 @@ Init.args = {
     email: '',
     password: ''
 };
-// Init.decorators = [() => ({ template: '<div style="margin: 3em;"><story /></div>' })];
+Init.decorators = [() => ({ template: '<div style="background: linear-gradient(#333 , #EEE);height: calc(100vh - 32px);display: flex;align-items: center;justify-content: center;"><div style="background:white;padding:1em;width:350px;"><story /></div></div>' })];
