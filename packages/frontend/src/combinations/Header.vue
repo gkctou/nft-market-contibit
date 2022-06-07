@@ -13,7 +13,7 @@
 
 
       <q-btn flat dense no-wrap color="white" icon="cloud_upload" no-caps label="Upload" class="q-ml-sm q-px-md" />
-      <q-input style="width:45%;" outlined dense v-model="search" bg-color="white" color="bg-grey-7 shadow-1" placeholder="Search for topics, locations & sources">
+      <q-input style="width:35%;" outlined dense v-model="search" bg-color="white" color="bg-grey-7 shadow-1" placeholder="Search for topics, locations & sources">
         <template v-slot:prepend>
           <q-icon v-if="search === ''" name="search" />
           <q-icon v-else name="clear" class="cursor-pointer" @click="search = ''" />
