@@ -9,13 +9,10 @@
         </q-avatar>
         Title
       </q-toolbar-title> -->
-      <q-toolbar-title class="cursor-pointer" @click="() => router.push('/')">
-        NFT Market
-      </q-toolbar-title>
+      <q-toolbar-title class="cursor-pointer" @click="() => router.push('/')"> NFT Market</q-toolbar-title>
 
-      <q-btn flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Upload" class="q-ml-sm q-px-md" />
-      <q-space />
 
+      <q-btn flat dense no-wrap color="white" icon="cloud_upload" no-caps label="Upload" class="q-ml-sm q-px-md" />
       <q-input style="width:45%;" outlined dense v-model="search" bg-color="white" color="bg-grey-7 shadow-1" placeholder="Search for topics, locations & sources">
         <template v-slot:prepend>
           <q-icon v-if="search === ''" name="search" />
@@ -68,12 +65,27 @@
           </q-btn>
         </template> -->
       </q-input>
-      <q-space />
 
-      <q-btn flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Upload" class="q-ml-sm q-px-md" />
+      <q-btn flat dense no-wrap color="white" no-caps label="My NFT" class="q-ml-sm q-px-md" />
+      <q-btn flat dense no-wrap color="white" no-caps label="Selling" class="q-ml-sm q-px-md" />
+      <q-btn flat dense no-wrap color="white" no-caps label="Mints" class="q-ml-sm q-px-md" />
       <q-space />
-
-      <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
+      <q-btn v-if="$q.screen.gt.xs" flat dense no-wrap color="primary" icon="add" no-caps label="Create" class="q-ml-sm q-px-md">
+        <q-menu anchor="top end" self="top end">
+          <q-list class="text-grey-8" style="min-width: 100px">
+            <q-item aria-hidden="true">
+              <q-item-section class="text-uppercase text-grey-7" style="font-size: 0.7rem">Create New</q-item-section>
+            </q-item>
+            <q-item v-for="menu in createMenu" :key="menu.text" clickable v-close-popup aria-hidden="true">
+              <q-item-section avatar>
+                <q-icon :name="menu.icon" />
+              </q-item-section>
+              <q-item-section>{{ menu.text }}</q-item-section>
+            </q-item>
+          </q-list>
+        </q-menu>
+      </q-btn>
+      <q-btn dense flat round icon="shopping_cart" @click="toggleRightDrawer" />
     </q-toolbar>
   </q-header>
 </template>
@@ -92,16 +104,24 @@ function toggleRightDrawer() {
 }
 const search = ref('');
 // const [exactPhrase,hasWords,excludeWords,byWebsite]
+const createMenu = [
+  { icon: 'photo_album', text: 'Album' },
+  { icon: 'people', text: 'Shared Album' },
+  { icon: 'movie', text: 'Movie' },
+  { icon: 'library_books', text: 'Animation' },
+  { icon: 'dashboard', text: 'Collage' },
+  { icon: 'book', text: 'Photo book' }
+];
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
 .searchBar {
   .__toolbar-input {
     width: 55%
   }
 }
-</style>
-<style lang="sass">
+</style> -->
+<!-- <style lang="sass">
 .GNL
   &__toolbar
     height: 64px
@@ -127,4 +147,4 @@ const search = ref('');
     font-size: .75rem
     &:hover
       color: #000
-</style>
+</style> -->
