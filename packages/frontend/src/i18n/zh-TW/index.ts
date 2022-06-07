@@ -2,7 +2,7 @@
 // so you can safely delete all default props below
 
 export default {
-  hi: 'Hi',
-  failed: 'Action failed',
-  success: 'Action was successful'
+  hi: '嗨',
+  failed: '失敗',
+  success: '成功'
 };

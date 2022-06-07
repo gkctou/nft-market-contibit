@@ -33,18 +33,18 @@ module.exports = {
     }]);
     return config;
   },
-  // typescript: {
-  //   reactDocgen: 'react-docgen-typescript',
-  //   // reactDocgen: 'react-docgen',
-  //   reactDocgenTypescriptOptions: {
-  //     check: false,
-  //     checkOptions: {},
-  //     shouldExtractLiteralValuesFromEnum: true,
-  //     propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
-  //     compilerOptions: {
-  //       allowSyntheticDefaultImports: false,
-  //       esModuleInterop: false,
-  //     },
-  //   }
-  // }
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+    // reactDocgen: 'react-docgen',
+    reactDocgenTypescriptOptions: {
+      check: false,
+      checkOptions: {},
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+      compilerOptions: {
+        allowSyntheticDefaultImports: false,
+        esModuleInterop: false,
+      },
+    }
+  }
 }
