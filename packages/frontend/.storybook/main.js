@@ -24,7 +24,6 @@ module.exports = {
   async viteFinal(config, { configType }) {
     // return the customized config
     config.plugins = config.plugins || [];
-    console.log(config.plugins);
     config.plugins.push(['@intlify/vite-plugin-vue-i18n', {
       // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
       // compositionOnly: false,
