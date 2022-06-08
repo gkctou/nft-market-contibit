@@ -23,7 +23,7 @@
                 </q-input>
             </q-form>
         </q-card-section>
-        <!-- <q-card-section>
+        <q-card-section>
             <div class="text-center q-pa-md q-gutter-md">
                 <q-btn round color="indigo-7">
                     <q-icon name="fab fa-facebook-f" size="1.2rem" />
@@ -35,7 +35,7 @@
                     <q-icon name="fab fa-twitter" size="1.2rem" />
                 </q-btn>
             </div>
-        </q-card-section> -->
+        </q-card-section>
         <q-card-actions class="q-px-lg">
             <q-btn unelevated size="lg" color="primary" class="full-width text-white" label="Sign In" />
         </q-card-actions>
@@ -48,10 +48,14 @@
 <script setup lang="ts">
 import InputCountDown from '../components/InputCountDown.vue';
 
-const props = defineProps<{
-    email: string
-    password: string
-}>();
+const props = withDefaults(defineProps<{
+  email?: string
+  password?: string
+  disable?: boolean
+}>(), {
+  email: '123',
+  password: '456'
+});
 
 const emit = defineEmits<{
     (e: 'success', token: string): void

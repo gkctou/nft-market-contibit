@@ -1,26 +1,17 @@
 <template>
-  <q-input outlined bottom-slots v-model="text" label="手機簡訊驗證碼" :counter="true" maxlength="12" :dense="dense">
-    <template v-slot:before>
-      <!-- <q-icon name="flight_takeoff" /> -->
-      <!-- <q-avatar>
-                <img src="https://cdn.quasar.dev/img/avatar5.jpg">
-            </q-avatar> -->
+  <q-input square clearable bottom-slots v-model="modelValue" :label="inputLabel" @input='$emit("update:modelValue", modelValue)' :error="error" :error-message="errorMessage" :dense="dense">
+    <template v-slot:prepend>
+      <q-icon :name="iconName" />
     </template>
 
-    <template v-slot:append>
-      <q-icon v-if="text !== ''" name="close" @click="text = ''" class="cursor-pointer"></q-icon>
-      <!-- <q-icon name="schedule"></q-icon> -->
-    </template>
-
-    <template v-slot:hint>
-      點擊發送取得驗證碼({{ t('hi') }})
+    <template v-slot:hint v-if="hint">
+      {{ hint }}
     </template>
 
     <template v-slot:after>
-      <q-btn color="secondary" :disable="true">
-        <q-icon left size="sm" name="timer" />
-        <!-- <q-icon left size="sm" name="send" /> -->
-        <div>發送</div>
+      <q-btn no-caps class="q-px-sm" :color="buttonDisable ? 'grey-6' : 'secondary'" :disable="buttonDisable" dense @input="$emit('send')">
+        <q-icon left size="xs" :name="countdown > 0 ? 'timer' : 'send'" />
+        <div style="width: 2.3em;">{{ countdown > 0 ? countdown : send }}</div>
       </q-btn>
       <!-- <q-btn round dense flat>
                 <q-icon left size="3em" name="send" />
@@ -30,27 +21,68 @@
   </q-input>
 </template>
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { ref } from 'vue';
-const text = ref('TEXT');
-const dense = ref(true);
-const { t } = useI18n();
-
-const props = defineProps<{
-  email?: string
-  password?: string
-  disable?: boolean
-}>();
+import { watch, onUnmounted } from 'vue';
+import { $ref, $computed } from 'vue/macros';
 
 const emit = defineEmits<{
-  (e: 'success', token: string): void
-  (e: 'fail', message: string): void
+  (e: 'send'): void
+  (e: 'update:modelValue', value: string): void
 }>();
 
-// let val = $ref(Boolean);
-// defineExpose({
-//     text,
-//     dense
-// })
+// const {
+//   iconName = 'screen_lock_portrait',
+//   inputLabel = 'Mobile SMS Verify',
+//   send = 'Send',
+//   sendable = false,
+//   hint = 'Receive verify code from your mobile.',
+//   error = false,
+//   errorMessage = '',
+//   nextOn = 0,
+//   modelValue = ''
+// } = defineProps<{
+//   iconName?: string;
+//   inputLabel?: string;
+//   send?: string;
+//   sendable?: boolean;
+//   hint?: string;
+//   error?: boolean;
+//   errorMessage?: string;
+//   nextOn?: number;
+//   modelValue?: string;
+// }>();
+
+const props = withDefaults(defineProps<{
+  iconName?: string;
+  inputLabel?: string;
+  send?: string;
+  sendable?: boolean;
+  hint?: string;
+  error?: boolean;
+  errorMessage?: string;
+  nextOn?: number;
+  modelValue?: string;
+  dense?: boolean
+}>(), {
+  iconName: 'screen_lock_portrait',
+  inputLabel: 'Mobile SMS Verify',
+  send: 'Send',
+  sendable: false,
+  hint: 'Receive verify code from your mobile.',
+  error: false,
+  errorMessage: '',
+  nextOn: 0,
+  modelValue: '',
+  dense: false
+});
+
+let countdown = $ref(0);
+const buttonDisable = $computed(() => !props.sendable || countdown > 0);
+function watchNextOn() {
+  const left = props.nextOn - Date.now();
+  countdown = left < 0 ? 0 : Math.floor(left / 1000);
+  if (left > 0) setTimeout(() => watchNextOn(), 1000);
+}
+watch(() => props.nextOn, () => watchNextOn());
+
 </script>
 
