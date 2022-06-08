@@ -11,9 +11,8 @@
       </q-toolbar-title> -->
       <q-toolbar-title class="cursor-pointer" @click="() => router.push('/')"> NFT Market</q-toolbar-title>
 
-
-      <q-btn flat dense no-wrap color="white" icon="cloud_upload" no-caps label="Upload" class="q-ml-sm q-px-md" />
-      <q-input style="width:35%;" outlined dense v-model="search" bg-color="white" color="bg-grey-7 shadow-1" placeholder="Search for topics, locations & sources">
+      <q-btn flat dense no-wrap color="white" icon="storefront" no-caps label="Category" class="q-mx-sm q-px-md" />
+      <q-input style="width:350px;" outlined dense v-model="search" bg-color="white" color="bg-grey-7 shadow-1" placeholder="Search for topics, locations & sources">
         <template v-slot:prepend>
           <q-icon v-if="search === ''" name="search" />
           <q-icon v-else name="clear" class="cursor-pointer" @click="search = ''" />
@@ -67,14 +66,16 @@
       </q-input>
 
       <q-btn flat dense no-wrap color="white" no-caps label="My NFT" class="q-ml-sm q-px-md" />
-      <q-btn flat dense no-wrap color="white" no-caps label="Selling" class="q-ml-sm q-px-md" />
-      <q-btn flat dense no-wrap color="white" no-caps label="Mints" class="q-ml-sm q-px-md" />
+      <q-btn flat dense no-wrap color="white" no-caps label="My Selling" class="q-ml-sm q-px-md" />
+      <q-btn flat dense no-wrap color="white" no-caps label="My Create" class="q-ml-sm q-px-md" />
+
       <q-space />
-      <q-btn v-if="$q.screen.gt.xs" flat dense no-wrap color="primary" icon="add" no-caps label="Create" class="q-ml-sm q-px-md">
+      <q-btn v-if="true" flat dense no-wrap color="white" no-caps icon="login" label="Login / Register" class="q-ml-sm q-px-md" />
+      <q-btn v-if="false" flat dense no-wrap color="white" icon="account_circle" no-caps label="jason@" class="q-ml-sm q-px-md">
         <q-menu anchor="top end" self="top end">
           <q-list class="text-grey-8" style="min-width: 100px">
             <q-item aria-hidden="true">
-              <q-item-section class="text-uppercase text-grey-7" style="font-size: 0.7rem">Create New</q-item-section>
+              <q-item-section class="text-uppercase text-grey-7" style="font-size: 0.7rem">Member</q-item-section>
             </q-item>
             <q-item v-for="menu in createMenu" :key="menu.text" clickable v-close-popup aria-hidden="true">
               <q-item-section avatar>
@@ -105,12 +106,10 @@ function toggleRightDrawer() {
 const search = ref('');
 // const [exactPhrase,hasWords,excludeWords,byWebsite]
 const createMenu = [
-  { icon: 'photo_album', text: 'Album' },
-  { icon: 'people', text: 'Shared Album' },
-  { icon: 'movie', text: 'Movie' },
-  { icon: 'library_books', text: 'Animation' },
-  { icon: 'dashboard', text: 'Collage' },
-  { icon: 'book', text: 'Photo book' }
+  { icon: 'savings', text: 'Wallet' },
+  { icon: 'contact_phone', text: 'Setting' },
+  { icon: 'receipt', text: 'History' },
+  { icon: 'logout', text: 'Logout' }
 ];
 </script>
 

@@ -1,3 +1,4 @@
+// quasar new store member --format ts
 import { defineStore } from 'pinia';
 
 export const useLayoutStore = defineStore('layout', {
