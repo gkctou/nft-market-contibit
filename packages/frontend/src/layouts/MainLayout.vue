@@ -3,25 +3,27 @@
 
     <Header />
 
-    <q-drawer show-if-above v-model="layoutStore.leftDrawerOpen" side="left" bordered>
+    <q-drawer id="LeftDrawer" v-model="layoutStore.leftDrawerOpen" side="left" bordered>
       <!-- drawer content -->
-      <template id="LeftDrawer"></template>
     </q-drawer>
 
-    <q-drawer show-if-above v-model="layoutStore.rightDrawerOpen" side="right" bordered>
+    <q-drawer id="RightDrawer" v-model="layoutStore.rightDrawerOpen" side="right" bordered>
       <!-- drawer content -->
-      <template id="RightDrawer"></template>
     </q-drawer>
 
     <q-page-container>
-      <Suspense>
-        <template #default>
-          <router-view />
-        </template>
-        <template #fallback>
-          <span>Loading...</span>
-        </template>
-      </Suspense>
+      <q-page class="full-width row justify-center">
+        <div :style="{ width: '100%', maxWidth: layoutStore.leftDrawerOpen || layoutStore.rightDrawerOpen ? undefined : '1080px' }">
+          <Suspense>
+            <template #default>
+              <router-view />
+            </template>
+            <template #fallback>
+              <span>Loading...</span>
+            </template>
+          </Suspense>
+        </div>
+      </q-page>
     </q-page-container>
 
   </q-layout>
@@ -29,6 +31,8 @@
 
 <script setup lang="ts">
 import Header from '../combinations/Header.vue';
+// import { computed } from 'vue';
 import { useLayoutStore } from 'stores/layout';
 const layoutStore = useLayoutStore();
+// let maxWidth = computed(() => layoutStore.leftDrawerOpen || layoutStore.rightDrawerOpen ? undefined : '1080px');
 </script>

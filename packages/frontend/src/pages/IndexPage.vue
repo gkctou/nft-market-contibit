@@ -1,16 +1,18 @@
 <template>
-  <q-page>
-    <InputCountDown class="q-my-md" style="width:450px;" />
-    <hr />
-    <example-component title="Example component" active :todos="todos" :meta="meta"></example-component>
-  </q-page>
+  <InputCountDown style="width:450px;" />
+  <hr />
+  <example-component title="Example component" active :todos="todos" :meta="meta"></example-component>
+  <MountedTeleport to="#LeftDrawer">
+    <InputCountDown style="width:250px;" />
+  </MountedTeleport>
 </template>
 
 <script setup lang="ts">
 import { Todo, Meta } from 'components/models';
 import ExampleComponent from 'components/ExampleComponent.vue';
-import { defineComponent, ref } from 'vue';
+import { ref } from 'vue';
 import InputCountDown from 'src/components/InputCountDown.vue';
+import MountedTeleport from 'components/MountedTeleport.vue';
 
 const todos = ref<Todo[]>([
   {

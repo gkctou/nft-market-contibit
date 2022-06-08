@@ -71,8 +71,22 @@ module.exports = configure(function (/* ctx */) {
       // polyfillModulePreload: true,
       // distDir
 
-      // extendViteConf(viteConf) {},
-      // viteVuePluginOptions: {},
+      // extendViteConf(viteConf) {
+      //   console.log(viteConf.plugins);
+      //   viteConf.plugins.push(vue({
+      //     script: {
+      //       refSugar: true,
+      //       refTransform: true
+      //     }
+      //   }))
+      // },
+      viteVuePluginOptions: {
+        script: {
+          reactivityTransform: true
+          // refSugar: true,
+          // refTransform: true
+        }
+      },
 
       vitePlugins: [
         ['@intlify/vite-plugin-vue-i18n', {

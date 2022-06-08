@@ -2,7 +2,8 @@ import { defineStore } from 'pinia';
 
 export const useMemberStore = defineStore('counter', {
   state: () => ({
-    userId: ''
+    userId: '',
+    isLogined: false
   }),
 
   // getters: {
@@ -12,7 +13,7 @@ export const useMemberStore = defineStore('counter', {
   // },
 
   actions: {
-    increment () {
+    increment() {
       // this.counter++;
     }
   }
