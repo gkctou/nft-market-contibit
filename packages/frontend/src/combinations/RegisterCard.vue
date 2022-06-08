@@ -61,12 +61,12 @@
 </template>
 
 <script setup lang="ts">
-import InputCountDown from '../components/InputCountDown.vue';
-import { ref } from 'vue';
-// import { $ref } from 'vue/macros';
-const dense = ref(false);
-const text = ref('');
-const email = ref('');
-const username = ref('');
-const password = ref('');
+// import InputCountDown from '../components/InputCountDown.vue';
+// import { ref } from 'vue';
+import { $ref } from 'vue/macros';
+const dense = $ref(false);
+const text = $ref('');
+const email = $ref('');
+const username = $ref('');
+const password = $ref('');
 </script>

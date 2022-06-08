@@ -82,9 +82,9 @@ module.exports = configure(function (/* ctx */) {
       // },
       viteVuePluginOptions: {
         script: {
-          reactivityTransform: true
-          // refSugar: true,
-          // refTransform: true
+          reactivityTransform: true,
+          refSugar: true,
+          refTransform: true
         }
       },
 
