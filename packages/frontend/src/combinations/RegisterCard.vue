@@ -64,9 +64,9 @@
 // import InputCountDown from '../components/InputCountDown.vue';
 // import { ref } from 'vue';
 import { $ref } from 'vue/macros';
-const dense = $ref(false);
-const text = $ref('');
-const email = $ref('');
-const username = $ref('');
-const password = $ref('');
+let dense = $ref(false);
+let text = $ref('');
+let email = $ref('');
+let username = $ref('');
+let password = $ref('');
 </script>
