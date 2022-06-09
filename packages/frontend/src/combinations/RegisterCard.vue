@@ -49,8 +49,8 @@ import InputCountDown from '../components/InputCountDown.vue';
 import { $ref } from 'vue/macros';
 import { useMemberStore } from 'stores/member';
 import { useRouter } from 'vue-router';
-let memberStore = useMemberStore();
-let router = useRouter();
+const memberStore = useMemberStore();
+const router = useRouter();
 
 const email = $ref({ val: '123@abc.com', err: false, msg: '' });
 const emailVerify = $ref({ val: '123456', err: false, msg: '' });

@@ -53,8 +53,8 @@
 import { $ref } from 'vue/macros';
 import { useMemberStore } from 'stores/member';
 import { useRouter } from 'vue-router';
-let memberStore = useMemberStore();
-let router = useRouter();
+const memberStore = useMemberStore();
+const router = useRouter();
 
 let isPwd = $ref(true);
 // const props = withDefaults(defineProps<{
@@ -65,9 +65,9 @@ let isPwd = $ref(true);
 //   email: '123@abc.com',
 //   password: '12345678'
 // });
-let email = $ref({ val: '123@abc.com', err: false, msg: '' });
-let password = $ref({ val: '12345678', err: false, msg: '' });
-let values = { email, password };
+const email = $ref({ val: '123@abc.com', err: false, msg: '' });
+const password = $ref({ val: '12345678', err: false, msg: '' });
+const values = { email, password };
 
 const emit = defineEmits<{
   (e: 'success', token: string): void

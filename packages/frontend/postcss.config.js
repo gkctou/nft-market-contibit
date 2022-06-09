@@ -1,8 +1,10 @@
+
 /* eslint-disable */
 // https://github.com/michael-ciniawsky/postcss-load-config
 
 module.exports = {
   plugins: [
+    require('tailwindcss'),
     // https://github.com/postcss/autoprefixer
     require('autoprefixer')({
       overrideBrowserslist: [
@@ -25,3 +27,9 @@ module.exports = {
     // require('postcss-rtlcss')
   ]
 }
+// module.exports = {
+//   plugins: {
+//     tailwindcss: {},
+//     autoprefixer: {},
+//   },
+// }

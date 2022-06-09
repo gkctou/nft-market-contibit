@@ -16,7 +16,7 @@ import { Quasar } from 'quasar'
 // const langList = import.meta.glob('../../node_modules/quasar/lang/*.mjs')
 // or just a select few (example below with only DE and FR):
 const langList = import.meta.glob('../../node_modules/quasar/lang/(en-US|zh-TW|zh-CN).mjs')
-export default async () => {
+export default boot(async ({ app }) => {
   const langIso = 'en-US' // ... some logic to determine it (use Cookies Plugin?)
   try {
     langList[`../../node_modules/quasar/lang/${langIso}.mjs`]().then(lang => {
@@ -27,4 +27,4 @@ export default async () => {
     // Requested Quasar Language Pack does not exist,
     // let's not break the app, so catching error
   }
-}
+});
