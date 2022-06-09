@@ -1,5 +1,5 @@
 <template>
-  <q-input square clearable bottom-slots v-model="modelValue" :label="inputLabel" @input='$emit("update:modelValue", modelValue)' :error="error" :error-message="errorMessage" :dense="dense">
+  <q-input square clearable bottom-slots v-model="inputValue" :label="inputLabel" @update:model-value='inputUpdate' @clear="inputClear" :error="error" :error-message="errorMessage" :dense="dense">
     <template v-slot:prepend>
       <q-icon :name="iconName" />
     </template>
@@ -9,7 +9,7 @@
     </template>
 
     <template v-slot:after>
-      <q-btn no-caps class="q-px-sm" :color="buttonDisable ? 'grey-6' : 'secondary'" :disable="buttonDisable" dense @input="$emit('send')">
+      <q-btn no-caps class="q-px-sm" :color="buttonDisable ? 'grey-6' : 'secondary'" :disable="buttonDisable" dense @click="$emit('send')">
         <q-icon left size="xs" :name="countdown > 0 ? 'timer' : 'send'" />
         <div style="width: 2.3em;">{{ countdown > 0 ? countdown : send }}</div>
       </q-btn>
@@ -82,7 +82,15 @@ function watchNextOn() {
   countdown = left < 0 ? 0 : Math.floor(left / 1000);
   if (left > 0) setTimeout(() => watchNextOn(), 1000);
 }
+let inputValue = $ref(props.modelValue);
 watch(() => props.nextOn, () => watchNextOn());
-
+watch(() => props.modelValue, () => inputValue !== props.modelValue && (inputValue = props.modelValue));
+function inputUpdate(val) {
+  // console.log(val);
+  emit("update:modelValue", inputValue)// ($event?.target as HTMLInputElement)?.value
+}
+function inputClear() {
+  emit("update:modelValue", '');
+}
 </script>
 
