@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-gray-500 py-20">
+  <section class="bg-sky-500 py-20">
     <div class="container px-4 mx-auto">
       <div class="flex flex-wrap items-center -mx-4">
         <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
@@ -8,12 +8,12 @@
           <p class="text-lg text-gray-100 leading-loose">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque massa nibh, pulvinar vitae aliquet nec, accumsan aliquet orci.</p>
         </div>
         <div class="w-full lg:w-1/2 px-4">
-          <div class="mx-auto lg:mr-0 lg:ml-auto py-6 px-8 lg:max-w-sm bg-gray-50 text-center rounded-lg">
+          <div class="mx-auto lg:mr-0 lg:ml-auto py-6 px-8 lg:max-w-sm bg-sky-50 text-center rounded-lg">
             <h3 class="mb-2 text-2xl font-bold font-heading">Sign up to our newsletter</h3>
             <p class="mb-4 text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <form action="#">
               <input class="mb-4 w-full pl-3 py-3 bg-white rounded" type="email" placeholder="Type your e-mail">
-              <button class="w-full inline-block px-6 py-2 text-sm text-white font-bold leading-loose bg-gray-600 hover:bg-gray-700 rounded transition duration-200">Action</button>
+              <button class="w-full inline-block px-6 py-2 text-sm text-white font-bold leading-loose bg-sky-600 hover:bg-sky-700 rounded transition duration-200">Action</button>
             </form>
           </div>
         </div>
@@ -31,7 +31,7 @@
       </div>
       <div class="flex flex-wrap items-center -mx-4 -mb-6 lg:mb-0">
         <div class="w-full lg:w-1/3 px-4 mb-6 lg:mb-0">
-          <div class="p-12 bg-gray-50 rounded lg:text-center">
+          <div class="p-12 bg-sky-50 rounded lg:text-center">
             <h3 class="text-2xl font-bold text-gray-500">Starter</h3>
             <span class="inline-block mb-6 text-6xl font-bold font-heading">$34,99</span>
             <ul class="mb-6 text-left text-lg">
@@ -60,11 +60,11 @@
                 <p>500 team members</p>
               </li>
             </ul>
-            <a class="block py-2 w-full text-center text-gray-50 font-semibold bg-gray-500 hover:bg-gray-600 rounded" href="#">Action</a>
+            <a class="block py-2 w-full text-center text-gray-50 font-semibold bg-sky-500 hover:bg-sky-600 rounded" href="#">Action</a>
           </div>
         </div>
         <div class="w-full lg:w-1/3 px-4 mb-6 lg:mb-0">
-          <div class="p-12 bg-gray-500 rounded lg:text-center">
+          <div class="p-12 bg-sky-500 rounded lg:text-center">
             <h3 class="text-2xl font-bold text-gray-50">Pro</h3>
             <span class="inline-block mb-6 text-6xl font-bold text-white">$65,99</span>
             <ul class="mb-6 text-left text-lg">
@@ -99,11 +99,11 @@
                 <p class="text-lg text-white">Premium support</p>
               </li>
             </ul>
-            <a class="block py-2 w-full text-center text-gray-800 font-semibold bg-white hover:bg-gray-50 rounded" href="#">Action</a>
+            <a class="block py-2 w-full text-center text-gray-800 font-semibold bg-white hover:bg-sky-50 rounded" href="#">Action</a>
           </div>
         </div>
         <div class="w-full lg:w-1/3 px-4">
-          <div class="p-12 bg-gray-50 rounded lg:text-center">
+          <div class="p-12 bg-sky-50 rounded lg:text-center">
             <h3 class="text-2xl font-bold text-gray-500">Premium</h3>
             <span class="inline-block mb-6 text-6xl font-bold font-heading">$99,99</span>
             <ul class="mb-6 text-left text-lg">
@@ -132,14 +132,14 @@
                 <p>500 team members</p>
               </li>
             </ul>
-            <a class="block py-2 w-full text-center text-gray-50 font-semibold bg-gray-500 hover:bg-gray-600 rounded" href="#">Action</a>
+            <a class="block py-2 w-full text-center text-gray-50 font-semibold bg-sky-500 hover:bg-sky-600 rounded" href="#">Action</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="bg-gray-500 py-20">
+  <section class="bg-sky-500 py-20">
     <div class="container px-4 mx-auto">
       <div class="mb-16 text-center">
         <span class="text-sm text-gray-200 uppercase">Lorem ipsum</span>
@@ -148,8 +148,8 @@
       <div class="flex flex-wrap -mx-4 -mb-12">
         <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-12">
           <div class="relative pt-12 px-6 pb-6 bg-white rounded-2xl">
-            <span class="absolute top-0 left-0 ml-8 -mt-8 flex justify-center items-center w-16 h-16 rounded-full bg-gray-600">
-              <span class="flex items-center justify-center w-8 h-8 text-lg font-bold bg-gray-50 text-gray-600 rounded-full">?</span>
+            <span class="absolute top-0 left-0 ml-8 -mt-8 flex justify-center items-center w-16 h-16 rounded-full bg-sky-600">
+              <span class="flex items-center justify-center w-8 h-8 text-lg font-bold bg-sky-50 text-gray-600 rounded-full">?</span>
             </span>
             <h3 class="mb-4 text-2xl font-bold font-heading">Fusce eget nunc et libero accumsan rutrum quis nec lectus?</h3>
             <p class="text-lg leading-loose text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod orci sed tristique placerat. Fusce in ligula urna. Fusce eget nunc et libero accumsan rutrum quis nec lectus. Quisque luctus sem nibh, quis ornare neque consectetur varius. Maecenas rhoncus consectetur rutrum.</p>
@@ -157,8 +157,8 @@
         </div>
         <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-12">
           <div class="relative pt-12 px-6 pb-6 bg-white rounded-2xl">
-            <span class="absolute top-0 left-0 ml-8 -mt-8 flex justify-center items-center w-16 h-16 rounded-full bg-gray-600">
-              <span class="flex items-center justify-center w-8 h-8 text-lg font-bold bg-gray-50 text-gray-600 rounded-full">?</span>
+            <span class="absolute top-0 left-0 ml-8 -mt-8 flex justify-center items-center w-16 h-16 rounded-full bg-sky-600">
+              <span class="flex items-center justify-center w-8 h-8 text-lg font-bold bg-sky-50 text-gray-600 rounded-full">?</span>
             </span>
             <h3 class="mb-4 text-2xl font-bold font-heading">Fusce eget nunc et libero accumsan rutrum quis nec lectus?</h3>
             <p class="text-lg leading-loose text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod orci sed tristique placerat. Fusce in ligula urna. Fusce eget nunc et libero accumsan rutrum quis nec lectus. Quisque luctus sem nibh, quis ornare neque consectetur varius. Maecenas rhoncus consectetur rutrum.</p>
@@ -166,8 +166,8 @@
         </div>
         <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-12">
           <div class="relative pt-12 px-6 pb-6 bg-white rounded-2xl">
-            <span class="absolute top-0 left-0 ml-8 -mt-8 flex justify-center items-center w-16 h-16 rounded-full bg-gray-600">
-              <span class="flex items-center justify-center w-8 h-8 text-lg font-bold bg-gray-50 text-gray-600 rounded-full">?</span>
+            <span class="absolute top-0 left-0 ml-8 -mt-8 flex justify-center items-center w-16 h-16 rounded-full bg-sky-600">
+              <span class="flex items-center justify-center w-8 h-8 text-lg font-bold bg-sky-50 text-gray-600 rounded-full">?</span>
             </span>
             <h3 class="mb-4 text-2xl font-bold font-heading">Fusce eget nunc et libero accumsan rutrum quis nec lectus?</h3>
             <p class="text-lg leading-loose text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod orci sed tristique placerat. Fusce in ligula urna. Fusce eget nunc et libero accumsan rutrum quis nec lectus. Quisque luctus sem nibh, quis ornare neque consectetur varius. Maecenas rhoncus consectetur rutrum.</p>
@@ -175,8 +175,8 @@
         </div>
         <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-12">
           <div class="relative pt-12 px-6 pb-6 bg-white rounded-2xl">
-            <span class="absolute top-0 left-0 ml-8 -mt-8 flex justify-center items-center w-16 h-16 rounded-full bg-gray-600">
-              <span class="flex items-center justify-center w-8 h-8 text-lg font-bold bg-gray-50 text-gray-600 rounded-full">?</span>
+            <span class="absolute top-0 left-0 ml-8 -mt-8 flex justify-center items-center w-16 h-16 rounded-full bg-sky-600">
+              <span class="flex items-center justify-center w-8 h-8 text-lg font-bold bg-sky-50 text-gray-600 rounded-full">?</span>
             </span>
             <h3 class="mb-4 text-2xl font-bold font-heading">Fusce eget nunc et libero accumsan rutrum quis nec lectus?</h3>
             <p class="text-lg leading-loose text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod orci sed tristique placerat. Fusce in ligula urna. Fusce eget nunc et libero accumsan rutrum quis nec lectus. Quisque luctus sem nibh, quis ornare neque consectetur varius. Maecenas rhoncus consectetur rutrum.</p>
@@ -184,8 +184,8 @@
         </div>
         <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-12">
           <div class="relative pt-12 px-6 pb-6 bg-white rounded-2xl">
-            <span class="absolute top-0 left-0 ml-8 -mt-8 flex justify-center items-center w-16 h-16 rounded-full bg-gray-600">
-              <span class="flex items-center justify-center w-8 h-8 text-lg font-bold bg-gray-50 text-gray-600 rounded-full">?</span>
+            <span class="absolute top-0 left-0 ml-8 -mt-8 flex justify-center items-center w-16 h-16 rounded-full bg-sky-600">
+              <span class="flex items-center justify-center w-8 h-8 text-lg font-bold bg-sky-50 text-gray-600 rounded-full">?</span>
             </span>
             <h3 class="mb-4 text-2xl font-bold font-heading">Fusce eget nunc et libero accumsan rutrum quis nec lectus?</h3>
             <p class="text-lg leading-loose text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod orci sed tristique placerat. Fusce in ligula urna. Fusce eget nunc et libero accumsan rutrum quis nec lectus. Quisque luctus sem nibh, quis ornare neque consectetur varius. Maecenas rhoncus consectetur rutrum.</p>
@@ -193,8 +193,8 @@
         </div>
         <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-12">
           <div class="relative pt-12 px-6 pb-6 bg-white rounded-2xl">
-            <span class="absolute top-0 left-0 ml-8 -mt-8 flex justify-center items-center w-16 h-16 rounded-full bg-gray-600">
-              <span class="flex items-center justify-center w-8 h-8 text-lg font-bold bg-gray-50 text-gray-600 rounded-full">?</span>
+            <span class="absolute top-0 left-0 ml-8 -mt-8 flex justify-center items-center w-16 h-16 rounded-full bg-sky-600">
+              <span class="flex items-center justify-center w-8 h-8 text-lg font-bold bg-sky-50 text-gray-600 rounded-full">?</span>
             </span>
             <h3 class="mb-4 text-2xl font-bold font-heading">Fusce eget nunc et libero accumsan rutrum quis nec lectus?</h3>
             <p class="text-lg leading-loose text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod orci sed tristique placerat. Fusce in ligula urna. Fusce eget nunc et libero accumsan rutrum quis nec lectus. Quisque luctus sem nibh, quis ornare neque consectetur varius. Maecenas rhoncus consectetur rutrum.</p>
@@ -211,7 +211,7 @@
           <span class="text-sm uppercase text-gray-200">Lorem Ipsum</span>
           <h2 class="mt-2 text-4xl lg:text-5xl font-bold font-heading">Lorem ispum dolor sit</h2>
         </div>
-        <a class="inline-block px-6 py-2 text-sm text-white font-bold leading-loose bg-gray-500 hover:bg-gray-600 rounded transition duration-200" href="#">Action</a>
+        <a class="inline-block px-6 py-2 text-sm text-white font-bold leading-loose bg-sky-500 hover:bg-sky-600 rounded transition duration-200" href="#">Action</a>
       </div>
       <div class="flex flex-wrap -mx-4">
         <div class="w-full lg:w-1/2 p-4">

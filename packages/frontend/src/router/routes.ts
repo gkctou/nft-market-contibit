@@ -5,10 +5,11 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     component: () => import('src/layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') },
+      { path: '', component: () => import('pages/Landing.vue') },
       // { path: 'input', component: () => import('components/InputCountDown.vue') },
       { path: 'login', component: () => import('pages/LoginRegister.vue') },
-      { path: 'landing', component: () => import('pages/Landing.vue') }
+      { path: 'test', component: () => import('pages/IndexPage.vue') },
+      { path: 'category', component: () => import('pages/NftCategory.vue') }
     ],
   },
 

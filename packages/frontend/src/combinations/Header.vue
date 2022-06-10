@@ -11,7 +11,7 @@
       </q-toolbar-title> -->
       <q-toolbar-title class="cursor-pointer" @click="() => router.push('/')"> NFT Market</q-toolbar-title>
 
-      <q-btn flat dense no-wrap color="white" icon="storefront" no-caps label="Category" class="q-mx-sm q-px-md" />
+      <q-btn to="/category" flat dense no-wrap color="white" icon="storefront" no-caps label="Category" class="q-mx-sm q-px-md" />
       <q-input :class="{ wLogin: memberStore.isLogin, wLogout: !memberStore.isLogin }" outlined dense v-model="search" bg-color="white" color="bg-grey-7 shadow-1" placeholder="Search for NFT collection.">
         <template v-slot:prepend>
           <q-icon v-if="search === ''" name="search" />
