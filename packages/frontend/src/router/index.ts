@@ -7,7 +7,9 @@ import {
 } from 'vue-router';
 
 import routes from './routes';
-
+import { useLayoutStore } from 'stores/layout';
+import { scroll } from 'quasar'
+const { getScrollTarget, setVerticalScrollPosition } = scroll;
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation;
@@ -23,21 +25,31 @@ export default route(function (/* { store, ssrContext } */) {
     : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory);
 
   const Router = createRouter({
-    scrollBehavior: () => ({ left: 0, top: 0 }),
-    // scrollBehavior(to, from, savedPosition) {
-    //   if (savedPosition) {
-    //     return savedPosition
-    //   } else {
-    //     return { top: 0, left: 0 }
-    //   }
-    // },
+    // scrollBehavior: () => ({ top: 0 }), // , left: 0,el: '#Top'
+    scrollBehavior(to, from, savedPosition) {
+      if (savedPosition)
+        return savedPosition
+      const el = document.querySelector('.q-page-container')
+      // const target = getScrollTarget(el!)
+      // const offset = el!['offsetTop']
+      // const duration = 0;
+      if (!el)
+        return { top: 0, left: 0 }
+      setVerticalScrollPosition(getScrollTarget(el), 0, 0);
+      // setTimeout(() => setVerticalScrollPosition(target, offset, duration), 0);
+    },
     routes,
 
     // Leave this as is and make changes in quasar.conf.js instead!
     // quasar.conf.js -> build -> vueRouterMode
     // quasar.conf.js -> build -> publicPath
-    history: createHistory(process.env.VUE_ROUTER_BASE),
+    history: createHistory(process.env.VUE_ROUTER_BASE)
   });
-
+  Router.beforeEach((to, from, next) => {
+    const layoutStore = useLayoutStore();
+    layoutStore.setLeftDrawer(false);
+    layoutStore.setRightDrawer(false);
+    next();
+  });
   return Router;
 });

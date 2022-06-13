@@ -1,6 +1,6 @@
 <template>
-  <q-layout view="hHh Lpr fFf" container style="height: 100%">
-  <!-- <q-layout view="hHh lpR fFf"> -->
+  <q-layout id="Layout" view="hHh Lpr fFf" container style="height: 100%">
+    <!-- <q-layout view="hHh lpR fFf"> -->
     <Header />
 
     <q-drawer id="LeftDrawer" v-model="layoutStore.leftDrawerOpen" side="left" bordered :width="280">
@@ -13,7 +13,7 @@
       <!-- drawer content -->
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container id="PageCont">
       <q-page class="full-width row justify-center">
         <div :style="{ width: '100%', maxWidth: layoutStore.leftDrawerOpen || layoutStore.rightDrawerOpen ? undefined : '1080px' }">
           <Suspense>

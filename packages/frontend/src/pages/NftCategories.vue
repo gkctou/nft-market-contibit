@@ -29,15 +29,8 @@
 // import Landing from './Landing.vue';
 import categories from '../mockup/categories.json';
 function itemsFrom(id, from, size): any[] {
-  console.log(id, from, size);
+  // console.log(id, from, size);
   return categories[+id - 1].list.slice(from, from + size);
 }
 </script>
 
-<style lang="scss" scoped>
-// .cate-card {
-//   width: 100%;
-//   max-width: 250px;
-//   margin: 3px 10px;
-// }
-</style>

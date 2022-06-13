@@ -10,8 +10,13 @@ const routes: RouteRecordRaw[] = [
       { path: 'login', component: () => import('pages/LoginRegister.vue') },
       { path: 'test', component: () => import('pages/IndexPage.vue') },
       { name: 'category', path: 'category/:id/:title?', component: () => import('pages/NftCategoryVs.vue') },
-      { path: 'categories', component: () => import('pages/NftCategories.vue') }
+      { path: 'categories', component: () => import('pages/NftCategories.vue') },
+      { name: 'goback', path: 'goback', component: () => import('pages/GoBack.vue') },
+      { name: 'refresh', path: 'refresh', component: () => import('pages/Refresh.vue') }
     ],
+    // beforeEnter: (to, from, next) => {
+    //   next();
+    // }
   },
 
   // Always leave this as last one,
