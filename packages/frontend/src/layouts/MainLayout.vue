@@ -1,13 +1,15 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-
+  <q-layout view="hHh Lpr fFf" container style="height: 100%">
+  <!-- <q-layout view="hHh lpR fFf"> -->
     <Header />
 
-    <q-drawer id="LeftDrawer" v-model="layoutStore.leftDrawerOpen" side="left" bordered>
+    <q-drawer id="LeftDrawer" v-model="layoutStore.leftDrawerOpen" side="left" bordered :width="280">
       <!-- drawer content -->
+      <!-- <q-scroll-area class="fit" style="height: 100%;">
+      </q-scroll-area> -->
     </q-drawer>
 
-    <q-drawer id="RightDrawer" v-model="layoutStore.rightDrawerOpen" side="right" bordered>
+    <q-drawer id="RightDrawer" v-model="layoutStore.rightDrawerOpen" side="right" bordered :width="255">
       <!-- drawer content -->
     </q-drawer>
 

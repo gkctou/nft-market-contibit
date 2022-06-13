@@ -9,7 +9,7 @@ const routes: RouteRecordRaw[] = [
       // { path: 'input', component: () => import('components/InputCountDown.vue') },
       { path: 'login', component: () => import('pages/LoginRegister.vue') },
       { path: 'test', component: () => import('pages/IndexPage.vue') },
-      { path: 'category', component: () => import('pages/NftCategory.vue') },
+      { name: 'category', path: 'category/:id/:title?', component: () => import('pages/NftCategoryVs.vue') },
       { path: 'categories', component: () => import('pages/NftCategories.vue') }
     ],
   },
@@ -17,6 +17,7 @@ const routes: RouteRecordRaw[] = [
   // Always leave this as last one,
   // but you can also remove it
   {
+    name: 'notFound',
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),
   },

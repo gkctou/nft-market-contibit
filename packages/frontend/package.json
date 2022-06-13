@@ -56,7 +56,8 @@
     "pinia": "^2.0.14",
     "quasar": "^2.7.1",
     "vue": "^3.2.37",
-    "vue-router": "^4.0.15"
+    "vue-router": "^4.0.15",
+    "vue-virtual-scroller": "^1.0.10"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",
