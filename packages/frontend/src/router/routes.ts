@@ -9,7 +9,8 @@ const routes: RouteRecordRaw[] = [
       // { path: 'input', component: () => import('components/InputCountDown.vue') },
       { path: 'login', component: () => import('pages/LoginRegister.vue') },
       { path: 'test', component: () => import('pages/IndexPage.vue') },
-      { path: 'category', component: () => import('pages/NftCategory.vue') }
+      { path: 'category', component: () => import('pages/NftCategory.vue') },
+      { path: 'categories', component: () => import('pages/NftCategories.vue') }
     ],
   },
 

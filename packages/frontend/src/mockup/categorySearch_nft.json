@@ -1,0 +1,435 @@
+[
+  {
+    "token_id": "1217",
+    "token_address": "0x1db9d60d7c56361246134f392e08ffb3cb366f96",
+    "token_uri": "https://ipfs.io/ipfs/QmSKZyD25PFP1zzMhwoWy9y9RgsdZiV3EnymfNczeDjDhD",
+    "metadata": {
+      "image": "https://gateway.pinata.cloud/ipfs/QmTUZ7AhQ6NWFcgEeQafKdCAY2tNcneJVTnLzD3qE24Nmb",
+      "external_url": "",
+      "name": "AfrirPay NFT Test",
+      "description": "",
+      "attributes": []
+    },
+    "is_valid": 1,
+    "syncing": 2,
+    "frozen": 0,
+    "resyncing": 0,
+    "transfer_index": null,
+    "synced_at": "2022-03-05T00:26:53.121Z",
+    "last_metadata_sync": null,
+    "last_token_uri_sync": null,
+    "contract_type": "ERC721",
+    "token_hash": "fffffa9576e085b1ea6785d5ce34266c",
+    "batch_id": null,
+    "metadata_name": "\"AfrirPay NFT Test\"",
+    "metadata_description": "",
+    "metadata_attributes": [],
+    "block_number_minted": "10272789",
+    "opensea_lookup": null,
+    "minter_address": "0x144f8264c7415108855290524f67a55073de3be8",
+    "transaction_minted": "0xf7ec4a0fd3825dae25dba0faa3db485400aa028dd2c4817396ae58ad1002bee7",
+    "frozen_log_index": null,
+    "imported": null,
+    "createdAt": "2022-03-05T00:26:11.288Z",
+    "updatedAt": "2022-03-05T00:26:11.288Z",
+    "tokenId": 1217,
+    "synced_at_time": 1646440013121,
+    "createdAt_time": 1646439971288,
+    "updatedAt_time": 1646439971288
+  },
+  {
+    "token_id": "5373",
+    "token_address": "0x0c52153f39ebf67c9751cf50bf281bc37a52efc8",
+    "token_uri": "https://ipfs.moralis.io:2053/ipfs/bafybeieunzhyxzij4xpqcvbfdad4spsmnpkqb33j77ety5vg7yybgpn7sq/8104.json",
+    "metadata": {
+      "name": "Mock NFT #8104",
+      "description": "A mock NFT collection for test",
+      "image": "ipfs://bafybeifks4avliqhwue2bcvumx7ux452kvlzjq5jjxlgxyaatex23rv7gu/8104.png",
+      "edition": 8104,
+      "author": "Adaptive Code",
+      "attributes": [
+        {
+          "trait_type": "Background",
+          "value": "Light Green"
+        },
+        {
+          "trait_type": "Eyebrow",
+          "value": "Relaxed"
+        },
+        {
+          "trait_type": "Eyes",
+          "value": "Evil"
+        },
+        {
+          "trait_type": "Glasses",
+          "value": "Geek"
+        },
+        {
+          "trait_type": "Mouth",
+          "value": "Open Mouth"
+        }
+      ]
+    },
+    "is_valid": 1,
+    "syncing": 2,
+    "frozen": 0,
+    "resyncing": 0,
+    "transfer_index": [
+      10737864,
+      51,
+      843,
+      0
+    ],
+    "synced_at": "2022-05-25T13:26:04.396Z",
+    "last_metadata_sync": "2022-05-25T13:26:04.396Z",
+    "last_token_uri_sync": "2022-05-25T13:25:21.758Z",
+    "contract_type": "ERC721",
+    "token_hash": "fffff13d2e84076ddbae859e014936bd",
+    "batch_id": "abbf73c5-229b-4577-9ec9-940a9981e900",
+    "metadata_name": "Mock NFT #8104",
+    "metadata_description": "A mock NFT collection for test",
+    "metadata_attributes": [
+      {
+        "trait_type": "Background",
+        "value": "Light Green"
+      },
+      {
+        "trait_type": "Eyebrow",
+        "value": "Relaxed"
+      },
+      {
+        "trait_type": "Eyes",
+        "value": "Evil"
+      },
+      {
+        "trait_type": "Glasses",
+        "value": "Geek"
+      },
+      {
+        "trait_type": "Mouth",
+        "value": "Open Mouth"
+      }
+    ],
+    "block_number_minted": "10737864",
+    "opensea_lookup": null,
+    "minter_address": "0xc6b1fe0aa25019d580f5c2e1ba76574db6c3a993",
+    "transaction_minted": "0x157e087be6a7e1d9d547823d10eec591556d53fae9dcf468ce35331f72357f0f",
+    "frozen_log_index": null,
+    "imported": 0,
+    "createdAt": "2022-05-25T13:25:05.375Z",
+    "updatedAt": "2022-05-25T13:25:05.375Z",
+    "tokenId": 5373,
+    "synced_at_time": 1653485164396,
+    "last_metadata_sync_time": 1653485164396,
+    "last_token_uri_sync_time": 1653485121758,
+    "createdAt_time": 1653485105375,
+    "updatedAt_time": 1653485105375
+  },
+  {
+    "token_id": "29537",
+    "token_address": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+    "token_uri": "https://ipfs.moralis.io:2053/ipfs/bafybeiezeds576kygarlq672cnjtimbsrspx5b3tr3gct2lhqud6abjgiu",
+    "metadata": {
+      "name": "MultiFaucet Test NFT",
+      "description": "A test NFT dispensed from faucet.paradigm.xyz.",
+      "image": "https://ipfs.io/ipfs/bafybeifvwitulq6elvka2hoqhwixfhgb42l4aiukmtrw335osetikviuuu"
+    },
+    "is_valid": 1,
+    "syncing": 2,
+    "frozen": 0,
+    "resyncing": 0,
+    "transfer_index": [
+      9732106,
+      11,
+      20,
+      0
+    ],
+    "synced_at": "2022-05-21T10:48:57.374Z",
+    "last_metadata_sync": "2022-05-21T10:48:57.374Z",
+    "last_token_uri_sync": "2022-05-21T10:48:57.094Z",
+    "contract_type": "ERC721",
+    "token_hash": "fffff05d5e863566394ac3765003f98d",
+    "batch_id": null,
+    "metadata_name": "MultiFaucet Test NFT",
+    "metadata_description": "A test NFT dispensed from faucet.paradigm.xyz.",
+    "metadata_attributes": null,
+    "block_number_minted": "9732106",
+    "opensea_lookup": null,
+    "minter_address": "0x4d1e1d5ccb02fe1409e131d8112234b6c1bd2011",
+    "transaction_minted": "0x85f1b0ab0646270818bf4dcf3da68c0c425361c06932a198732e87c63f02fd93",
+    "frozen_log_index": null,
+    "imported": null,
+    "createdAt": "2021-12-03T15:40:12.628Z",
+    "updatedAt": "2021-12-03T15:40:12.628Z",
+    "tokenId": 29537,
+    "synced_at_time": 1653130137374,
+    "last_metadata_sync_time": 1653130137374,
+    "last_token_uri_sync_time": 1653130137094,
+    "createdAt_time": 1638546012628,
+    "updatedAt_time": 1638546012628
+  },
+  {
+    "token_id": "630",
+    "token_address": "0x8ba9f72b325b8b5231f90ac5b496d0740391aa62",
+    "token_uri": "https://gateway.moralisipfs.com/ipfs/QmbLN9noW1ymwwuSgn3ayu2RzKidN8Qz5STW9krLQXPn4W",
+    "metadata": {
+      "id": 99999,
+      "description": "Wrapped Very cool NFT",
+      "image": "ipfs://QmNckS2PMfoQ9FywUM155ucyZm5e2RQpUz3NYLYkFjaBbw",
+      "name": "Wrapped Cool NFT",
+      "attributes": [
+        {
+          "trait_type": "Wrapped",
+          "value": "true"
+        },
+        {
+          "trait_type": "Name",
+          "value": "Gaspack Wrapped"
+        }
+      ]
+    },
+    "is_valid": 1,
+    "syncing": 2,
+    "frozen": 0,
+    "resyncing": 0,
+    "transfer_index": [
+      10510344,
+      3,
+      297,
+      0
+    ],
+    "synced_at": "2022-04-15T20:13:43.060Z",
+    "last_metadata_sync": null,
+    "last_token_uri_sync": null,
+    "contract_type": "ERC721",
+    "token_hash": "ffffeed6b9160954377c1e357898b43f",
+    "batch_id": null,
+    "metadata_name": "Wrapped Cool NFT",
+    "metadata_description": "Wrapped Very cool NFT",
+    "metadata_attributes": [
+      {
+        "trait_type": "Wrapped",
+        "value": "true"
+      },
+      {
+        "trait_type": "Name",
+        "value": "Gaspack Wrapped"
+      }
+    ],
+    "block_number_minted": "10510344",
+    "opensea_lookup": null,
+    "minter_address": "0xdeadaf6bbef5d815aea569da44ef09e39f2bbef8",
+    "transaction_minted": "0xda652bac74721fd7f1391102c7279ecbda861751fb0c442a225bcceefc24b5a6",
+    "frozen_log_index": null,
+    "imported": 0,
+    "createdAt": "2022-04-15T20:13:19.730Z",
+    "updatedAt": "2022-04-15T20:13:19.730Z",
+    "tokenId": 630,
+    "synced_at_time": 1650053623060,
+    "createdAt_time": 1650053599730,
+    "updatedAt_time": 1650053599730
+  },
+  {
+    "token_id": "2",
+    "token_address": "0x72f85ec96648ea60c8e7e700a341050f8da05fef",
+    "token_uri": "data:application/json;base64,eyJuYW1lIjogIlBpeCAtLSBORlQgIzogMiIsICJkZXNjcmlwdGlvbiI6ICJUaGlzIGlzIGFuIE5GVCB0aGF0IGxldHMgcGVvcGxlIHBsYXkgaW4gdGhlIGdhbWUgTWV0YXZlcnNlIFNsYXllciEiLCAiaW1hZ2UiOiAiaHR0cHM6Ly9zdG9yYWdlLm9wZW5zZWEuaW8vZmlsZXMvNjY1ZDllNjcxYmVmYThiYTYxM2QzMzc0NDE3MTlhMTIuZ2xiIiwgImF0dHJpYnV0ZXMiOiBbIHsgInRyYWl0X3R5cGUiOiAiSGVhbHRoIFBvaW50cyIsICJ2YWx1ZSI6IDIwMCwgIm1heF92YWx1ZSI6MjAwfSwgeyAidHJhaXRfdHlwZSI6ICJBdHRhY2sgRGFtYWdlIiwgInZhbHVlIjogNTB9IF19",
+    "metadata": {
+      "name": "Pix -- NFT #: 2",
+      "description": "This is an NFT that lets people play in the game Metaverse Slayer!",
+      "image": "https://storage.opensea.io/files/665d9e671befa8ba613d337441719a12.glb",
+      "attributes": [
+        {
+          "trait_type": "Health Points",
+          "value": 200,
+          "max_value": 200
+        },
+        {
+          "trait_type": "Attack Damage",
+          "value": 50
+        }
+      ]
+    },
+    "is_valid": 1,
+    "syncing": 2,
+    "frozen": 0,
+    "resyncing": 0,
+    "transfer_index": null,
+    "synced_at": "2022-01-05T03:23:42.286Z",
+    "last_metadata_sync": null,
+    "last_token_uri_sync": null,
+    "contract_type": "ERC721",
+    "token_hash": "ffffe81fa48348a941c8e098681cbcb8",
+    "batch_id": null,
+    "metadata_name": "\"Pix -- NFT #: 2\"",
+    "metadata_description": "\"This is an NFT that lets people play in the game Metaverse Slayer!\"",
+    "metadata_attributes": [
+      {
+        "trait_type": "Health Points",
+        "value": 200,
+        "max_value": 200
+      },
+      {
+        "trait_type": "Attack Damage",
+        "value": 50
+      }
+    ],
+    "block_number_minted": "9935922",
+    "opensea_lookup": null,
+    "minter_address": "0xb40ffb87ca15cc319f5d10e94bb14359f027cbba",
+    "transaction_minted": "0x8b511606a65f404a8698f730ce47762560ea23f2832d2ac6bf4a1654d5a7018b",
+    "frozen_log_index": null,
+    "imported": null,
+    "createdAt": "2022-01-05T03:23:35.496Z",
+    "updatedAt": "2022-01-05T03:23:35.496Z",
+    "tokenId": 2,
+    "synced_at_time": 1641353022286,
+    "createdAt_time": 1641353015496,
+    "updatedAt_time": 1641353015496
+  },
+  {
+    "token_id": "78",
+    "token_address": "0x2db4dc15ef86d995c69a058cad5aaaf5d151b2ea",
+    "token_uri": "https://ipfs.moralis.io:2053/ipfs/QmRZqwDw15TkThFsZGsednkPL5QdbVNHcraDZKTh5gP683/78.json",
+    "metadata": {
+      "name": "Eye Test NFT #78",
+      "description": "Thankyou for testing.",
+      "image": "ipfs://QmWmimBQoxD6waKKKwPxvVtqVv8BoVRDVyb7g9hXfBkrsq/78.png",
+      "dna": "2abb6e1ed4982f9462466fd4b50c113cce65dcd0",
+      "edition": 78,
+      "date": 1643731038797,
+      "attributes": [
+        {
+          "trait_type": "Background",
+          "value": "Black"
+        },
+        {
+          "trait_type": "Eyeball",
+          "value": "Red"
+        },
+        {
+          "trait_type": "Eye color",
+          "value": "Red"
+        },
+        {
+          "trait_type": "Iris",
+          "value": "Small"
+        },
+        {
+          "trait_type": "Shine",
+          "value": "Shapes"
+        },
+        {
+          "trait_type": "Bottom lid",
+          "value": "High"
+        },
+        {
+          "trait_type": "Top lid",
+          "value": "High"
+        }
+      ],
+      "compiler": "HashLips Art Engine"
+    },
+    "is_valid": 1,
+    "syncing": 2,
+    "frozen": 0,
+    "resyncing": 0,
+    "transfer_index": null,
+    "synced_at": "2022-02-01T17:09:50.548Z",
+    "last_metadata_sync": null,
+    "last_token_uri_sync": null,
+    "contract_type": "ERC721",
+    "token_hash": "ffffaa1737643b8b684f02a0b51ede33",
+    "batch_id": null,
+    "metadata_name": "\"Eye Test NFT #78\"",
+    "metadata_description": "\"Thankyou for testing.\"",
+    "metadata_attributes": [
+      {
+        "trait_type": "Background",
+        "value": "Black"
+      },
+      {
+        "trait_type": "Eyeball",
+        "value": "Red"
+      },
+      {
+        "trait_type": "Eye color",
+        "value": "Red"
+      },
+      {
+        "trait_type": "Iris",
+        "value": "Small"
+      },
+      {
+        "trait_type": "Shine",
+        "value": "Shapes"
+      },
+      {
+        "trait_type": "Bottom lid",
+        "value": "High"
+      },
+      {
+        "trait_type": "Top lid",
+        "value": "High"
+      }
+    ],
+    "block_number_minted": "10094189",
+    "opensea_lookup": null,
+    "minter_address": "0x10279eb2baea07a0be8d1a956eff66cd6b895da3",
+    "transaction_minted": "0xb06f289f3099e320a414f04459951b52d274073dd37f3131431e8f82f0e97c73",
+    "frozen_log_index": null,
+    "imported": null,
+    "createdAt": "2022-02-01T17:03:22.942Z",
+    "updatedAt": "2022-02-01T17:03:22.942Z",
+    "tokenId": 78,
+    "synced_at_time": 1643735390548,
+    "createdAt_time": 1643735002942,
+    "updatedAt_time": 1643735002942
+  },
+  {
+    "token_id": "11736",
+    "token_address": "0xedcb8493001a507fed1a34c17f1d70969311fd99",
+    "token_uri": "https://bafybeifzue444fpghcvt3rqsefdbwjnypqet5ybegiyovzhljgvowm7bbm.ipfs.dweb.link/NamaLoanTest.json",
+    "metadata": {
+      "name": "The Nama Loan Test NFT",
+      "description": "This NFT is only used for the Nama loan application testing in Rinkeby testnet, https://testnet.nama.finance",
+      "image": "ipfs://bafkreielucidvrytaoex7sajjs4om44reaxvtcqgxmd4e2cxzueb7icnem",
+      "attributes": [
+        {
+          "trait_type": "Strength",
+          "value": 666
+        }
+      ]
+    },
+    "is_valid": 1,
+    "syncing": 2,
+    "frozen": 0,
+    "resyncing": 0,
+    "transfer_index": null,
+    "synced_at": "2021-09-30T20:13:47.802Z",
+    "last_metadata_sync": null,
+    "last_token_uri_sync": null,
+    "contract_type": "ERC721",
+    "token_hash": "ffff93f39c37ac00d2bb078db70bc2ea",
+    "batch_id": null,
+    "metadata_name": "The Nama Loan Test NFT",
+    "metadata_description": "This NFT is only used for the Nama loan application testing in Rinkeby testnet, https://testnet.nama.finance",
+    "metadata_attributes": [
+      {
+        "value": 666,
+        "trait_type": "Strength"
+      }
+    ],
+    "block_number_minted": "9064570",
+    "opensea_lookup": null,
+    "minter_address": "0xa46b6d8569d1d9642eb6ad995407afbd23ba75e5",
+    "transaction_minted": "0x8c45e944f4eaa8bae848500aa0a07262ce431f491635104c892d1f222680ea83",
+    "frozen_log_index": null,
+    "imported": null,
+    "createdAt": "2021-09-30T16:34:48.529Z",
+    "updatedAt": "2021-09-30T20:13:47.802Z",
+    "tokenId": 11736,
+    "synced_at_time": 1633032827802,
+    "createdAt_time": 1633019688529,
+    "updatedAt_time": 1633032827802
+  }
+]
