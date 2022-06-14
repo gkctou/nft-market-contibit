@@ -13,7 +13,7 @@ const req = axios.create({
         'X-API-Key': 'bahK55RkK2br4ldaUNtlwJjazG535RlHG31qWRtBbRKa60mEA8rUXl9Iwbzb6fMv'
     }
 });
-const address = '0xa0775b4B23372f38d56f27E09615242F3165A020';
+// const address = '0xa0775b4B23372f38d56f27E09615242F3165A020';
 const contract = '0xbee569f6846b733c3ccc6ac146eb5192f70fcacf';// '0x1745ebc6f71eefd36c7aac6e648071b7ffbdb298';
 (async () => {
     let lastCursor = null;
