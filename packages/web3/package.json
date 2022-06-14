@@ -2,15 +2,22 @@
   "name": "nft-market-web3",
   "version": "0.0.1",
   "description": "",
+  "private": true,
   "main": "build/index.js",
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "moralis-client": "openapi -i src/moralis/swagger.json -o src/moralis/client/ -c axios --useOptions"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^17.0.35",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "openapi-typescript-codegen": "~0.23.0",
+    "nft-market-datacenter": "workspace:*"
   },
-  "dependencies": {}
+  "dependencies": {
+    "axios": "~0.27.2",
+    "form-data": "~4.0.0"
+  }
 }

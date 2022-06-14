@@ -10,7 +10,9 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^17.0.35",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "nft-market-web3": "workspace:*",
+    "nft-market-datacenter": "workspace:*"
   },
   "dependencies": {
     "axios": "^0.27.2"
