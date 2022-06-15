@@ -71,15 +71,9 @@ module.exports = configure(function (/* ctx */) {
       // polyfillModulePreload: true,
       // distDir
 
-      // extendViteConf(viteConf) {
-      //   console.log(viteConf.plugins);
-      //   viteConf.plugins.push(vue({
-      //     script: {
-      //       refSugar: true,
-      //       refTransform: true
-      //     }
-      //   }))
-      // },
+      extendViteConf(viteConf) {
+        viteConf.cacheDir = path.resolve(__dirname, 'tmp/');
+      },
       viteVuePluginOptions: {
         script: {
           reactivityTransform: true,
