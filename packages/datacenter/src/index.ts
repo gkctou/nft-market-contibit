@@ -39,5 +39,17 @@ export async function cacheSet<T = any>(key: string, value: T): Promise<void> {
 
 }
 export async function cacheGet<T = any>(key: string): Promise<T> {
+    return { a: 'b' };
+}
+export async function lruSet<T = any>(key: string, value: T): Promise<void> {
 
+}
+export async function lruGet<T = any>(key: string): Promise<T> {
+    return { a: 'b' };
+}
+export async function storageSet<T = any>(key: string, value: T): Promise<void> {
+
+}
+export async function storageQuery<T = any>(key: string,): Promise<T> {
+    return { a: 'b' };
 }
