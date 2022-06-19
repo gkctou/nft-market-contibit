@@ -34,6 +34,9 @@
     "vue-loader": "^16.8.3",
     "vue-tsc": "^0.34.16",
     "@storybook/addon-notes": "~5.3.21",
-    "rollup-plugin-polyfill-node": "~0.9.0"
+    "rollup-plugin-polyfill-node": "~0.9.0",
+    "regenerator-runtime": "~0.13.9",
+    "@babel/preset-env": "~7.18.2",
+    "@types/react": "file:stub/types__react"
   }
 }
