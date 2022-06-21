@@ -5,7 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "tsc": "tsc",
-    "docker": "docker-compose up -d -f ./docker/docker-compose.yaml"
+    "docker": "docker-compose -f ./docker/docker-compose.yaml up -d",
+    "stop": "docker-compose -f ./docker/docker-compose.yaml stop"
   },
   "author": "",
   "license": "ISC",
