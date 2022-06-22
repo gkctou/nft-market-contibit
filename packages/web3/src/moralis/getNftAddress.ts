@@ -13,8 +13,13 @@ const req = axios.create({
         'X-API-Key': 'bahK55RkK2br4ldaUNtlwJjazG535RlHG31qWRtBbRKa60mEA8rUXl9Iwbzb6fMv'
     }
 });
-// const address = '0xa0775b4B23372f38d56f27E09615242F3165A020';
-const contract = '0xbee569f6846b733c3ccc6ac146eb5192f70fcacf';// '0x1745ebc6f71eefd36c7aac6e648071b7ffbdb298';
+const contract = '0x1745ebc6f71eefd36c7aac6e648071b7ffbdb298'; // AngryPenguins
+const name = 'AngryPenguins';
+
+// const contract = '0x692fB8f12F60d40bcA40Bd7e173C3C0Fc5CCc20B'; // SGC
+// const name = 'SGC';
+
+const chain = 'rinkeby';
 (async () => {
     let lastCursor = null;
     let results: any[] = [];
@@ -25,13 +30,20 @@ const contract = '0xbee569f6846b733c3ccc6ac146eb5192f70fcacf';// '0x1745ebc6f71e
                 method: 'get',
                 url: `nft/${contract}`,
                 params: {
-                    chain: 'rinkeby',
+                    chain,
                     format: 'decimal',
                     cursor: lastCursor
                 }
             });
             lastCursor = cursor;
-            results = results.concat(result);
+            results = results.concat(result.map(v => {
+                try {
+                    v.metadata = JSON.parse(v.metadata);
+                } catch (error) {
+                    console.log(`parse metadata error! ${v.token_id}`);
+                }
+                return v;
+            }));
             console.log(countPage++);
         } catch (error) {
             console.error(error);
@@ -39,6 +51,6 @@ const contract = '0xbee569f6846b733c3ccc6ac146eb5192f70fcacf';// '0x1745ebc6f71e
         }
     } while (lastCursor);
     console.log(results, results.length);
-    fs.writeFileSync(path.resolve(__dirname, `../../../frontend/src/mockup/nfts-${contract}.json`), JSON.stringify(results), 'utf8');
+    fs.writeFileSync(path.resolve(__dirname, `../../../frontend/src/mockup/nfts-${name}-${chain}-${contract}.json`), JSON.stringify(results, null, 4), 'utf8');
     console.log('done');
 })();

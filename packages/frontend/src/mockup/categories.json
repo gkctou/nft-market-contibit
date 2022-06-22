@@ -6,6 +6,24 @@
     "list": [
       {
         "chain": "rinkeby",
+        "token_address": "0x1745ebc6f71eefd36c7aac6e648071b7ffbdb298",
+        "createdAt_time": 1638352741302,
+        "metadata_name": "#26",
+        "metadata_description": "angrypenguins.club",
+        "contract_type": "ERC721",
+        "metadata_image": "ipfs://QmW5i3d4EVTaZxePPHnQyS15dkV66TJv3aBFwfiaannnb9/26.png"
+      },
+      {
+        "chain": "rinkeby",
+        "token_address": "0x692fb8f12f60d40bca40bd7e173c3c0fc5ccc20b",
+        "createdAt_time": 1638352741302,
+        "metadata_name": "NFT TEST 1 BindBox",
+        "metadata_description": "Friendly OpenSea Creature that enjoys long swims in the ocean.",
+        "contract_type": "ERC721",
+        "metadata_image": "https://test-nft-file.s3.ap-east-1.amazonaws.com/test_img/BlindBox%E6%B8%AC%E8%A9%A6(FPS15).gif"
+      },
+      {
+        "chain": "rinkeby",
         "token_address": "0x243b447b6585a86b26494762769d2cc646520866",
         "createdAt_time": 1638352741302,
         "metadata_name": "Ape #237",

@@ -6,7 +6,7 @@
   "main": "build/index.js",
   "scripts": {
     "tsc": "tsc",
-    "moralis-client": "openapi -i src/moralis/swagger.json -o src/moralis/client/ -c axios --useOptions"
+    "moralis-client": "openapi -i src/moralis/MoralisEVM0penAPISpec.json -o src/moralis/client/ -c axios --useOptions"
   },
   "author": "",
   "license": "ISC",

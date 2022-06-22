@@ -14,7 +14,8 @@ const req = axios.create({
     }
 });
 const address = '0xa0775b4B23372f38d56f27E09615242F3165A020';
-const contract = '0x1745ebc6f71eefd36c7aac6e648071b7ffbdb298';
+// const contract = '0x1745ebc6f71eefd36c7aac6e648071b7ffbdb298'; // angrypenguins
+const contract = '0x692fB8f12F60d40bcA40Bd7e173C3C0Fc5CCc20B'; // SGC
 (async () => {
     let lastCursor = null;
     let results: any[] = [];
