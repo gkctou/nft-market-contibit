@@ -25,12 +25,24 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
     depends_on:
       - mongo
-  redis:
-    container_name: redis
+  cache:
+    container_name: redis-cache
     image: redis:7.0.2
     restart: always
     ports:
+      - 6380:6379
+  redis:
+    container_name: redis-stack
+    image: redis/redis-stack-server:7.0.0-RC5
+    restart: always
+    ports:
       - 6379:6379
+    volumes:
+      # - ./redis-stack.conf:/redis-stack.conf
+      - ../tmp/docker/redis/data:/data
+    environment:
+      REDIS_ARGS: --appendonly yes
+    # command: --config /etc/mongo/mongod.conf
   redis-commander:
     container_name: redis-commander
     hostname: redis-commander
@@ -53,6 +65,7 @@ services:
         PGDATA: /var/lib/postgresql/data
     volumes:
         - ../tmp/docker/postgres/db:/var/lib/postgresql/data
+        - ./postgresql.conf:/var/lib/postgresql/data/postgresql.conf
     ports:
         - "5432:5432"
   pgadmin:

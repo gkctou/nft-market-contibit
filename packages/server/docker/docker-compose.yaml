@@ -43,28 +43,28 @@ services:
     depends_on:
       - redis
   postgres:
-      image: postgres:14.3-alpine
-      restart: always
-      environment:
-          POSTGRES_DB: postgres
-          POSTGRES_USER: root
-          POSTGRES_PASSWORD: root
-          PGDATA: /var/lib/postgresql/data
-      volumes:
-          - ../tmp/docker/postgres/db:/var/lib/postgresql/data
-      ports:
-          - "5432:5432"
+    image: postgres:14.3-alpine
+    restart: always
+    environment:
+        POSTGRES_DB: postgres
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: root
+        PGDATA: /var/lib/postgresql/data
+    volumes:
+        - ../tmp/docker/postgres/db:/var/lib/postgresql/data
+    ports:
+        - "5432:5432"
   pgadmin:
-      image: dpage/pgadmin4:latest
-      restart: always
-      environment:
-          PGADMIN_DEFAULT_EMAIL: root
-          PGADMIN_DEFAULT_PASSWORD: root
-          PGADMIN_LISTEN_PORT: 8800
-      ports:
-          - "8800:8800"
-      volumes:
-          - ../tmp/docker/postgres/admin:/var/lib/pgadmin
-      links:
-          - "db:pgsql-server"
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+        PGADMIN_DEFAULT_EMAIL: root
+        PGADMIN_DEFAULT_PASSWORD: root
+        PGADMIN_LISTEN_PORT: 8800
+    ports:
+        - "8800:8800"
+    volumes:
+        - ../tmp/docker/postgres/admin:/var/lib/pgadmin
+    links:
+        - "db:pgsql-server"
           
