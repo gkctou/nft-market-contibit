@@ -16,6 +16,8 @@ Contibit NFT Market UI Components
 ---
 
 ## a)天
+![](https://hackmd.io/_uploads/ryOTVUlcq.png)
+
 - 載入動作：取得目前 token 使用者/購物車資訊
 - Logo：首頁連結
 - NFT 集合：連結
@@ -37,7 +39,9 @@ Contibit NFT Market UI Components
 
 ---
 
-## b)注冊頁面
+## b登入/)注冊頁面
+![](https://hackmd.io/_uploads/ryqdVLeq9.png)
+
 - 載入動作：無
 - 注冊表單
     - email 賬號：前端檢查格式、後端檢查重複
@@ -49,27 +53,11 @@ Contibit NFT Market UI Components
     - 密碼：正規密碼格式要求
     - 重複密碼：與密碼一致
 - 注冊按鈕：成功後立即登入並返回首頁
-
----
-
-## c)登入頁面
-- 載入動作：無
 - 登入表單
     - email：登入賬號
     - 密碼：輸入框
 - 登入按鈕：成功後返回首頁
 - 忘記密碼：連結
-- 注冊：連結
-
----
-
-## d)~~取回密碼頁面~~
-- 載入動作：無
-- 表單
-    - email：登入賬號
-    - 手機 檢驗碼：輸入框
-        - 發送按鈕：檢查email賬號，發送簡訊，顯示倒數計時
-- 送出：成功後發送 提示檢查信箱
 
 ---
 
@@ -90,23 +78,27 @@ Contibit NFT Market UI Components
 ---
 
 ## f)NFT 集合頁面
+- 集合分類首頁
+- ![](https://hackmd.io/_uploads/r1ZQSLxqc.png)
+- 集合分類内容及搜尋列表
+- ![](https://hackmd.io/_uploads/r1FHHLgqc.png)
 - 參考：[raritysniper](https://raritysniper.com/nft-collections)
 - 載入動作：依照URL所帶關鍵字/過濾/排序條件，向後端載入資料集合
 - 過濾條件：
     - 關鍵字
-    - 主鏈(多選)
-    - 地板價（範圍）
-    - 總市值（範圍）
-    - 發行時間（範圍）
-    - 供應量（範圍）
-- 排序條件：
-    - 範圍性質之過濾屬性之 正向及逆向
+    - 分類
+    - ~~主鏈(多選)~~
+    - ~~地板價（範圍）~~
+    - ~~總市值（範圍）~~
+    - ~~發行時間（範圍）~~
+    - ~~供應量（範圍）~~
 - 格狀集合清單内容
     - 編號n的圖
-    - 主鏈
-    - 地板價
-    - 總市值
-    - 發行時間
+    - 名稱
+    - ~~主鏈~~
+    - ~~地板價~~
+    - ~~總市值~~
+    - ~~發行時間~~
 - 點擊集合跳轉至 NFT 瀏覽頁面
 - 無限列表清單
 
@@ -121,7 +113,7 @@ Contibit NFT Market UI Components
     - ID（範圍）
     - 稀有度排行（範圍）
     - 售價（範圍）
-    - 特徵數（1..n，多選）
+    - ~~特徵數（1..n，多選）~~
     - 屬性值（多欄多選）
 - 排序條件：
     - 價格 正向及逆向
