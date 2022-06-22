@@ -14,6 +14,7 @@ paths:
       operationId: guestRegisterByPhone
       tags:
         - guest
+      summary: 注冊新賬號 email (驗證手機)
       description: Register a new user by phone.
       parameters: []
       requestBody:
@@ -73,6 +74,7 @@ paths:
       operationId: guestLoginByPassword
       tags:
         - guest
+      summary: 使用 email/password 登入系統
       description: Login by email and password.
       parameters: []
       requestBody:
@@ -116,6 +118,7 @@ paths:
       operationId: guestVerifyEmail
       tags:
         - guest
+      summary: 寄發電子郵件檢查碼信件
       description: 寄發電子郵件檢查碼信件
       parameters: []
       requestBody:
@@ -163,6 +166,7 @@ paths:
       operationId: guestVerifyPhone
       tags:
         - guest
+      summary: 寄發手機檢查碼簡訊
       description: 寄發手機檢查碼簡訊
       parameters: []
       requestBody:
@@ -211,6 +215,7 @@ paths:
       operationId: guestResetPassword
       tags:
         - guest
+      summary: 重設密碼(未登入)
       description: Reset member password
       parameters: []
       requestBody:
@@ -264,6 +269,7 @@ paths:
       operationId: guestVerifyAccountPhone
       tags:
         - guest
+      summary: 依帳號關聯手機號碼寄發檢查碼簡訊
       description: 依帳號關聯手機號碼寄發檢查碼簡訊
       parameters: []
       requestBody:

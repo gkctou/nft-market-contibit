@@ -252,11 +252,16 @@ importers:
     specifiers:
       '@types/node': ^17.0.35
       google-spreadsheet: ~3.3.0
+      js-base64: ~3.7.2
       js-yaml: ~4.1.0
       mdx-to-md: ~0.3.1
+      pako: ~2.0.4
       ts-node: ~10.8.0
       typescript: ^4.6.4
       widdershins: ~4.0.1
+    dependencies:
+      js-base64: 3.7.2
+      pako: 2.0.4
     devDependencies:
       '@types/node': 17.0.35
       google-spreadsheet: 3.3.0
@@ -17134,6 +17139,10 @@ packages:
     hasBin: true
     dev: true
 
+  /js-base64/3.7.2:
+    resolution: {integrity: sha512-NnRs6dsyqUXejqk/yv2aiXlAvOs56sLkX6nUdeaNezI5LFFLlsZjOThmwnrcwh5ZZRwZlCMnVAY3CvhIhoVEKQ==}
+    dev: false
+
   /js-sha3/0.5.7:
     resolution: {integrity: sha512-GII20kjaPX0zJ8wzkTbNDYMY7msuZcTWk8S5UOh6806Jq/wz1J8/bnr8uGU0DAUmYDjj2Mr4X1cW8v/GLYnR+g==}
     dev: true
@@ -19850,6 +19859,10 @@ packages:
   /pako/1.0.11:
     resolution: {integrity: sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==}
     dev: true
+
+  /pako/2.0.4:
+    resolution: {integrity: sha512-v8tweI900AUkZN6heMU/4Uy4cXRc2AYNRggVmTR+dEncawDJgCdLMximOVA2p4qO57WMynangsfGRb5WD6L1Bg==}
+    dev: false
 
   /parallel-transform/1.2.0:
     resolution: {integrity: sha512-P2vSmIu38uIlvdcU7fDkyrxj33gTUy/ABO5ZUbGowxNCopBq/OoD42bP4UmMrJoPyk4Uqf0mu3mtWBhHCZD8yg==}

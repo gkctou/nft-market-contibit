@@ -4,8 +4,9 @@
 // https://github.com/superj80820/mermaid-js-converter/blob/master/converter.js
 
 const Base64 = require("js-base64");
+const pako = require('pako');
 
-function mdToSVG(data) {
+export function mdToSVG(data) {
   const matchData = data.match(/```mermaid(.|\n)*?```/gm);
 
   const jsonStrings = matchData
@@ -13,9 +14,9 @@ function mdToSVG(data) {
     // Workaround for classdiagram
     .map((item) =>
       item.startsWith("\nclass") ||
-      item.startsWith("\ngantt") ||
-      item.startsWith("\nerDiagram") ||
-      item.startsWith("\njourney")
+        item.startsWith("\ngantt") ||
+        item.startsWith("\nsequenceDiagram") ||
+        item.startsWith("\njourney")
         ? item.substr(1, item.length - 1)
         : item
     )
@@ -23,14 +24,16 @@ function mdToSVG(data) {
       JSON.stringify({
         code: item,
         mermaid: {
-          theme: "default",
+          theme: "white", //"default",
         },
       })
     )
     .map((item) => {
       const jsonString = Base64.encodeURI(item);
       // return `[![](https://mermaid.ink/img/${jsonString})](https://mermaid-js.github.io/mermaid-live-editor/#/edit/${jsonString})`;
-      return `[![](https://mermaid.ink/svg/${jsonString})](https://mermaid-js.github.io/mermaid-live-editor/#/edit/${jsonString})`;
+      // return `[![](https://mermaid.ink/svg/${jsonString})](https://mermaid-js.github.io/mermaid-live-editor/#/edit/${jsonString})`;
+      // return `![](https://mermaid.ink/svg/pako:${pako.gzip(jsonString, { to: 'string' })})`;
+      return `![](https://mermaid.ink/svg/${jsonString})`;
     });
 
   let changeMd = data;

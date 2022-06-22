@@ -171,8 +171,37 @@ paths:
       operationId: invoiceShoppingCreate
       tags:
         - invoice
-      summary: 建立購物車交易訂單
-      description: 建立購物車交易訂單
+      summary: 建立購物車交易訂單(流程圖)
+      description: |- 
+        ## 建立購物車交易訂單
+        ```mermaid
+        sequenceDiagram
+            participant U as 使用者
+            participant S as Server
+            participant C as 購物車模組
+            participant W as 錢包模組
+            participant I as 站内交易任務
+            participant IW as 站内交易模組
+            participant O as 外站交易任務
+            participant OW as 外站交易模組
+            U ->>+ S: 送出購物車交易訂單
+            Note right of S: 重新計算訂單
+            S ->>- C: 挂入購物車任務
+            C ->>+ W: 訂單金額鎖定
+            W ->>- C: 鎖定成功
+            C -->> U: 進度回報
+            C ->>+ I: 挂入站内交易任務(*)
+            IW -->> I: 執行站内交易
+            I ->>- C: 站内交易結果回報
+            C -->> U: 進度回報
+            C ->>+ O: 挂入外站交易任務(*)
+            OW -->> O: 執行外站交易
+            O ->>- C: 外站交易結果回報
+            C -->> U: 進度回報
+            C ->>+ W: 訂單金額解鎖
+            W ->>- C: 完成應付扣款
+            C ->> U: 完成訂單
+        ```
       parameters: []
       requestBody:
         description: shopping order
@@ -265,8 +294,8 @@ paths:
       operationId: invoiceSellingCancel
       tags:
         - invoice
-      summary: 取消單一NFT上架訂單
-      description: 取消單一NFT上架訂單
+      summary: 單一NFT下架
+      description: 單一NFT下架
       parameters: []
       requestBody:
         description: cancel selling order
@@ -365,8 +394,8 @@ paths:
       operationId: invoiceSellingCancelCost
       tags:
         - invoice
-      summary: 查詢取消單一NFT上架費用
-      description: 查詢取消單一NFT上架費用
+      summary: 查詢單一NFT下架費用
+      description: 查詢單一NFT下架費用
       parameters: []
       requestBody:
         required: true

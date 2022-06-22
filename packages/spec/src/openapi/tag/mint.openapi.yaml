@@ -14,7 +14,7 @@ paths:
       operationId: mintList
       tags:
         - mint
-      summary: mint list
+      summary: 列出代鑄專案清單
       description: mint list
       parameters: []
       requestBody:
@@ -108,7 +108,7 @@ paths:
       #   - BaseApiKey: []
       tags:
         - mint
-      summary: mint list
+      summary: 取得專案資訊
       description: mint list
       parameters: []
       requestBody:
@@ -155,7 +155,7 @@ paths:
         - BaseApiKey: []
       tags:
         - mint
-      summary: mint create
+      summary: 建立專案
       description: mint create
       parameters: []
       requestBody:
@@ -202,7 +202,7 @@ paths:
         - BaseApiKey: []
       tags:
         - mint
-      summary: mint update
+      summary: 更新專案
       description: mint update
       parameters: []
       requestBody:
@@ -251,7 +251,7 @@ paths:
         - BaseApiKey: []
       tags:
         - mint
-      summary: mint delete
+      summary: 刪除專案
       description: mint delete
       parameters: []
       requestBody:
@@ -296,7 +296,7 @@ paths:
         - BaseApiKey: []
       tags:
         - mint
-      summary: mint action
+      summary: 設定專案狀態 啓用/停用/上架/下架/送審/測試
       description: mint action
       parameters: []
       requestBody:

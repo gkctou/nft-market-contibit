@@ -16,6 +16,7 @@ paths:
       operationId: walletBalance
       tags:
         - wallet
+      summary: 取得錢包可用餘額
       description: wallet balance
       parameters: []
       requestBody:
@@ -67,6 +68,7 @@ paths:
       operationId: walletHistory
       tags:
         - wallet
+      summary: 分頁拉取用戶存提幣記錄
       description: 分頁拉取用戶存提幣記錄
       parameters: []
       requestBody:
@@ -164,6 +166,7 @@ paths:
       operationId: walletDipositInfo
       tags:
         - wallet
+      summary: 取得虛擬貨幣入金賬號
       description: 取得虛擬貨幣入金賬號
       parameters: []
       requestBody:
@@ -234,7 +237,8 @@ paths:
       operationId: walletWithdrawInfo
       tags:
         - wallet
-      description: 取得虛擬貨幣出金管道
+      summary: 取得虛擬貨幣出金方式
+      description: 取得虛擬貨幣出金方式
       parameters: []
       requestBody:
         description: user id
@@ -306,7 +310,8 @@ paths:
       operationId: walletWithdrawSubmit
       tags:
         - wallet
-      description: 取得虛擬貨幣出金管道
+      summary: 確認虛擬貨幣出金
+      description: 確認虛擬貨幣出金
       parameters: []
       requestBody:
         description: user id

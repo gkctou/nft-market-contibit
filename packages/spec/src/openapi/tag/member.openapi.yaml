@@ -16,6 +16,7 @@ paths:
       operationId: memberInfo
       tags:
         - member
+      summary: 取得會員資訊
       description: check and renew auth token
       parameters: []
       requestBody:
@@ -53,6 +54,7 @@ paths:
       operationId: memberVerifyPhone
       tags:
         - member
+      summary: 送出手機驗證碼（登入中）
       description: send SMS to member phone for verify code
       parameters: []
       requestBody:
@@ -101,6 +103,7 @@ paths:
       operationId: memberVerifyEmail
       tags:
         - member
+      summary: 寄發電子郵件檢查碼信件（登入中）
       description: 寄發電子郵件檢查碼信件
       parameters: []
       requestBody:
@@ -145,6 +148,7 @@ paths:
       operationId: memberResetPhone
       tags:
         - member
+      summary: 重設連結手機號碼
       description: 重設連結手機號碼
       parameters: []
       requestBody:
@@ -206,6 +210,7 @@ paths:
       operationId: memberResetPassword
       tags:
         - member
+      summary: 重設登入密碼
       description: Reset member password
       parameters: []
       requestBody:

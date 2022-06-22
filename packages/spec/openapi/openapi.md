@@ -1740,6 +1740,8 @@ fetch('http://localhost/api/master/v0/guest/register/phone',
 
 `POST /guest/register/phone`
 
+*注冊新賬號 email (驗證手機)*
+
 Register a new user by phone.
 
 > Body parameter
@@ -1843,6 +1845,8 @@ fetch('http://localhost/api/master/v0/guest/login/password',
 
 `POST /guest/login/password`
 
+*使用 email/password 登入系統*
+
 Login by email and password.
 
 > Body parameter
@@ -1937,6 +1941,8 @@ fetch('http://localhost/api/master/v0/guest/verify/email',
 
 `POST /guest/verify/email`
 
+*寄發電子郵件檢查碼信件*
+
 寄發電子郵件檢查碼信件
 
 > Body parameter
@@ -2018,6 +2024,8 @@ fetch('http://localhost/api/master/v0/guest/verify/phone',
 ```
 
 `POST /guest/verify/phone`
+
+*寄發手機檢查碼簡訊*
 
 寄發手機檢查碼簡訊
 
@@ -2102,6 +2110,8 @@ fetch('http://localhost/api/master/v0/guest/reset/password',
 ```
 
 `POST /guest/reset/password`
+
+*重設密碼(未登入)*
 
 Reset member password
 
@@ -2195,6 +2205,8 @@ fetch('http://localhost/api/master/v0/guest/verify/account/phone',
 ```
 
 `POST /guest/verify/account/phone`
+
+*依帳號關聯手機號碼寄發檢查碼簡訊*
 
 依帳號關聯手機號碼寄發檢查碼簡訊
 
@@ -2563,9 +2575,10 @@ fetch('http://localhost/api/master/v0/invoice/shopping/create',
 
 `POST /invoice/shopping/create`
 
-*建立購物車交易訂單*
+*建立購物車交易訂單(流程圖)*
 
-建立購物車交易訂單
+## 建立購物車交易訂單
+![](https://mermaid.ink/svg/eyJjb2RlIjoiXG4gICAgICAgIHNlcXVlbmNlRGlhZ3JhbVxuICAgICAgICAgICAgcGFydGljaXBhbnQgVSBhcyDkvb_nlKjogIVcbiAgICAgICAgICAgIHBhcnRpY2lwYW50IFMgYXMgU2VydmVyXG4gICAgICAgICAgICBwYXJ0aWNpcGFudCBDIGFzIOizvOeJqei7iuaooee1hFxuICAgICAgICAgICAgcGFydGljaXBhbnQgVyBhcyDpjKLljIXmqKHntYRcbiAgICAgICAgICAgIHBhcnRpY2lwYW50IEkgYXMg56uZ5YaF5Lqk5piT5Lu75YuZXG4gICAgICAgICAgICBwYXJ0aWNpcGFudCBJVyBhcyDnq5nlhoXkuqTmmJPmqKHntYRcbiAgICAgICAgICAgIHBhcnRpY2lwYW50IE8gYXMg5aSW56uZ5Lqk5piT5Lu75YuZXG4gICAgICAgICAgICBwYXJ0aWNpcGFudCBPVyBhcyDlpJbnq5nkuqTmmJPmqKHntYRcbiAgICAgICAgICAgIFUgLT4-KyBTOiDpgIHlh7ros7znianou4rkuqTmmJPoqILllq5cbiAgICAgICAgICAgIE5vdGUgcmlnaHQgb2YgUzog6YeN5paw6KiI566X6KiC5ZauXG4gICAgICAgICAgICBTIC0-Pi0gQzog5oyC5YWl6LO854mp6LuK5Lu75YuZXG4gICAgICAgICAgICBDIC0-PisgVzog6KiC5Zau6YeR6aGN6Y6W5a6aXG4gICAgICAgICAgICBXIC0-Pi0gQzog6Y6W5a6a5oiQ5YqfXG4gICAgICAgICAgICBDIC0tPj4gVTog6YCy5bqm5Zue5aCxXG4gICAgICAgICAgICBDIC0-PisgSTog5oyC5YWl56uZ5YaF5Lqk5piT5Lu75YuZKCopXG4gICAgICAgICAgICBJVyAtLT4-IEk6IOWft-ihjOermeWGheS6pOaYk1xuICAgICAgICAgICAgSSAtPj4tIEM6IOermeWGheS6pOaYk-e1kOaenOWbnuWgsVxuICAgICAgICAgICAgQyAtLT4-IFU6IOmAsuW6puWbnuWgsVxuICAgICAgICAgICAgQyAtPj4rIE86IOaMguWFpeWkluermeS6pOaYk-S7u-WLmSgqKVxuICAgICAgICAgICAgT1cgLS0-PiBPOiDln7fooYzlpJbnq5nkuqTmmJNcbiAgICAgICAgICAgIE8gLT4-LSBDOiDlpJbnq5nkuqTmmJPntZDmnpzlm57loLFcbiAgICAgICAgICAgIEMgLS0-PiBVOiDpgLLluqblm57loLFcbiAgICAgICAgICAgIEMgLT4-KyBXOiDoqILllq7ph5HpoY3op6PpjpZcbiAgICAgICAgICAgIFcgLT4-LSBDOiDlrozmiJDmh4nku5jmiaPmrL5cbiAgICAgICAgICAgIEMgLT4-IFU6IOWujOaIkOioguWWrlxuICAgICAgICAiLCJtZXJtYWlkIjp7InRoZW1lIjoid2hpdGUifX0)
 
 > Body parameter
 
@@ -2807,9 +2820,9 @@ fetch('http://localhost/api/master/v0/invoice/selling/cancel',
 
 `POST /invoice/selling/cancel`
 
-*取消單一NFT上架訂單*
+*單一NFT下架*
 
-取消單一NFT上架訂單
+單一NFT下架
 
 > Body parameter
 
@@ -2973,9 +2986,9 @@ fetch('http://localhost/api/master/v0/invoice/selling/cancel/cost',
 
 `POST /invoice/selling/cancel/cost`
 
-*查詢取消單一NFT上架費用*
+*查詢單一NFT下架費用*
 
-查詢取消單一NFT上架費用
+查詢單一NFT下架費用
 
 > Body parameter
 
@@ -3439,6 +3452,8 @@ fetch('http://localhost/api/master/v0/member/info',
 
 `POST /member/info`
 
+*取得會員資訊*
+
 check and renew auth token
 
 > Body parameter
@@ -3524,6 +3539,8 @@ fetch('http://localhost/api/master/v0/member/verify/phone',
 
 `POST /member/verify/phone`
 
+*送出手機驗證碼（登入中）*
+
 send SMS to member phone for verify code
 
 > Body parameter
@@ -3607,6 +3624,8 @@ fetch('http://localhost/api/master/v0/member/verify/email',
 ```
 
 `POST /member/verify/email`
+
+*寄發電子郵件檢查碼信件（登入中）*
 
 寄發電子郵件檢查碼信件
 
@@ -3693,6 +3712,8 @@ fetch('http://localhost/api/master/v0/member/reset/phone',
 ```
 
 `POST /member/reset/phone`
+
+*重設連結手機號碼*
 
 重設連結手機號碼
 
@@ -3793,6 +3814,8 @@ fetch('http://localhost/api/master/v0/member/reset/password',
 ```
 
 `POST /member/reset/password`
+
+*重設登入密碼*
 
 Reset member password
 
@@ -3909,7 +3932,7 @@ fetch('http://localhost/api/master/v0/mint/list',
 
 `POST /mint/list`
 
-*mint list*
+*列出代鑄專案清單*
 
 mint list
 
@@ -4071,7 +4094,7 @@ fetch('http://localhost/api/master/v0/mint/read',
 
 `POST /mint/read`
 
-*mint list*
+*取得專案資訊*
 
 mint list
 
@@ -4220,7 +4243,7 @@ fetch('http://localhost/api/master/v0/mint/create',
 
 `POST /mint/create`
 
-*mint create*
+*建立專案*
 
 mint create
 
@@ -4431,7 +4454,7 @@ fetch('http://localhost/api/master/v0/mint/update',
 
 `POST /mint/update`
 
-*mint update*
+*更新專案*
 
 mint update
 
@@ -4612,7 +4635,7 @@ fetch('http://localhost/api/master/v0/mint/delete',
 
 `POST /mint/delete`
 
-*mint delete*
+*刪除專案*
 
 mint delete
 
@@ -4706,7 +4729,7 @@ fetch('http://localhost/api/master/v0/mint/action',
 
 `POST /mint/action`
 
-*mint action*
+*設定專案狀態 啓用/停用/上架/下架/送審/測試*
 
 mint action
 
@@ -4833,6 +4856,8 @@ fetch('http://localhost/api/master/v0/wallet/balance',
 
 `POST /wallet/balance`
 
+*取得錢包可用餘額*
+
 wallet balance
 
 > Body parameter
@@ -4924,6 +4949,8 @@ fetch('http://localhost/api/master/v0/wallet/history',
 ```
 
 `POST /wallet/history`
+
+*分頁拉取用戶存提幣記錄*
 
 分頁拉取用戶存提幣記錄
 
@@ -5052,6 +5079,8 @@ fetch('http://localhost/api/master/v0/wallet/diposit/info',
 
 `POST /wallet/diposit/info`
 
+*取得虛擬貨幣入金賬號*
+
 取得虛擬貨幣入金賬號
 
 > Body parameter
@@ -5147,7 +5176,9 @@ fetch('http://localhost/api/master/v0/wallet/withdraw/info',
 
 `POST /wallet/withdraw/info`
 
-取得虛擬貨幣出金管道
+*取得虛擬貨幣出金方式*
+
+取得虛擬貨幣出金方式
 
 > Body parameter
 
@@ -5248,7 +5279,9 @@ fetch('http://localhost/api/master/v0/wallet/withdraw/submit',
 
 `POST /wallet/withdraw/submit`
 
-取得虛擬貨幣出金管道
+*確認虛擬貨幣出金*
+
+確認虛擬貨幣出金
 
 > Body parameter
 

@@ -48,5 +48,6 @@ for (const tagFile of tagFiles) {
 
 }
 let saveFile = path.resolve(__dirname, '../../openapi/openapi.yaml');
-fs.writeFileSync(saveFile, yaml.dump(baseOpenapi), 'utf8')
+import { mdToSVG } from './mermaidBuild';
+fs.writeFileSync(saveFile, mdToSVG(yaml.dump(baseOpenapi)), 'utf8');
 console.log('done.');
