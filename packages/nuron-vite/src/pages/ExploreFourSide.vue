@@ -36,7 +36,7 @@
 
 <script>
     // import Layout from '@/components/layouts/Layout.vue';
-    import LayoutSidebar from '@/components/layouts/LayoutSidebar.vue';
+    import LayoutSidebar from '@/components/layouts/LayoutSidebarHeader.vue';
     import Breadcrumb from '@/components/breadcrumb/Breadcrumb.vue';
     import ExploreNewestItem from '@/components/explore/ExploreNewestItem.vue';
     import SalScrollAnimationMixin from '@/mixins/SalScrollAnimationMixin';

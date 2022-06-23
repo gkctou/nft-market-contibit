@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Header />
         <!-- Start header area -->
         <div class="d-none d-lg-block">
             <div class="header-area left-header-style d-flex">
@@ -255,6 +256,7 @@
 </template>
 
 <script>
+    import Header from './header/Header.vue';
     import AppFunctions from '@/helpers/AppFunctions'
     import SalScrollAnimationMixin from '@/mixins/SalScrollAnimationMixin'
     import BackToTop from '@/components/layouts/footer/BackToTop.vue'
@@ -265,7 +267,7 @@
 
     export default {
         name: 'LayoutSidebar',
-        components: {CreatorListSidebar, NotificationListSidebar, NotificationList, NiceSelect, BackToTop},
+        components: {CreatorListSidebar, NotificationListSidebar, NotificationList, NiceSelect, BackToTop,Header},
         mixins: [SalScrollAnimationMixin],
         props: {
             showRightSidebar: {

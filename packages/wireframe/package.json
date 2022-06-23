@@ -10,7 +10,8 @@
     "renew": "npm i -S vue && npm i -D @babel/core @storybook/addon-actions @storybook/addon-essentials @storybook/addon-links @storybook/addon-storysource @storybook/builder-webpack5 @storybook/manager-webpack5 @storybook/vue3 @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vitejs/plugin-vue @vue/eslint-config-typescript babel-loader eslint eslint-config-prettier eslint-plugin-prettier eslint-plugin-vue prettier typescript vite vue-loader vue-tsc"
   },
   "dependencies": {
-    "vue": "^3.2.37"
+    "vue": "^3.2.37",
+    "@babel/preset-env": "~7.18.2"
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
