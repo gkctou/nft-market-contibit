@@ -1,15 +1,20 @@
-// https://github.com/quasarframework/quasar/discussions/12539
+import { store } from 'quasar/wrappers'
+import { createPinia } from 'pinia'
 
-import { createPinia, Pinia } from 'pinia';
+/*
+ * If not building with SSR mode, you can
+ * directly export the Store instantiation;
+ *
+ * The function below can be async too; either use
+ * async/await or return a Promise which resolves
+ * with the Store instance.
+ */
 
-// provide typings for `this.$store`
-// declare module '@vue/runtime-core' {
-//     interface ComponentCustomProperties {
-//         $store: Pinia;
-//     }
-// }
+export default store((/* { ssrContext } */) => {
+  const pinia = createPinia()
 
-export function createStore(): Pinia {
-    const pinia = createPinia();
-    return pinia;
-};
+  // You can add Pinia plugins here
+  // pinia.use(SomePiniaPlugin)
+
+  return pinia
+})

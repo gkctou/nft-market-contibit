@@ -55,6 +55,14 @@
         {
             "packageName": "nft-market-admin",
             "projectFolder": "packages/admin"
+        },
+        {
+            "packageName": "nft-market-enftmart",
+            "projectFolder": "packages/enftmart"
+        },
+        {
+            "packageName": "nft-market-nuron",
+            "projectFolder": "packages/nuron"
         }
     ]
 }

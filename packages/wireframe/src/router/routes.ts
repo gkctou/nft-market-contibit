@@ -3,27 +3,28 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('../layouts/MainLayout.vue'),
+    component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('../pages/Hello.vue') }
+      { path: '', component: () => import('pages/IndexPage.vue') },
+      // { path: 'landing', component: () => import('pages/AboutUs.vue') }
     ],
+
   },
   {
-    path: '/page',
-    component: () => import('../layouts/PageLayout.vue'),
-    children: [
-      { path: '', component: () => import('../pages/Hello.vue') },
-      { path: 'login', component: () => import('../pages/Login.vue') },
-      { path: 'register', component: () => import('../pages/Register.vue') },
-      { path: 'component', component: () => import('../pages/Component.vue') }
-    ],
+    name: 'landing',
+    path: '/landing',
+    component: () => import('pages/AboutUs.vue'),
+    // redirect: '/bootstrap/landing',
+    // children: [
+    //   // { path: '', component: () => import('pages/IndexPage.vue') },
+    //   { path: 'landing', component: () => import('pages/AboutUs.vue') }
+    // ],
   },
-
   // Always leave this as last one,
   // but you can also remove it
   {
     path: '/:catchAll(.*)*',
-    component: () => import('../pages/Error404.vue'),
+    component: () => import('pages/ErrorNotFound.vue'),
   },
 ];
 
