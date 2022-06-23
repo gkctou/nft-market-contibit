@@ -45,13 +45,20 @@
 			"path": "packages/admin"
 		},
 		{
-			"path": "packages/enftmart"
+			"name": "enftymart",
+			"path": "packages/enftymart"
 		},
 		{
+			"name": "enftymart-vite",
+			"path": "packages/enftymart-vite"
+		},
+		{
+			"name": "nuron",
 			"path": "packages/nuron"
 		},
 		{
-			"path": "packages/template"
+			"name": "nuron-vite",
+			"path": "packages/nuron-vite"
 		}
 	],
 	"settings": {}

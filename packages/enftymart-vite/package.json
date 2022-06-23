@@ -1,0 +1,20 @@
+{
+  "name": "nft-market-enftymart-vite",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "renew": "npm i -S vue && npm i -D @vitejs/plugin-vue typescript vite vue-tsc"
+  },
+  "dependencies": {
+    "vue": "^3.2.37"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.3",
+    "typescript": "^4.7.4",
+    "vite": "^2.9.12",
+    "vue-tsc": "^0.38.1"
+  }
+}

@@ -57,12 +57,20 @@
             "projectFolder": "packages/admin"
         },
         {
-            "packageName": "nft-market-enftmart",
-            "projectFolder": "packages/enftmart"
+            "packageName": "nft-market-enftymart",
+            "projectFolder": "packages/enftymart"
+        },
+        {
+            "packageName": "nft-market-enftymart-vite",
+            "projectFolder": "packages/enftymart-vite"
         },
         {
             "packageName": "nft-market-nuron",
             "projectFolder": "packages/nuron"
+        },
+        {
+            "packageName": "nft-market-nuron-vite",
+            "projectFolder": "packages/nuron-vite"
         }
     ]
 }

@@ -1,24 +1,12 @@
-# nft-market (nft-market-wireframe)
+# Vue3 Component Library Starter using Typescript + Vite + Storybook
 
-nft market
+This template should help get you started developing a Vue 3 component library.
 
-## Install the dependencies
-```bash
-yarn
-# or
-npm install
-```
+more soon
+## Recommended IDE Setup
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
+- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
 
+## Type Support For `.vue` Imports in TS
 
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.

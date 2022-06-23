@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Softnio">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Fav Icon  -->
+	<link rel="shortcut icon" href="images/favicon.png">
+	<!-- Site Title  -->
+	<title>Documentation - EnftyMart Vue JS Template</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<!-- Vendor Bundle CSS -->
+	<link rel="stylesheet" href="assets/css/vendor.bundle.css?ver=100">
+	<link rel="stylesheet" href="assets/css/prettify.css">
+	<!-- Custom styles for this template -->
+
+	<style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            position: relative;
+            background: #fbfbfb;
+            color: #606060;
+        }
+        p {
+            font-size: 15px!important;
+        }
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+        img {
+            max-width: 100%;
+        }
+        .section{
+            padding: 20px 0 0;
+        }
+        a{
+            color: #7952b3;
+        }
+        a:hover,a:focus,a:active{
+            color: #7952b3;
+        }
+        h1,h2,h3,h4,h5,h6 {
+            font-weight: 700;
+        }
+        h1,h2,h3,h4,h5,h6,p.lead{
+            color: #181818;
+            margin-bottom: 8px;
+        }
+        .gaps-1x {
+            height: 10px;
+        }
+
+        .gaps-2x {
+            height: 20px;
+        }
+
+        .gaps-3x {
+            height: 30px;
+        }
+
+        .gaps-4x {
+            height: 40px;
+        }
+
+        .gaps-5x {
+            height: 50px;
+        }
+
+        .gaps-6x {
+            height: 60px
+        }
+
+        .gaps-7x {
+            height: 70px
+        }
+
+        .gaps-8x {
+            height: 80px
+        }
+
+        .gaps-9x {
+            height: 90px
+        }
+
+        .gaps-10x {
+            height: 100px
+        }
+        .btn {
+            padding: 10px 20px;
+        }
+        .btn-primary {
+            background-color: #7952b3;
+            border-color: #7952b3;
+        }
+        .btn-primary:hover {
+            background-color: #9173bf;
+            border-color: #9173bf;
+        }
+        p,span{
+            color: #3c3c3c;
+        }
+        .doc-topbar{
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            padding: 10px 0;
+            background: #fff;
+            box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.02);
+        }
+        .doc-logo{
+            height: 29px;
+            display: block;
+        }
+        .doc-logo img{
+            height: 29px;
+        }
+        .doc-topbar-info ul{
+            margin: 0 -15px;
+        }
+        .doc-topbar-info ul li{
+            font-size: 13px;
+            padding: 0 15px;
+        }
+        .doc-sidebar{
+            position: fixed;
+            top: 0;
+            width: 260px;
+            border-radius: 4px;
+            padding: 15px 0;
+            margin-top: 90px;
+            background: #fff;
+            max-height: calc(100vh - 120px);
+            box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.07);
+        }
+        .doc-sidebar-head{
+            color: #304073;
+            margin:15px 0 5px;
+            padding: 0 20px;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .doc-sidebar-nav{
+            padding: 0 20px;
+        }
+        .doc-sidebar-nav li{
+            padding: 3px 0;
+        }
+        .doc-sidebar-nav li a{
+            font-size: 14px;
+            letter-spacing: 0.01em;
+            font-weight: 400;
+            color: #3c3c3c;
+            display: block;
+            border-radius: 4px;
+            padding: 4px 10px;
+            transition: 0.2s;
+        }
+        .doc-sidebar-nav li a:hover,
+        .doc-sidebar-nav li a:focus,
+        .doc-sidebar-nav li a:active,
+        .doc-sidebar-nav li.active a{
+            color: #000000;
+            text-decoration: none;
+            background-color: #fafafa;
+        }
+        .doc-content{
+            margin-left: 310px;
+        }
+      
+       .doc-file-list{
+            display: flex;
+            flex-wrap: wrap;
+            margin: -3px;
+        }
+        .doc-file-list li{
+            width: 33.33%;
+            padding: 3px;
+        }
+
+        .doc-file-list-4 li{
+            width: 25%;
+        }
+        ol li{
+            list-style: decimal;
+        }
+        .doc-ol li{
+            list-style-position: inside;
+        }
+        .lang-html,.lang-css,.lang-js{
+            overflow-x: hidden;
+        }
+        .list-item li {
+            margin-bottom: 8px;
+        }
+        .doc-content h4 {
+            font-weight: 500;
+        }
+        .separator{
+            margin:20px 0px;
+            height:1px;
+            background-color: #f1eded;
+        }
+        .card {
+            border-color: rgba(128, 137, 150, 0.2);
+        }
+        .icon-svg {
+            width: 35px;
+            height: 35px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            transition: 0.3s;
+            position: relative;
+            left: -8px;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .card:hover .icon-svg{
+            left: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+        .card p {
+            margin-bottom: 5px;
+            font-size: 14px!important;
+        }
+        .card p,
+        .card .list-item li,
+        .alert {
+            font-size: 14px;
+        }
+        .card .list-item li {
+            color: #3c3c3c;
+        }
+        .card p a,
+        .list-item a {
+            color: #7952b3;
+        }
+        .prettyprint {
+            padding: 10px 16px;
+            border-radius: 4px;
+            margin-bottom: 0;
+            font-size: 13px;
+        }
+        .card-link {
+            text-decoration: none;
+            height: 100%;
+        }
+        .card-link h4 {
+            font-weight: 600;
+            font-size: 20px;
+        }
+        .card-link p {
+            color: #7952b3;
+        }
+        @media (max-width: 767px){
+            .doc-sidebar {
+                display: none;
+            }
+            .doc-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="admin-dashboard-demo">
+    <div class="doc-topbar">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="div">
+                    <a class="doc-logo" href="./"><img src="images/logo-black.png" alt="EnftyMart"></a>
+                </div>
+                <div class="doc-topbar-info d-none d-md-block">
+                    <ul class="d-flex align-items-center">
+                        <li>Version: <strong>1.2.0</strong></li>
+                        <li>By: <a href="https://softnio.com" target="_blank">Softnio</a></li>
+                        <li><a target="_blank" href="https://enftymart.themenio.com/" class="btn btn-sm btn-primary">Demo Preview</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="docSidebar" class="doc-sidebar">
+            <div>
+                <ul class="doc-sidebar-nav">
+                    <li><a class="to-section" href="#introduction">Introduction</a></li>
+                    <li><a class="to-section" href="#quickStart">Quick Start</a></li>
+                    <li><a class="to-section" href="#ProductionBuild">Production Build</a></li>
+                    <li><a class="to-section" href="#FileFolders">Files & Folders</a></li>
+                    <li><a class="to-section" href="#Styles">Styles</a></li>
+                    <li><a class="to-section" href="#CreatingNewPage">Creating New Page</a></li>
+                    <li><a class="to-section" href="#DeploycPanel">Deploy in cPanel</a></li>
+                    <li><a class="to-section" href="#credits">Sources and Credits</a></li>
+                    <li><a class="to-section" href="changeslog.html">Changes Log</a></li>
+                </ul>
+            </div>
+        </div>
+    <div class="doc-content">
+        <div id="introduction" class="section" style="padding-top: 110px">
+            <h2>EnftyMart</h2>
+            <h4>NFT Marketplace Vue JS Template.</h4>
+            <div class="separator"></div>
+            <p><strong>EnftyMart</strong> is a Vue JS template which is based on latest Bootstrap 5 and its well optimized with mobile first responsive approach. 
+                EnftyMart is built using SASS preprocessor, HTML5, CSS3 and help of usefull npm plugins. The template is built with the latest Vue Version, making it
+                completely free of jQuery dependency.</p>
+            <p>You can use this template for any kind of NFT Marketplace, digital marketplace, crypto collectibles and non-fungible tokens.</p>
+        </div><!--End #introduction-->
+        <div class="gaps-3x"></div>
+        <div class="separator"></div>
+        <div class="gaps-2x"></div>
+    <div id="quickStart" class="section">
+        <h2 class="mb-4">Quick Start - install</h2>               
+        <div class="card">
+            <div class="card-body">
+                <p>Download the latest theme source from <a href="https://themeforest.net/downloads" target="_blank">themeforest</a>.</p>
+                <p>Download and install Node.js from <a href="https://nodejs.org/en/download/" target="_blank">nodejs.org/en/download/</a> (if your computer does't have it)</p>
+                <ul class="list-item mt-3">
+                    <li>How to run your vue project please follow the structure below:</li>
+                    <li><strong>Step 1 - </strong> go to <code>/path-to-dir/enftymart-vue</code> folder/directory</li>
+                    <li><strong>Step 2 - </strong> open the <code>command prompt window</code> or <code>terminal</code> in the enftymart-vue folder</li>
+                    <li><strong>Step 3 - </strong> Then run this command <code>npm install</code> in your enftymart-vue folder</li>
+                    <li><strong>Step 4 - </strong> After install then run this command <code>npm run serve</code> in your enftymart-vue folder</li>
+                    <li><strong>Step 5 - </strong> Open <code>http://localhost:8080 </code> to view it in the browser.</li>
+                </ul>
+            </div><!-- card-body -->
+        </div><!-- end card -->
+    </div><!-- End quick start -->
+    <div class="gaps-3x"></div>     
+    <div id="ProductionBuild" class="section">
+        <h2 class="mb-4">Production Build</h2>
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-item">
+                    <li>- For production build, use <code>npm run build</code>. A build folder will be created in the root directory named <code>dist</code></li>
+                </ul>
+                <pre class="prettyprint lang-html" id="npmi">
+npm run build</pre>
+            </div><!-- card-body -->
+        </div><!-- end card -->             
+    </div> <!-- End build -->
+    <div class="gaps-3x"></div>   
+    <div id="FileFolders" class="section">
+        <h2 class="mb-4">Files And Folders</h2>
+        <pre class="prettyprint lang-js" id="filesandfolder">
+|--docs/
+|--enftymart-vue/
+|--|--|--public/
+|--|--|--src/
+|--|--|--|--assets/
+|--|--|--|--|--css/
+|--|--|--|--|--fonts/
+|--|--|--|--|--images/
+|--|--|--|--|--img/
+|--|--|--|--|--js/
+|--|--|--|--|--scss/
+|--|--|--|--components/
+|--|--|--|--|--common/
+|--|--|--|--|--|--HeaderAction
+|--|--|--|--|--section/
+|--|--|--|--|--|--Hero
+|--|--|--|--pages/
+|--|--|--|--|--Home
+|--|--|--|--router/
+|--|--|--|--|--router.js
+|--|--|--|--store/
+|--|--|--|--|--store.js
+|--|--|--|--App.vue
+|--|--|--|--main.js
+|--|--|--package-lock.json
+|--|--|--package.json
+| More
+        </pre>
+    </div><!-- End file folder -->
+    <div class="gaps-3x"></div>
+    <div id="Styles" class="section">
+        <h2 class="mb-4">Styles</h2>
+        <div class="card">
+            <div class="card-body">
+                <h6 class="text-uppercase text-muted">SCSS Files List</h6>
+                <p class="mb-3">All the scss files are imported to <code>main.js</code> file of the root folder</p>
+                <pre class="prettyprint lang-js">
+// template custom scss
+import './assets/scss/bundles.scss'
+import './assets/scss/style.scss'
+// You can add your own css files in a similar way
+import './assets/css/YOUR_FILE_NAME.css'</pre>
+            </div>
+        </div>
+    </div><!-- end style -->
+    <div class="gaps-3x"></div>
+    <div id="CreatingNewPage" class="section">
+        <h2 class="mb-4">Creating a Component</h2>
+        <div class="card">
+            <div class="card-body">
+                <p>To create a <code>.vue</code> file in your project directory. you just right click on 
+                    your project directory folder and name it with your own name like <code>HelloWorld.vue</code>.
+                    If you prefer terminal commands, you can do this in your computer’s terminal with the bash command <code>touch</code>:
+                </p>
+                <div class="my-3">
+                    <pre class="prettyprint lang-html">
+touch src/components/HellowWorld.vue</pre>
+                </div>
+                <p class="mb-3">In this step, you are creating a single-file component that will contain all of the HTML, JavaScript, and css that this chunk
+                     of code needs. Every <code>.vue</code> component contains three basic concerns or sections:
+                    <code>&lt;template&gt;</code> <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> .In this case, <code>template</code>
+                    is the component’s HTML.
+                </p>
+                <p class="mb-3">Open up the new file in your text editor.</p>
+                <p class="mb-3">In this file, create a div by using the <code>&lt;div&gt;</code> tag inside of <code>&lt;template&gt;</code>
+                    Inside of this <code>&lt;div&gt;</code> add the <code>&lt;h1&gt;</code> element with the content <code>Hello World</code>
+                </p>
+                <pre class="prettyprint lang-js">
+&lt;template&gt;
+   &lt;div class=&quot;hello&quot;&gt;
+        &lt;h1&gt;Hellow World&lt;h1&gt;
+   &lt;div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+    name: 'HelloWorld'
+  }
+&lt;/script&gt;
+</pre>
+                <p class="my-3">Keep your development server running throughout development. If you close or cancel the server process, you will not be able to view your application in the browser.</p>
+                <p class="mb-3">Save the file.</p>
+                <p class="mb-3">At this point, when you open your browser, you will not see the HTML rendered. That is because you need to
+                    <code>import</code> the newly created <code>HellowWorld.vue</code> component into a component that is already mounted. Since
+                    <code>App.vue</code> is your main entry point, it’s best to import it to see the output
+                </p>
+                <p class="mb-3">Open up the <code>App.vue</code> file in your text editor. and add the following code:</p>
+                <pre class="prettyprint lang-js">
+&lt;template&gt;
+    &lt;HellowWorld&gt;&lt;/HellowWorld&gt; // &lt;= 3 HellowWorld component imported
+&lt;/template&gt;
+&lt;script&gt;
+import HellowWorld from '@/components/HellowWorld.vue'// &lt; 1 first import here then register its name in the component object 
+export default {
+    components: {
+        HellowWorld // &lt; 2 register here then
+    }
+ }
+&lt;/script&gt;</pre>
+                <p class="my-3">When you import using ES6, you are essentially 
+                    creating a variable to later reference in your code. In this case, you are storing the code from <code>HellowWorld.vue</code> into a variable called
+                    <code>HellowWorld</code> You need to register it via the <code>component</code> property before you can use it.
+                </p>
+                <p>After completing this step, save any unsaved file and open your browser back to <code>localhost:8080</code> You will now find your newly created component at the top of the page:</p>
+            </div><!-- card body -->
+        </div><!-- card -->
+    </div><!-- end style -->
+    <div class="gaps-3x"></div>
+    <div id="others" class="section">
+        <div id="DeploycPanel" class="section">
+        <h2 class="mb-3">Deploy in cPanel</h2>     
+        <p>To run your vue project in cPanel follow the instruction below</p>
+        <ul class="list-item my-3">
+            <li><strong>Step 1.</strong> Run <code>npm run build</code> command to your folder directory.</li>
+            <li class="mb-3"><strong>Step 2.</strong> create a file named <code>.htaccess</code> to your root directory where <code>dist</code> folder is. and include the below code to <code>.htaccess</code> file</li>
+            <li class="mb-3">
+                <pre class="prettyprint lang-html">
+&lt;IfModule mod_rewrite.c&gt;
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
+&lt;/IfModule&gt;</pre>
+            </li>
+            <li><strong>Step 3.</strong> Upload your <code>dist</code> folder and <code>.htaccess</code> file to <strong>cPanel</strong> <code>public_html</code> directory ( or the directory of your sub domain, if its one)</li>
+        </ul>
+        </div><!-- End #credits -->
+    </div><!-- end others -->
+    <div id="others" class="section">
+        <div id="credits" class="section">
+            <h2 class="mb-4">Sources and Credits</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <a target="_blank" href="https://vuejs.org/" class="card card-link">
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div class="pr-3">
+                                <h4 class="mb-2">Vue JS</h4>
+                                <p>https://vuejs.org/</p>
+                            </div>
+                            <div class="icon-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- end col -->
+                <div class="col-lg-6 mb-4">
+                    <a target="_blank" href="https://router.vuejs.org/" class="card card-link">
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div class="pr-3">
+                                <h4 class="mb-2">Vue Router</h4>
+                                <p>https://router.vuejs.org/</p>
+                            </div>
+                            <div class="icon-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- end col -->
+                <div class="col-lg-6 mb-4">
+                    <a target="_blank" href="https://getbootstrap.com/" class="card card-link">
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div class="pr-3">
+                                <h4 class="mb-2">Bootstrap 5</h4>
+                                <p>https://getbootstrap.com/</p>
+                            </div>
+                            <div class="icon-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- end col -->
+                <div class="col-lg-6 mb-4">
+                    <a target="_blank" href="https://swiperjs.com/vue" class="card card-link">
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div class="pr-3">
+                                 <h4 class="mb-2">Swiper Vue</h4>
+                                 <p>https://swiperjs.com/vue</p>
+                            </div>
+                            <div class="icon-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- end col -->
+                <div class="col-lg-6 mb-4">
+                    <a target="_blank" href="https://www.npmjs.com/package/vue3-clipboard" class="card card-link">
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div class="pr-3">
+                                <h4 class="mb-2">Vue3 Clipboard</h4>
+                                <p>https://www.npmjs.com/package/vue3-clipboard</p>
+                            </div>
+                            <div class="icon-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- end col -->
+                <div class="col-lg-6 mb-4">
+                    <a target="_blank" href="https://github.com/popperjs/popper-core" class="card card-link">
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div class="pr-3">
+                                <h4 class="mb-2">Popper JS</h4>
+                                <p>https://github.com/popperjs/popper-core</p>
+                            </div>
+                            <div class="icon-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- End #credits -->
+    </div><!-- end others -->
+    <div id="support" class="section">
+        <div id="credits" class="section">
+            <h2 class="mb-4">Support</h2>
+            <p>Once again, thank you so much for purchasing this Vue JS template. if you have any questions relating to this template.
+                please feel free to contact us at Support Center.
+            </p>
+        </div><!-- End #credits -->
+    </div><!-- end support  -->
+    <div class="gaps-6x"></div>
+    </div>
+	<!-- JavaScript (include all script here) -->
+	<script src="assets/js/jquery.bundle.js?ver=100"></script>
+	<script src="assets/js/prettify.js"></script> 
+	
+	<script>
+        window.prettyPrint && prettyPrint();
+        
+        $('a.to-section[href*="#"]:not([href="#"])').on("click", function(e) {
+            if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
+                var toHash = $(this.hash), toHashN = (this.hash.slice(1)) ? $('[name=' + this.hash.slice(1) + ']') : false, offset = 85;
+
+                toHash = toHash.length ? toHash : toHashN;
+                if (toHash.length) {
+                    $('html, body').animate({
+                        scrollTop: (toHash.offset().top - offset)
+                    }, 1000);
+                    e.preventDefault();
+                }
+            }
+            var self= $(this);
+            $('.to-section').parent().removeClass('active');
+            self.parent().addClass('active');
+            e.preventDefault();
+        });
+
+        $('pre.code').highlight();
+
+    </script>
+</body>
+</html>
