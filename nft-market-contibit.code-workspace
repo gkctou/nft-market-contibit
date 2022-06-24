@@ -29,10 +29,6 @@
 			"path": "packages/server"
 		},
 		{
-			"name": "client",
-			"path": "packages/client"
-		},
-		{
 			"name": "wireframe",
 			"path": "packages/wireframe"
 		},
@@ -59,6 +55,10 @@
 		{
 			"name": "nuron-vite",
 			"path": "packages/nuron-vite"
+		},
+		{
+			"name": "client",
+			"path": "packages/client"
 		}
 	],
 	"settings": {}
