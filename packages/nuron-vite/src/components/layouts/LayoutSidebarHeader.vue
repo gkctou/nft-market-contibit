@@ -4,14 +4,14 @@
         <!-- Start header area -->
         <div class="d-none d-lg-block">
             <div class="header-area left-header-style d-flex">
-                <!-- <div class="logo-area logo-custom-css">
+                <div class="logo-area logo-custom-css">
                     <router-link class="logo-light" to="/">
                         <img :src="`/assets/images/logo/logo-white.png`" alt="nft-logo">
                     </router-link>
                     <router-link class="logo-dark" to="/">
                         <img :src="`/assets/images/logo/logo-dark.png`" alt="nft-logo">
                     </router-link>
-                </div> -->
+                </div>
                 <div class="sidebar-nav-wrapper">
                     <nav class="mainmenu-nav">
                         <ul class="mainmenu list-group">
