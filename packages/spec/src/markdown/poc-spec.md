@@ -163,40 +163,34 @@ Contibit NFT Market(POC Spec.)
 - contract
   - 系統支援智能合約
 - datacenter
-  - Redis(Bee Queue / LRU Cach)
-  - Mongodb(Normal Database)
-  - Postgresql(Transaction / Double verify)
+  | 模組 | 内容 | 説明 |
+  | --- | --- | --- |
+  | Redis | Bee Queue / LRU Cach
+  | Mongodb | Normal Database
+  | Postgresql | Transaction / Double verify
 - web3
-  - Moralis
-  - Alchemy
-  - Opensea
-  - Infura
-  - Pinata
-  - Cybavo（金庫模組）
-  - Cloud(AWS/GCP)
+  | 模組 | 内容 | 説明 |
+  | --- | --- | --- |
+  | Moralis | NFT API
+  | Alchemy | NFT API
+  | Opensea | Market API
+  | Infura | Node API
+  | Pinata | Storage API
+  | Cybavo | 金庫模組
+  | Cloud | AWS/GCP
 - chain
   - 鏈上資訊收集
   - 執行鏈上交易
 - modules
-  - 會員管理/認證模組
-    - JWT
-  - NFT 會員賬目對應模組
-    - 匯入/提領
-  - 虛擬幣 會員賬目對應模組
-    - 匯入/提領
-  - 站内賣場模組
-    - 上下架
-    - 交易
-  - 站外賣場/widget模組
-    - 上下架
-    - 交易
-  - 虛擬幣交易模組
-    - 扣賬
-    - 查價
-    - 換匯（水位管理）
-  - 法幣支付模組
-    - 信用卡（NTD/USD）
-    - 第三方金流
+  | 模組 | 内容 | 説明 |
+  | --- | --- | --- |
+  | 會員管理/認證模組 | JWT
+  | NFT 會員賬目對應模組 | 匯入/提領
+  | 虛擬幣 會員賬目對應模組 | 匯入/提領
+  | 站内賣場模組 | 上下架<br/> 交易
+  | 站外賣場/widget模組 | 上下架<br/> 交易
+  | 虛擬幣交易模組 | 扣賬 <br/> 查價 <br/> 換匯（水位管理）
+  | 法幣支付模組 | 信用卡（NTD/USD）<br/> 第三方金流
 - server
   - 前臺流程控制模組
   - 前臺網頁伺服器
