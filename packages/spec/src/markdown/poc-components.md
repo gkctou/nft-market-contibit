@@ -11,15 +11,42 @@ Contibit NFT Market UI Components
 
 ## 文件核心
 - 描述所有頁面動態元件
-- 2022-05-18v0.1
-- 2022-07-01v1.0
-    - 依照 2022-06-23 會議，加强中文敘述及調整參數書寫格式。
+
+版本修訂歷程
+| 日期 | 版號 | 修改内容 |
+|---|---|---|
+| 2022-05-18 | v0.1 | 初始設計 |
+| 2022-07-01 | v1.0 | 依照 2022-06-23 會議，加强中文敘述及調整參數書寫格式。 |
+
+標題大綱
+|項次|標題|頁次|
+|---|---|---|
+| # | 文件核心 |1|
+| # | 版本修訂歷程 |1|
+| # | 標題大綱 |1|
+| a | 天 |2|
+| b | 登入/注冊頁面 |4|
+| c | 忘記密碼頁面 |5|
+| d | NFT 集合頁面 |5|
+| e | NFT 瀏覽頁面 |7|
+| f | NFT 支付頁面 |10|
+| g | NFT 結賬頁面 |11|
+| h | 我的 NFT |14|
+| i | 上架設定頁面 |18|
+| j | 匯入 NFT 頁面 |21|
+| k | 基本資訊【頁面】 |23|
+| l | 錢包【頁面】 |24|
+| m | 交易記錄【頁面】 |25|
+| n | 我的 Widget 頁面 |26|
+| o | Widget 登入/註冊頁面（外部） |28|
+| p | Widget 執行交易頁面（外部） |29|
+
 
 ---
 
 ## a)天
+- Wireframe：内容為首頁示意圖，主要在展示Header内容有哪些要素。
 ![](https://hackmd.io/_uploads/ryOTVUlcq.png)
-
 - 載入動作：取得目前 token 使用者/購物車資訊
 - Logo：首頁連結
 - NFT 集合：連結
@@ -28,7 +55,7 @@ Contibit NFT Market UI Components
 - 我的 Widget：連結
 - 搜尋框：
     - 輸入關鍵字，顯示下拉符合之 NFT 集合
-    - 點擊下拉内集合至 NFT 清單頁面
+    - 點擊下拉内的集合至 NFT 清單頁面
     - 點擊enter（搜尋）至 NFT 集合頁面（符合該關鍵字）
 - 登入：連結
 - 注冊：連結
@@ -43,14 +70,14 @@ Contibit NFT Market UI Components
 
 ---
 
-## b登入/)注冊頁面
-- Wireframe
+## b)登入/注冊頁面
+- Wireframe，展示將登入框和注冊框在最少頁數内實作。
 ![](https://hackmd.io/_uploads/ryqdVLeq9.png)
 - 載入動作：無
 - 注冊表單
     | 欄位 | 内容 | 説明 |
     | --- | --- | --- |
-    | email 賬號     | 前端檢查格式、後端檢查重複     |      |
+    | email 賬號 | 前端檢查格式、後端檢查重複 | |
     | email 檢驗碼 | 輸入框 | 發送按鈕：顯示倒數計時 |
     | 手機號碼 | 前端檢查格式、後端檢查重複 |
     | 手機 檢驗碼 | 輸入框 | 發送按鈕：顯示倒數計時 |
@@ -67,7 +94,7 @@ Contibit NFT Market UI Components
 
 ---
 
-## e)忘記密碼頁面
+## c)忘記密碼頁面
 - 載入動作：無
 - 表單
     | 欄位 | 内容 | 説明 |
@@ -83,12 +110,12 @@ Contibit NFT Market UI Components
 
 ---
 
-## f)NFT 集合頁面
-- 集合分類首頁(Wireframe)
+## d)NFT 集合頁面
+- 集合分類首頁(Wireframe)，這是一個分類展示頁面，將所有分類顯示前n個品相，點擊分類標題可以進入顯示該分類的全部頁面。
 ![](https://hackmd.io/_uploads/r1ZQSLxqc.png)
-- 集合分類内容及搜尋列表(Wireframe)
+- 集合分類内容及搜尋列表(Wireframe)，這是一個分類内容列表 及 搜尋結果列表頁面。
 ![](https://hackmd.io/_uploads/r1FHHLgqc.png)
-- 參考：[raritysniper](https://raritysniper.com/nft-collections)
+- 參考：[raritysniper](https://raritysniper.com/nft-collections)，這個是做爲上述2個分類頁面的設計參考來源，主要參考品相編排模式及頁面側邊欄結構，唯獨在我們的實作中只有2個維度可以搜尋（關鍵字和分類）。
 ![](https://hackmd.io/_uploads/SJMtG1h99.png)
 - 載入動作：依照URL所帶關鍵字/過濾/排序條件，向後端載入資料集合
 - 過濾條件：
@@ -106,8 +133,8 @@ Contibit NFT Market UI Components
 
 ---
 
-## g)NFT 瀏覽頁面
-- 參考：[gem](https://www.gem.xyz/collection/furyofthefurdao/) / [稀有度計算](https://raritytools.medium.com/ranking-rarity-understanding-rarity-calculation-methods-86ceaeb9b98c)
+## e)NFT 瀏覽頁面
+- 參考：[gem](https://www.gem.xyz/collection/furyofthefurdao/) / [稀有度計算](https://raritytools.medium.com/ranking-rarity-understanding-rarity-calculation-methods-86ceaeb9b98c)，這是進入到NFT集合内的展示頁面，需要參考的是左側的過濾欄位設計以及購物車模式。中間物品列表的形式大致相同，可以截取它在已加入購物車時的雙向高亮的提示模式。
 ![](https://hackmd.io/_uploads/SJFYQ12q9.png)
 - 載入動作：依照URL所帶 NFT集合名稱 /過濾/排序條件，向後端載入資料集合
 - 過濾條件：
@@ -135,8 +162,8 @@ Contibit NFT Market UI Components
     | 售價 | 數值
     | 加入購物車Icon | 點擊加入目前購物車
     | 詳細按鈕 | 點擊彈窗顯示詳細資料
-- 點擊圖片預設為加入購物車，再次點擊為移出購物車
-- 無限列表清單
+- 點擊圖片預設為加入購物車，再次點擊為移出購物車。
+- 在顯示列表上使用無限列表清單，下拉到底會繼續載入。
 - 購物車側邊欄
     - 清單
         | 欄位 | 内容 | 説明 |
@@ -155,8 +182,8 @@ Contibit NFT Market UI Components
 
 ---
 
-## h)NFT 支付頁面
-- 參考：[gem](https://www.gem.xyz/tokens)
+## f)NFT 支付頁面
+- 參考：[gem](https://www.gem.xyz/tokens)，主要參考它的支付貨幣選擇模式。
 ![](https://hackmd.io/_uploads/SJp38J295.png)
 - 載入動作：取得使用者錢包明細，載入購物車明細
 - 購物車側邊欄
@@ -188,10 +215,10 @@ Contibit NFT Market UI Components
 
 ---
 
-## i)NFT 結賬頁面
-- 參考：[gem](https://www.gem.xyz/review)
+## g)NFT 結賬頁面
+- 參考：[gem](https://www.gem.xyz/review)，在結賬頁面的中間使用左右分欄作爲購買物品及支付方式、金額的顯示方式。
 ![](https://hackmd.io/_uploads/BynYUk3q9.png)
-- 載入動作：若URL帶訂單編號，載入交易狀態，否則載入購物車明細
+- 載入動作：若URL帶訂單編號代表指定顯示既有訂單，載入交易狀態，否則載入購物車明細（新訂單）
 - 訂單明細
     - 左側 商品清單：
         | 欄位 | 内容 | 説明 |
@@ -235,10 +262,10 @@ Contibit NFT Market UI Components
     ```
 ---
 
-## j)我的 NFT
-- 參考：[gem](https://www.gem.xyz/sell)
+## h)我的 NFT
+- 參考：[gem](https://www.gem.xyz/sell)，簡單參考物件排列方式和右側購物車結構。
 ![](https://hackmd.io/_uploads/B1BMwy25q.png)
-- 載入動作：取得使用者NFT清單(以入賬時間倒排序)，並載入上架車明細
+- 載入動作：取得使用者NFT清單(以入賬時間倒排序)，並載入之前存入的上架車明細
 - 匯入 NFT 按鈕：連結
 - 格狀清單内容
     | 欄位 | 内容 | 説明 |
@@ -307,10 +334,10 @@ Contibit NFT Market UI Components
 
 ---
 
-## k)上架設定頁面
-- 參考：[gem](https://www.gem.xyz/list/review)
+## i)上架設定頁面
+- 參考：[gem](https://www.gem.xyz/list/review)，可以完全參照本頁面實作，基本上在批次上架的模式中這個頁面的所有設計都沒有問題。
 ![](https://hackmd.io/_uploads/H11YPk25c.png)
-- 載入動作：取得使用者上架車價格設定表
+- 載入動作：取得使用者上架車中既有物件的價格設定表顯示在設定頁面中
 - 價格設定表
     | 欄位 | 内容 | 説明 |
     | --- | --- | --- |
@@ -361,12 +388,12 @@ Contibit NFT Market UI Components
 
 ---
 
-## l)匯入 NFT 頁面
+## j)匯入 NFT 頁面
 - 參考：[gem](https://www.gem.xyz/sell)
 - 載入動作：無
 - 連結冷錢包按鈕：顯示目前連接錢包地址
 - 選擇公鏈：連結後自動設定，手動選擇時提示使用者切換冷錢包的公鏈
-- 載入（更新）：鏈接或選擇公鏈後自動載入，點擊後更新
+- 載入（更新）：發生錢包連結（connect）事件後或在頁面選擇公鏈後自動載入，後續點擊後重新拉取錢包内物件清單以更新頁面
 - 格狀清單内容
     | 欄位 | 内容 | 説明 |
     | --- | --- | --- |
@@ -398,10 +425,10 @@ Contibit NFT Market UI Components
         
 ---
 
-## m)基本資訊【頁面】
+## k)基本資訊【頁面】
 - 參考：[bitget](https://www.bitget.com/zh-TW/account/setting)
 ![](https://hackmd.io/_uploads/S1zJO1h99.png)
-- 載入動作：載入會員基本資料
+- 載入動作：載入會員各項基本設定資料
 - email：目前登入賬號
 - 密碼修改按鈕：彈窗
     | 欄位 | 内容 | 説明 |
@@ -419,10 +446,10 @@ Contibit NFT Market UI Components
 
 ---
 
-## n)錢包【頁面】
-- 參考：
+## l)錢包【頁面】
+- 參考：參考錢包内幣種列表排列方式，以及按鈕位置。下方為歷史記錄也是參照的重點。
     - ![](https://hackmd.io/_uploads/rkkmpaxPq.png)<br/>![](https://hackmd.io/_uploads/SkAS6alP5.png)
-- 載入動作：載入錢包資訊及進出記錄
+- 載入動作：載入會員錢包資訊及錢包的進出記錄（僅有提領或匯入錢包，不顯示交易相關記錄）
 - 錢包清單：
     | 欄位 | 内容 | 説明 |
     | --- | --- | --- |
@@ -443,9 +470,9 @@ Contibit NFT Market UI Components
 
 ---
 
-## o)交易記錄【頁面】
-- 參考：![](https://hackmd.io/_uploads/BJl3pTeDc.png)
-- 載入動作：載入最近一個月交易記錄
+## m)交易記錄【頁面】
+- 參考：![](https://hackmd.io/_uploads/BJl3pTeDc.png)，參考日期區間選擇方式和歷史記錄的表格。
+- 載入動作：載入最近一個月交易記錄（與交易相關，不需帶入錢包提領/匯入記錄）
 - 日期區間：開始日期~結束日期
 - 查詢按鈕
 - 交易記錄：
@@ -460,8 +487,7 @@ Contibit NFT Market UI Components
 
 ---
 
-## p)我的 Widget 頁面
-- 參考：[]()
+## n)我的 Widget 頁面
 - 載入動作：載入登入使用者 widgets 清單
 - 切換顯示已刪除項目
 - 清單
@@ -499,7 +525,7 @@ Contibit NFT Market UI Components
 
 ---
 
-## q)Widget 登入/註冊頁面（外部）
+## o)Widget 登入/註冊頁面（外部）
 <!-- - 參考：[]() -->
 - 載入動作：已登入者跳轉至 執行交易頁，否則依 widget 編號載入資訊
 - 上部
@@ -513,7 +539,7 @@ Contibit NFT Market UI Components
 
 ---
 
-## r)Widget 執行交易頁面（外部）
+## p)Widget 執行交易頁面（外部）
 <!-- - 參考：[]() -->
 - 載入動作：依 widget 編號載入商品資訊、載入使用者及其錢包資訊
 - 登出/取消 按鈕：跳轉至 widget 設定取消頁面
@@ -534,7 +560,7 @@ Contibit NFT Market UI Components
     | 登入者資訊|文字
     | 支付設定 | 選項 | ETH：支付額/錢包餘額<br/>USDT：換匯額/支付額/錢包餘額
     | 支付總額（ETH）| 數值
-- 執行交易按鈕  
+- 執行交易按鈕
     ```mermaid
     flowchart TD
         s((start)) --> a[回傳清單進行關聯並\n取得各 NFT 匯入錢包地址]
