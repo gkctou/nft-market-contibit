@@ -23,5 +23,8 @@
   "dependencies": {
     "pako": "~2.0.4",
     "js-base64": "~3.7.2"
+  },
+  "volta": {
+    "node": "16.16.0"
   }
 }

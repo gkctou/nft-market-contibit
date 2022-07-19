@@ -52,5 +52,8 @@
     "vue-loader": "^17.0.0",
     "regenerator-runtime": "~0.13.9",
     "@babel/preset-env": "~7.18.2"
+  },
+  "volta": {
+    "node": "16.16.0"
   }
 }
